@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Valentina &amp; Rodrigo — Invitación de Boda · 14 de Junio de 2026" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Valentina &amp; Rodrigo</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — Elegant Cowboy Wedding
+       Paleta: verde bosque · crema cálida · dorado envejecido · ámbar
+    ============================================================ */
+    :root {
+      --green-deep:   #1C2E21;
+      --green:        #2A3D2E;
+      --green-mid:    #3A5240;
+      --cream-warm:   #F5EDD8;
+      --cream-light:  #FAF7F0;
+      --parchment:    #E0CFA8;
+      --gold:         #C9A84C;
+      --gold-light:   #DFC078;
+      --gold-pale:    #EDD99A;
+      --amber:        #8B5E3C;
+      --amber-dark:   #5C3B22;
+      --text-dark:    #1E1A15;
+      --text-mid:     #3D3228;
+      --text-warm:    #6B5540;
+      --text-light:   #EDE3C8;
+      --font-script:  'Great Vibes', cursive;
+      --font-serif:   'Playfair Display', Georgia, serif;
+      --font-body:    'Cormorant Garamond', Georgia, serif;
+      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream-warm);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       SECTION SYSTEM
+    ============================================================ */
+    .section {
+      padding: 5rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .inner { max-width: 480px; margin: 0 auto; }
+
+    .s-green { background: var(--green); color: var(--text-light); }
+    .s-deep  { background: var(--green-deep); color: var(--text-light); }
+    .s-cream { background: var(--cream-warm); }
+    .s-light { background: var(--cream-light); }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+    ============================================================ */
+    .t-label {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .t-script {
+      font-family: var(--font-script);
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    /* ============================================================
+       ORNAMENTS
+    ============================================================ */
+    .orn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      margin: 1.25rem 0;
+    }
+
+    .orn::before, .orn::after {
+      content: '';
+      flex: 1;
+      max-width: 52px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.55;
+    }
+
+    .divider {
+      width: 44px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+      opacity: 0.65;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border: 1px solid currentColor;
+      cursor: pointer;
+      transition: background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+      background: transparent;
+      text-align: center;
+      text-decoration: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .btn-solid {
+      background: var(--green);
+      color: var(--cream-light);
+      border-color: var(--green);
+    }
+    .btn-solid:hover  { background: var(--green-mid); border-color: var(--green-mid); }
+    .btn-solid:active { background: var(--green-deep); }
+
+    .btn-ghost-light {
+      color: var(--cream-light);
+      border-color: rgba(237, 227, 200, 0.45);
+    }
+    .btn-ghost-light:hover { background: rgba(237,227,200,0.1); border-color: var(--cream-light); }
+
+    .btn-w100 { width: 100%; display: block; }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+    ============================================================ */
+    .anim {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .anim.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.22s; }
+    .d3 { transition-delay: 0.36s; }
+    .d4 { transition-delay: 0.5s; }
+
+    /* ============================================================
+       HERO
+       CSS gradient evokes golden hour on a dark ranch.
+       To add a couple photo: uncomment .hero::before and set the URL.
+    ============================================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 1.5rem 4.5rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 28% 65%, rgba(139, 94, 60, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse at 78% 20%, rgba(201, 168, 76, 0.14) 0%, transparent 50%),
+        linear-gradient(168deg, #1C2E21 0%, #1D2316 44%, #2C1E10 100%);
+    }
+
+    /*
+    PHOTO OVERLAY — uncomment to add a couple photo:
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('assets/couple.jpg');
+      background-size: cover;
+      background-position: center 20%;
+      opacity: 0.62;
+    }
+    */
+
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        transparent 25%,
+        rgba(28,46,33,0.55) 60%,
+        rgba(28,46,33,0.96) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--cream-light);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.64rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      opacity: 0.88;
+      margin-bottom: 1rem;
+    }
+
+    .hero-names {
+      font-family: var(--font-script);
+      font-size: clamp(2.8rem, 12vw, 4.4rem);
+      color: #fff;
+      line-height: 1.05;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-amp {
+      color: var(--gold-light);
+      font-size: 0.65em;
+      display: block;
+      margin: 0.15em 0;
+    }
+
+    .hero-date {
+      font-family: var(--font-serif);
+      font-size: 0.66rem;
+      letter-spacing: 0.52em;
+      text-transform: uppercase;
+      color: var(--cream-warm);
+      margin: 1.6rem 0 0.85rem;
+      opacity: 0.88;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--cream-light);
+      opacity: 0.75;
+      line-height: 1.75;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--gold);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-align: center;
+      animation: bob 2.5s ease-in-out infinite;
+    }
+
+    .hero-scroll::after {
+      content: '↓';
+      display: block;
+      font-size: 1rem;
+      letter-spacing: 0;
+      margin-top: 0.2rem;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
+      50%       { transform: translateX(-50%) translateY(7px); opacity: 1; }
+    }
+
+    /* ============================================================
+       SECTION: INTRO / QUOTE
+    ============================================================ */
+    .quote-big {
+      font-family: var(--font-script);
+      font-size: clamp(1.85rem, 7vw, 2.65rem);
+      color: var(--gold-pale);
+      line-height: 1.35;
+    }
+
+    .intro-caps {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      opacity: 0.82;
+      line-height: 2.2;
+    }
+
+    .title-boda {
+      font-family: var(--font-script);
+      font-size: clamp(2.5rem, 9vw, 3.5rem);
+      color: var(--cream-light);
+      margin: 1.2rem 0;
+    }
+
+    /* SVG Rings */
+    .rings-svg {
+      width: 90px;
+      height: auto;
+      margin: 0.5rem auto;
+    }
+
+    .parent-label {
+      font-family: var(--font-script);
+      font-size: 1.55rem;
+      color: var(--gold-light);
+    }
+
+    .parent-names {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      opacity: 0.78;
+      line-height: 2.2;
+      margin-top: 0.2rem;
+    }
+
+    /* ============================================================
+       SECTION: COUNTDOWN
+    ============================================================ */
+    .countdown-wrap {
+      position: relative;
+      min-height: 310px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(28,46,33,0.7), rgba(44,30,16,0.85)),
+        linear-gradient(138deg, #1C2E21 0%, #2C1E10 100%);
+    }
+
+    .cd-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--cream-light);
+      padding: 3.5rem 2rem;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .cd-headline {
+      font-family: var(--font-script);
+      font-size: clamp(2rem, 8vw, 2.6rem);
+      color: var(--gold-pale);
+      margin-bottom: 0.4rem;
+    }
+
+    .cd-date-line {
+      font-family: var(--font-serif);
+      font-size: 0.88rem;
+      letter-spacing: 0.22em;
+      color: var(--cream-warm);
+      margin-bottom: 0.4rem;
+    }
+
+    .cd-heart { color: var(--gold-light); margin: 0 0.4rem; }
+
+    .cd-sub {
+      font-family: var(--font-script);
+      font-size: 1.7rem;
+      color: rgba(237,227,200,0.75);
+      margin-bottom: 1.5rem;
+    }
+
+    .cd-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .cd-unit { display: flex; flex-direction: column; align-items: center; }
+
+    .cd-num {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      color: #fff;
+      line-height: 1;
+      min-width: 2ch;
+    }
+
+    .cd-lbl {
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-top: 0.3rem;
+      opacity: 0.85;
+    }
+
+    /* ============================================================
+       SECTION: TIMELINE / ITINERARY
+    ============================================================ */
+    .timeline { display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem; }
+
+    .tl-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+    .tl-icon { width: 78px; height: 78px; margin-bottom: 0.75rem; }
+
+    .tl-event {
+      font-size: 0.64rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+    }
+
+    .tl-time {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--green);
+      margin-top: 0.15rem;
+    }
+
+    .tl-desc {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-warm);
+      margin-top: 0.12rem;
+    }
+
+    .tl-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+      margin: 0.85rem 0;
+      opacity: 0.45;
+    }
+
+    /* ============================================================
+       SECTION: LOCATIONS
+    ============================================================ */
+    .loc-card {
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      padding: 2.5rem 1.5rem 2rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .loc-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .loc-icon { width: 78px; height: 78px; margin: 0 auto 1rem; }
+
+    .loc-type {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      margin-bottom: 0.5rem;
+    }
+
+    .loc-name {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .loc-address {
+      font-size: 0.85rem;
+      color: var(--text-warm);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .loc-time {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ============================================================
+       SECTION: DRESS CODE
+    ============================================================ */
+    .dc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(237,217,154,0.11);
+      text-align: left;
+    }
+
+    .dc-item:last-child { border-bottom: none; }
+
+    .dc-star { color: var(--gold-light); font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+    .dc-text { font-size: 0.92rem; color: var(--text-light); opacity: 0.85; line-height: 1.7; }
+
+    .dc-text strong { font-family: var(--font-serif); font-style: italic; color: var(--cream-light); opacity: 1; }
+
+    .dc-note { font-style: italic; font-size: 0.92rem; color: var(--text-light); opacity: 0.55; margin-top: 2rem; }
+
+    /* ============================================================
+       SECTION: GIFTS
+    ============================================================ */
+    .gift-card {
+      background: rgba(245,237,216,0.055);
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 1.75rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .gift-emoji { font-size: 2.2rem; margin-bottom: 0.75rem; }
+
+    .gift-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-bottom: 0.4rem;
+    }
+
+    .gift-detail { font-family: var(--font-serif); font-size: 0.95rem; color: var(--cream-light); margin-bottom: 1rem; }
+
+    /* ============================================================
+       SECTION: RSVP FORM
+    ============================================================ */
+    .rsvp-intro {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      line-height: 2.2;
+      margin-bottom: 2rem;
+    }
+
+    /* Form wrapper */
+    .rsvp-wrap { display: none; text-align: left; margin-top: 2rem; }
+
+    .rsvp-wrap.open {
+      display: block;
+      animation: slideIn 0.4s var(--ease);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .form-grp { margin-bottom: 1.4rem; }
+
+    .form-lbl {
+      display: block;
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      margin-bottom: 0.45rem;
+    }
+
+    .form-field {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text-dark);
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      border-bottom: 2px solid var(--parchment);
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-field:focus { border-bottom-color: var(--green); background: #fff; }
+
+    .form-field.err { border-bottom-color: var(--amber) !important; }
+
+    textarea.form-field { resize: vertical; min-height: 78px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Guest dynamic section */
+    .guests-block {
+      display: none;
+      margin-top: 2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--parchment);
+    }
+
+    .guests-title {
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+
+    .guest-card {
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      padding: 1rem 1rem 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .guest-card-lbl {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Optional fields */
+    .opt-block {
+      display: none;
+      margin-top: 1.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--parchment);
+    }
+
+    /* Submit block */
+    .submit-block { display: none; margin-top: 1.5rem; }
+
+    /* Messages */
+    .msg { display: none; margin-top: 1.5rem; padding: 1.4rem 1.5rem; text-align: center; }
+
+    .msg.show { display: block; }
+
+    .msg-ok {
+      background: rgba(42,61,46,0.07);
+      border: 1px solid var(--green-mid);
+      color: var(--green);
+    }
+
+    .msg-err {
+      background: rgba(139,94,60,0.07);
+      border: 1px solid var(--amber);
+      color: var(--amber-dark);
+    }
+
+    .msg-icon { font-size: 1.4rem; display: block; margin-bottom: 0.4rem; }
+
+    .msg-title { font-family: var(--font-serif); font-size: 1.05rem; display: block; margin-bottom: 0.35rem; }
+
+    /* Spinner */
+    .spin {
+      display: inline-block;
+      width: 15px; height: 15px;
+      border: 2px solid rgba(237,227,200,0.3);
+      border-top-color: var(--cream-light);
+      border-radius: 50%;
+      animation: rot 0.75s linear infinite;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes rot { to { transform: rotate(360deg); } }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--green-deep);
+      color: var(--text-light);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-names { font-family: var(--font-script); font-size: 2.4rem; color: var(--gold-pale); margin-bottom: 0.4rem; }
+
+    .footer-date { font-size: 0.58rem; letter-spacing: 0.48em; text-transform: uppercase; opacity: 0.45; margin-bottom: 2rem; }
+
+    .footer-quote { font-style: italic; font-size: 0.88rem; opacity: 0.5; max-width: 260px; margin: 0 auto 1.5rem; line-height: 1.8; }
+
+    .footer-copy { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.22; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (min-width: 640px) {
+      .section { padding: 6rem 2rem; }
+      .inner { max-width: 560px; }
+    }
+
+    @media (min-width: 1024px) {
+      .inner { max-width: 640px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================
+       HERO
+  ========================================================== -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <p class="hero-eyebrow anim">Con todo nuestro amor</p>
+
+      <h1 class="hero-names anim d1">
+        Valentina
+        <span class="hero-amp">&amp;</span>
+        Rodrigo
+      </h1>
+
+      <div class="orn anim d2" style="color: var(--gold-light); margin: 1.1rem 0;">✦ ✦ ✦</div>
+
+      <p class="hero-date anim d2">14 · Junio · 2026</p>
+
+      <p class="hero-tagline anim d3">
+        "Dos almas que encontraron en el otro<br>su lugar en el mundo."
+      </p>
+    </div>
+
+    <div class="hero-scroll anim d4">Desliza</div>
+  </section>
+
+
+  <!-- ==========================================================
+       QUOTE / INTRO
+  ========================================================== -->
+  <section class="section s-green">
+    <div class="inner">
+
+      <p class="quote-big anim">
+        Tantos caminos,<br>tanto tiempo...<br>y encontrarte a ti.
+      </p>
+
+      <div class="divider anim"></div>
+
+      <p class="intro-caps anim">
+        Es así como comenzó nuestra historia.<br>
+        Hoy, acompañados con amor por nuestras familias,<br>
+        queremos compartir contigo la alegría de
+      </p>
+
+      <h2 class="title-boda anim">Nuestra Boda</h2>
+
+      <!-- Rings SVG -->
+      <svg class="rings-svg anim" viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48"  cy="45" r="27" stroke="#C9A84C" stroke-width="2.5"/>
+        <circle cx="92"  cy="45" r="27" stroke="#C9A84C" stroke-width="2.5"/>
+        <circle cx="48"  cy="45" r="21" stroke="#C9A84C" stroke-width="1" stroke-dasharray="3 3" opacity="0.32"/>
+        <circle cx="92"  cy="45" r="21" stroke="#C9A84C" stroke-width="1" stroke-dasharray="3 3" opacity="0.32"/>
+        <text x="12"  y="20" font-size="10" fill="#DFC078" opacity="0.7">✦</text>
+        <text x="115" y="20" font-size="10" fill="#DFC078" opacity="0.7">✦</text>
+        <text x="64"  y="10" font-size="7"  fill="#DFC078" opacity="0.5">✦</text>
+      </svg>
+
+      <!-- Parents -->
+      <div style="margin-top: 3rem;" class="anim">
+        <p class="parent-label">Padres de la Novia</p>
+        <p class="parent-names">María Isabel Reyes<br>Arturo Montoya Ruiz</p>
+      </div>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <p class="parent-label">Padres del Novio</p>
+        <p class="parent-names">Elena Vargas de Castro<br>Jorge Alberto Castro</p>
+      </div>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <p class="parent-label">Padrinos</p>
+        <p class="parent-names">Roberto Almeida<br>Catalina Mendoza</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       COUNTDOWN
+  ========================================================== -->
+  <div class="countdown-wrap">
+    <div class="cd-inner">
+      <p class="cd-headline anim">¡Aparta la fecha!</p>
+      <p class="cd-date-line anim">
+        14 <span class="cd-heart">♥</span> Junio <span class="cd-heart">♥</span> 2026
+      </p>
+      <p class="cd-sub anim">Solo faltan:</p>
+      <div class="cd-grid anim">
+        <div class="cd-unit"><span class="cd-num" id="cd-d">—</span><span class="cd-lbl">Días</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-h">—</span><span class="cd-lbl">Horas</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-m">—</span><span class="cd-lbl">Minutos</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-s">—</span><span class="cd-lbl">Segundos</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================
+       TIMELINE / ITINERARY
+  ========================================================== -->
+  <section class="section s-light">
+    <div class="inner">
+      <p class="t-label anim" style="color: var(--text-warm);">El gran día</p>
+      <h2 class="t-script anim" style="color: var(--green);">Aprovechemos el tiempo</h2>
+      <div class="divider anim"></div>
+
+      <div class="timeline">
+
+        <!-- Ceremony -->
+        <div class="tl-item anim">
+          <svg class="tl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="28" y="44" width="44" height="46" stroke="#2A3D2E" stroke-width="2"/>
+            <polygon points="50,12 22,44 78,44" stroke="#2A3D2E" stroke-width="2" fill="none"/>
+            <line x1="50" y1="2"  x2="50" y2="15" stroke="#2A3D2E" stroke-width="2.5"/>
+            <line x1="43" y1="8"  x2="57" y2="8"  stroke="#2A3D2E" stroke-width="2.5"/>
+            <rect x="42" y="66" width="16" height="24" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+            <rect x="32" y="52" width="12" height="12" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+            <rect x="56" y="52" width="12" height="12" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+            <text x="8"  y="30" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+            <text x="80" y="30" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+          </svg>
+          <p class="tl-event">Ceremonia Religiosa</p>
+          <p class="tl-time">18:00 HRS</p>
+          <p class="tl-desc">Parroquia del Sagrado Corazón</p>
+        </div>
+
+        <div class="tl-line"></div>
+
+        <!-- Reception -->
+        <div class="tl-item anim">
+          <svg class="tl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34 18 L23 56 L45 56 Z" stroke="#2A3D2E" stroke-width="2" fill="none"/>
+            <line x1="34" y1="56" x2="34" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+            <line x1="23" y1="80" x2="45" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+            <path d="M66 18 L55 56 L77 56 Z" stroke="#2A3D2E" stroke-width="2" fill="none"/>
+            <line x1="66" y1="56" x2="66" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+            <line x1="55" y1="80" x2="77" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+            <circle cx="32" cy="40" r="2"   fill="#2A3D2E" opacity="0.4"/>
+            <circle cx="36" cy="31" r="1.5" fill="#2A3D2E" opacity="0.3"/>
+            <circle cx="64" cy="37" r="2"   fill="#2A3D2E" opacity="0.4"/>
+            <path d="M45 84 Q50 72 55 84" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+            <circle cx="50" cy="66" r="5"   stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+            <text x="10" y="32" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+            <text x="80" y="32" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+          </svg>
+          <p class="tl-event">Recepción &amp; Cena</p>
+          <p class="tl-time">20:00 HRS</p>
+          <p class="tl-desc">Rancho Los Nogales</p>
+        </div>
+
+        <div class="tl-line"></div>
+
+        <!-- Dance -->
+        <div class="tl-item anim">
+          <svg class="tl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="74" rx="12" ry="8" stroke="#2A3D2E" stroke-width="2"/>
+            <ellipse cx="68" cy="68" rx="12" ry="8" stroke="#2A3D2E" stroke-width="2"/>
+            <line x1="42" y1="74" x2="42" y2="26" stroke="#2A3D2E" stroke-width="2"/>
+            <line x1="80" y1="68" x2="80" y2="20" stroke="#2A3D2E" stroke-width="2"/>
+            <line x1="42" y1="26" x2="80" y2="20" stroke="#2A3D2E" stroke-width="2"/>
+            <line x1="42" y1="39" x2="80" y2="33" stroke="#2A3D2E" stroke-width="1.2" opacity="0.45"/>
+            <text x="10" y="45" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+            <text x="82" y="55" font-size="7" fill="#C9A84C" opacity="0.5">✦</text>
+          </svg>
+          <p class="tl-event">Baile &amp; Celebración</p>
+          <p class="tl-time">22:00 HRS</p>
+          <p class="tl-desc">Hasta que el corazón aguante</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       LOCATIONS
+  ========================================================== -->
+  <section class="section s-cream">
+    <div class="inner">
+      <p class="t-label anim" style="color: var(--text-warm);">¿Dónde nos vemos?</p>
+      <h2 class="t-script anim" style="color: var(--green);">Los lugares</h2>
+      <div class="divider anim"></div>
+
+      <!-- Church -->
+      <div class="loc-card anim">
+        <svg class="loc-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="28" y="44" width="44" height="46" stroke="#2A3D2E" stroke-width="2"/>
+          <polygon points="50,12 22,44 78,44" stroke="#2A3D2E" stroke-width="2" fill="none"/>
+          <line x1="50" y1="2"  x2="50" y2="15" stroke="#2A3D2E" stroke-width="2.5"/>
+          <line x1="43" y1="8"  x2="57" y2="8"  stroke="#2A3D2E" stroke-width="2.5"/>
+          <rect x="42" y="66" width="16" height="24" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+          <rect x="32" y="52" width="12" height="12" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+          <rect x="56" y="52" width="12" height="12" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+          <text x="8"  y="30" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+          <text x="80" y="30" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+        </svg>
+        <p class="loc-type">La Misa</p>
+        <h3 class="loc-name">Parroquia del Sagrado Corazón</h3>
+        <p class="loc-address">
+          Av. Hidalgo 450, Centro Histórico<br>
+          Monterrey, Nuevo León
+        </p>
+        <p class="loc-time">— 18:00 HRS —</p>
+        <a href="https://maps.google.com/?q=Parroquia+del+Sagrado+Corazon+Monterrey"
+           target="_blank" rel="noopener"
+           class="btn btn-solid btn-w100">
+          Ver Ubicación
+        </a>
+      </div>
+
+      <!-- Reception -->
+      <div class="loc-card anim" style="margin-top: 2rem;">
+        <svg class="loc-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M34 18 L23 56 L45 56 Z" stroke="#2A3D2E" stroke-width="2" fill="none"/>
+          <line x1="34" y1="56" x2="34" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+          <line x1="23" y1="80" x2="45" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+          <path d="M66 18 L55 56 L77 56 Z" stroke="#2A3D2E" stroke-width="2" fill="none"/>
+          <line x1="66" y1="56" x2="66" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+          <line x1="55" y1="80" x2="77" y2="80" stroke="#2A3D2E" stroke-width="2"/>
+          <circle cx="32" cy="40" r="2"   fill="#2A3D2E" opacity="0.4"/>
+          <circle cx="36" cy="31" r="1.5" fill="#2A3D2E" opacity="0.3"/>
+          <circle cx="64" cy="37" r="2"   fill="#2A3D2E" opacity="0.4"/>
+          <path d="M45 84 Q50 72 55 84" stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+          <circle cx="50" cy="66" r="5"   stroke="#2A3D2E" stroke-width="1.5" fill="none"/>
+          <text x="10" y="32" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+          <text x="80" y="32" font-size="9" fill="#C9A84C" opacity="0.65">✦</text>
+        </svg>
+        <p class="loc-type">La Recepción</p>
+        <h3 class="loc-name">Rancho Los Nogales</h3>
+        <p class="loc-address">
+          Carretera Nacional Km. 25<br>
+          Monterrey, Nuevo León
+        </p>
+        <p class="loc-time">— 20:00 HRS —</p>
+        <a href="https://maps.google.com/?q=Rancho+Los+Nogales+Monterrey"
+           target="_blank" rel="noopener"
+           class="btn btn-solid btn-w100">
+          Ver Ubicación
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       DRESS CODE
+  ========================================================== -->
+  <section class="section s-green">
+    <div class="inner">
+      <p class="t-label anim" style="color: var(--gold-pale);">Vestimenta</p>
+      <h2 class="t-script anim" style="color: var(--cream-light);">Código de Vestir</h2>
+
+      <div class="orn anim" style="color: var(--gold-light);">✦ ✦ ✦</div>
+
+      <p style="font-family: var(--font-script); font-size: 1.5rem; color: var(--gold-light); margin-bottom: 0.25rem;" class="anim">
+        Elegante · Vaquero Refinado
+      </p>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <div class="dc-item">
+          <span class="dc-star">✦</span>
+          <p class="dc-text">
+            <strong>Ellas —</strong>
+            Vestidos largos o midi en tonos tierra, champagne, blanco roto, verde oscuro o negro.
+            Accesorios dorados o plateados. Botas de cuero fino son más que bienvenidas.
+          </p>
+        </div>
+        <div class="dc-item">
+          <span class="dc-star">✦</span>
+          <p class="dc-text">
+            <strong>Ellos —</strong>
+            Traje formal o guayabera elegante en tonos oscuros o tierra.
+            Sombrero vaquero de alta copa es totalmente bienvenido.
+            Botas de cuero, por supuesto.
+          </p>
+        </div>
+        <div class="dc-item">
+          <span class="dc-star">✦</span>
+          <p class="dc-text">
+            <strong>Te pedimos evitar —</strong>
+            Ropa casual, mezclilla o playeras informales.
+            Este es un momento especial y queremos que todos brillemos juntos.
+          </p>
+        </div>
+      </div>
+
+      <p class="dc-note anim">
+        "Un poco de polvo de camino en las botas<br>solo añade carácter."
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       GIFTS
+  ========================================================== -->
+  <section class="section s-deep">
+    <div class="inner">
+      <p class="t-label anim" style="color: var(--gold-pale);">Con tu presencia es suficiente</p>
+      <h2 class="t-script anim" style="color: var(--cream-light);">Mesa de Regalos</h2>
+      <div class="orn anim" style="color: var(--gold);"></div>
+
+      <div class="gift-card anim">
+        <div class="gift-emoji">🎁</div>
+        <p class="gift-title">Mesa de Regalos</p>
+        <p class="gift-detail">Liverpool — Núm. 000000</p>
+        <a href="https://www.liverpool.com.mx/mesaderegalos" target="_blank" rel="noopener"
+           class="btn btn-ghost-light">
+          Ver Mesa Liverpool
+        </a>
+      </div>
+
+      <div class="gift-card anim">
+        <div class="gift-emoji">💌</div>
+        <p class="gift-title">Lluvia de Sobres</p>
+        <p class="gift-detail" style="font-size: 0.85rem; opacity: 0.7;">El día del evento</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       RSVP
+  ========================================================== -->
+  <section class="section s-cream" id="rsvp">
+    <div class="inner">
+      <p class="t-label anim" style="color: var(--text-warm);">¿Contamos contigo?</p>
+      <h2 class="t-script anim" style="color: var(--green);">Queremos verte</h2>
+      <div class="divider anim"></div>
+
+      <p class="rsvp-intro anim">
+        ¡Será increíble contar con tu presencia!<br>
+        Por favor confirma tu asistencia antes del<br>
+        <strong style="font-family: var(--font-serif); color: var(--green); font-size: 0.9rem; letter-spacing: normal; text-transform: none;">
+          1 de Junio de 2026
+        </strong>
+      </p>
+
+      <button class="btn btn-solid btn-w100 anim" id="btnRSVP" style="padding: 1.1rem 2rem;">
+        Confirmar Asistencia
+      </button>
+
+      <!-- RSVP Form -->
+      <div class="rsvp-wrap" id="rsvpWrap">
+        <form id="rsvpForm" novalidate>
+
+          <div class="form-grp">
+            <label class="form-lbl" for="fName">¿Quién confirma?</label>
+            <input type="text" id="fName" class="form-field"
+                   placeholder="Tu nombre completo" autocomplete="name" />
+          </div>
+
+          <div class="form-grp">
+            <label class="form-lbl" for="fTotal">Número de asistentes</label>
+            <select id="fTotal" class="form-field">
+              <option value="">Seleccionar...</option>
+              <option value="1">1 persona</option>
+              <option value="2">2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+              <option value="5">5 personas</option>
+              <option value="6">6 personas</option>
+              <option value="7">7 personas</option>
+              <option value="8">8 personas</option>
+              <option value="9">9 personas</option>
+              <option value="10">10 personas</option>
+            </select>
+          </div>
+
+          <!-- Dynamic guest fields injected here -->
+          <div class="guests-block" id="guestsBlock">
+            <p class="guests-title">Nombre de los asistentes</p>
+            <div id="guestsList"></div>
+          </div>
+
+          <!-- Optional contact fields -->
+          <div class="opt-block" id="optBlock">
+            <div class="form-row">
+              <div class="form-grp">
+                <label class="form-lbl" for="fPhone">Teléfono</label>
+                <input type="tel" id="fPhone" class="form-field" placeholder="Opcional" autocomplete="tel" />
+              </div>
+              <div class="form-grp">
+                <label class="form-lbl" for="fEmail">Email</label>
+                <input type="email" id="fEmail" class="form-field" placeholder="Opcional" autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-grp">
+              <label class="form-lbl" for="fFood">Restricciones alimentarias</label>
+              <input type="text" id="fFood" class="form-field" placeholder="Vegetariano, sin gluten, alergia a nueces..." />
+            </div>
+            <div class="form-grp">
+              <label class="form-lbl" for="fNotes">Mensaje para los novios</label>
+              <textarea id="fNotes" class="form-field" placeholder="Algo que quieras decirnos..."></textarea>
+            </div>
+          </div>
+
+          <div class="submit-block" id="submitBlock">
+            <button type="submit" class="btn btn-solid btn-w100" id="btnSubmit" style="padding: 1.1rem 2rem;">
+              Enviar Confirmación
+            </button>
+          </div>
+
+        </form>
+
+        <div class="msg msg-ok" id="msgOK" role="alert">
+          <span class="msg-icon">✦</span>
+          <span class="msg-title">¡Confirmación recibida!</span>
+          Gracias, <strong id="okName"></strong>.
+          Estamos emocionados de celebrar contigo. ♥<br>
+          Nos vemos el 14 de Junio.
+        </div>
+
+        <div class="msg msg-err" id="msgErr" role="alert">
+          <span class="msg-icon">✗</span>
+          <span class="msg-title">Algo salió mal</span>
+          <span id="errText">Por favor intenta de nuevo en un momento.</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="footer">
+    <div style="max-width: 480px; margin: 0 auto;">
+      <div class="orn" style="color: var(--gold); margin: 0 0 1.25rem;">✦ ✦ ✦</div>
+      <p class="footer-names">Valentina &amp; Rodrigo</p>
+      <p class="footer-date">14 · Junio · 2026</p>
+      <p class="footer-quote">"El amor no mira con los ojos, sino con el alma."</p>
+      <div class="orn" style="color: var(--gold); opacity: 0.35; margin: 0 0 1.5rem;"></div>
+      <p class="footer-copy">Con amor · 2026</p>
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================
+       SCRIPTS
+  ========================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    "use strict";
+
+    /* ==========================================================
+       ⚙️  CONFIGURATION — Edit this block with your actual data
+       ========================================================== */
+    const CONFIG = {
+      // Get these from: Supabase Dashboard → Project Settings → API
+      SUPABASE_URL:      'YOUR_SUPABASE_URL',      // https://xxxxxxxxxx.supabase.co
+      SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY', // Public anon key — safe for frontend
+
+      // Wedding date/time (ISO, local time)
+      WEDDING_DATE: '2026-06-14T18:00:00',
+
+      // Names (used in success message)
+      BRIDE_NAME: 'Valentina',
+      GROOM_NAME: 'Rodrigo',
+    };
+
+    /* ==========================================================
+       SUPABASE SERVICE
+       All Supabase calls live here. UI components call these
+       functions; they never query Supabase directly.
+       ========================================================== */
+    const SupabaseService = (() => {
+      let _db = null;
+
+      function db() {
+        if (!_db) {
+          if (CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_URL') return null;
+          _db = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+        }
+        return _db;
+      }
+
+      /**
+       * Create an RSVP and its associated guests in one atomic operation.
+       * @param {{ confirmedBy, totalGuests, guests, phone, email, foodRestrictions, comments }}
+       */
+      async function createRSVP({ confirmedBy, totalGuests, guests, phone, email, foodRestrictions, comments }) {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado. Edita CONFIG.SUPABASE_URL en index.html.');
+
+        // 1. Insert RSVP record
+        const { data: rsvp, error: rsvpErr } = await client
+          .from('rsvps')
+          .insert({
+            confirmed_by:      confirmedBy,
+            total_guests:      totalGuests,
+            phone:             phone             || null,
+            email:             email             || null,
+            food_restrictions: foodRestrictions  || null,
+            comments:          comments          || null,
+            reviewed:          false,
+            general_status:    'pending',
+          })
+          .select()
+          .single();
+
+        if (rsvpErr) throw rsvpErr;
+
+        // 2. Insert guests linked to this RSVP
+        const { data: guestRows, error: guestErr } = await client
+          .from('guests')
+          .insert(guests.map(g => ({ rsvp_id: rsvp.id, name: g.name, status: g.status })))
+          .select();
+
+        if (guestErr) throw guestErr;
+
+        return { rsvp, guests: guestRows };
+      }
+
+      async function getRSVPs() {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado.');
+        const { data, error } = await client
+          .from('rsvps').select('*, guests(*)')
+          .order('created_at', { ascending: false });
+        if (error) throw error;
+        return data;
+      }
+
+      async function updateRSVP(id, fields) {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado.');
+        const { data, error } = await client
+          .from('rsvps').update(fields).eq('id', id).select().single();
+        if (error) throw error;
+        return data;
+      }
+
+      async function deleteRSVP(id) {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado.');
+        const { error } = await client.from('rsvps').delete().eq('id', id);
+        if (error) throw error;
+        return true;
+      }
+
+      async function markAsReviewed(id, reviewed = true) {
+        return updateRSVP(id, { reviewed });
+      }
+
+      async function updateGuestStatus(guestId, status) {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado.');
+        const valid = ['accepted', 'declined', 'pending'];
+        if (!valid.includes(status)) throw new Error(`Estado inválido: ${status}`);
+        const { data, error } = await client
+          .from('guests').update({ status }).eq('id', guestId).select().single();
+        if (error) throw error;
+        return data;
+      }
+
+      function _download(content, filename, type) {
+        const blob = new Blob([content], { type });
+        const url  = URL.createObjectURL(blob);
+        const a    = Object.assign(document.createElement('a'), { href: url, download: filename });
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      async function exportRSVPsToJSON() {
+        const data = await getRSVPs();
+        _download(JSON.stringify(data, null, 2), 'rsvps.json', 'application/json');
+        return data;
+      }
+
+      async function exportRSVPsToCSV() {
+        const data = await getRSVPs();
+        const hdr  = ['ID','Fecha','Confirmó','Total','Teléfono','Email','Restricciones','Comentarios','Revisado','Invitado','Estado'];
+        const rows = [hdr];
+        data.forEach(r => {
+          const gs = r.guests || [];
+          if (gs.length) {
+            gs.forEach(g => rows.push([
+              r.id, new Date(r.created_at).toLocaleString('es-MX'), r.confirmed_by,
+              r.total_guests, r.phone||'', r.email||'', r.food_restrictions||'', r.comments||'',
+              r.reviewed?'Sí':'No', g.name,
+              g.status==='accepted'?'Asistirá':g.status==='declined'?'No asistirá':'Pendiente',
+            ]));
+          } else {
+            rows.push([r.id, new Date(r.created_at).toLocaleString('es-MX'), r.confirmed_by,
+              r.total_guests, r.phone||'', r.email||'', r.food_restrictions||'', r.comments||'',
+              r.reviewed?'Sí':'No', '', '']);
+          }
+        });
+        const csv = '\uFEFF' + rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+        _download(csv, 'rsvps.csv', 'text/csv;charset=utf-8');
+        return data;
+      }
+
+      // Public API
+      return { db, createRSVP, getRSVPs, updateRSVP, deleteRSVP, markAsReviewed, updateGuestStatus, exportRSVPsToJSON, exportRSVPsToCSV };
+    })();
+
+    /* ==========================================================
+       COUNTDOWN TIMER
+       ========================================================== */
+    function initCountdown() {
+      const target = new Date(CONFIG.WEDDING_DATE).getTime();
+      const els = {
+        d: document.getElementById('cd-d'),
+        h: document.getElementById('cd-h'),
+        m: document.getElementById('cd-m'),
+        s: document.getElementById('cd-s'),
+      };
+
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          Object.values(els).forEach(el => el.textContent = '0');
+          return;
+        }
+        els.d.textContent = Math.floor(diff / 86400000);
+        els.h.textContent = Math.floor((diff % 86400000) / 3600000);
+        els.m.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+        els.s.textContent = String(Math.floor((diff % 60000)  / 1000)).padStart(2, '0');
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    /* ==========================================================
+       SCROLL ANIMATIONS (IntersectionObserver)
+       ========================================================== */
+    function initAnimations() {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+      }, { threshold: 0.12, rootMargin: '0px 0px -28px 0px' });
+
+      document.querySelectorAll('.anim').forEach(el => io.observe(el));
+    }
+
+    /* ==========================================================
+       RSVP FORM
+       ========================================================== */
+    function initRSVP() {
+      const btnOpen  = document.getElementById('btnRSVP');
+      const wrap     = document.getElementById('rsvpWrap');
+      const form     = document.getElementById('rsvpForm');
+      const selTotal = document.getElementById('fTotal');
+      const gBlock   = document.getElementById('guestsBlock');
+      const gList    = document.getElementById('guestsList');
+      const optBlock = document.getElementById('optBlock');
+      const subBlock = document.getElementById('submitBlock');
+      const btnSub   = document.getElementById('btnSubmit');
+      const msgOK    = document.getElementById('msgOK');
+      const msgErr   = document.getElementById('msgErr');
+
+      // Open the form when CTA is clicked
+      btnOpen.addEventListener('click', () => {
+        wrap.classList.add('open');
+        btnOpen.style.display = 'none';
+        setTimeout(() => wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+      });
+
+      // Dynamically render guest name+status fields
+      selTotal.addEventListener('change', () => {
+        const n = parseInt(selTotal.value);
+        if (!n) {
+          gBlock.style.display  = 'none';
+          optBlock.style.display = 'none';
+          subBlock.style.display = 'none';
+          return;
+        }
+
+        gList.innerHTML = '';
+        for (let i = 1; i <= n; i++) {
+          const card = document.createElement('div');
+          card.className = 'guest-card';
+          card.innerHTML = `
+            <p class="guest-card-lbl">✦ Asistente ${i}</p>
+            <div class="form-grp" style="margin-bottom: 0.7rem;">
+              <label class="form-lbl" for="gn${i}">Nombre completo</label>
+              <input type="text" id="gn${i}" class="form-field guest-name"
+                     placeholder="Nombre del asistente ${i}"
+                     autocomplete="off" data-i="${i}" />
+            </div>
+            <div class="form-grp" style="margin-bottom: 0;">
+              <label class="form-lbl" for="gs${i}">¿Asistirá?</label>
+              <select id="gs${i}" class="form-field guest-status" data-i="${i}">
+                <option value="accepted">✓ Sí asistirá</option>
+                <option value="declined">✗ No asistirá</option>
+                <option value="pending">? Pendiente de confirmar</option>
+              </select>
+            </div>`;
+          gList.appendChild(card);
+        }
+
+        gBlock.style.display  = 'block';
+        optBlock.style.display = 'block';
+        subBlock.style.display = 'block';
+      });
+
+      // Form submit
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        msgOK.classList.remove('show');
+        msgErr.classList.remove('show');
+
+        // Validate: confirmed by
+        const confirmedBy = document.getElementById('fName').value.trim();
+        if (!confirmedBy) { return showErr('Por favor escribe tu nombre completo.'); }
+
+        // Validate: guest count
+        const totalGuests = parseInt(selTotal.value);
+        if (!totalGuests) { return showErr('Por favor selecciona el número de asistentes.'); }
+
+        // Collect and validate guest names
+        const nameInputs   = [...document.querySelectorAll('.guest-name')];
+        const statusInputs = [...document.querySelectorAll('.guest-status')];
+        let hasBlank = false;
+        const guests = [];
+
+        nameInputs.forEach((inp, idx) => {
+          const name = inp.value.trim();
+          if (!name) { hasBlank = true; inp.classList.add('err'); }
+          else        { inp.classList.remove('err'); }
+          guests.push({ name, status: statusInputs[idx].value });
+        });
+
+        if (hasBlank) { return showErr('Por favor completa el nombre de todos los asistentes.'); }
+
+        // Loading state
+        btnSub.disabled = true;
+        btnSub.innerHTML = '<span class="spin"></span>Guardando...';
+
+        try {
+          await SupabaseService.createRSVP({
+            confirmedBy,
+            totalGuests,
+            guests,
+            phone:            document.getElementById('fPhone').value.trim(),
+            email:            document.getElementById('fEmail').value.trim(),
+            foodRestrictions: document.getElementById('fFood').value.trim(),
+            comments:         document.getElementById('fNotes').value.trim(),
+          });
+
+          // Success
+          form.style.display = 'none';
+          document.getElementById('okName').textContent = confirmedBy;
+          msgOK.classList.add('show');
+          setTimeout(() => msgOK.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+
+        } catch (err) {
+          console.error('RSVP error:', err);
+          const isUnconfigured = CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_URL';
+          showErr(isUnconfigured
+            ? '⚠️ Supabase no está configurado. Edita CONFIG.SUPABASE_URL en el código fuente.'
+            : (err.message || 'Error desconocido. Por favor intenta de nuevo.')
+          );
+          btnSub.disabled = false;
+          btnSub.innerHTML = 'Enviar Confirmación';
+        }
+      });
+
+      function showErr(msg) {
+        document.getElementById('errText').textContent = msg;
+        msgErr.classList.add('show');
+        setTimeout(() => msgErr.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+      }
+    }
+
+    /* ==========================================================
+       INIT
+       ========================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      initCountdown();
+      initAnimations();
+      initRSVP();
+
+      // Stagger hero element animations immediately on load
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.hero .anim').forEach((el, i) => {
+          setTimeout(() => el.classList.add('in'), 200 + i * 160);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

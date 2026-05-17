@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin — Valentina &amp; Rodrigo</title>
+
+  <!-- Same fonts as the invitation -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM (shared with invitation)
+    ============================================================ */
+    :root {
+      --green-deep:   #1C2E21;
+      --green:        #2A3D2E;
+      --green-mid:    #3A5240;
+      --cream-warm:   #F5EDD8;
+      --cream-light:  #FAF7F0;
+      --parchment:    #E0CFA8;
+      --gold:         #C9A84C;
+      --gold-light:   #DFC078;
+      --gold-pale:    #EDD99A;
+      --amber:        #8B5E3C;
+      --text-dark:    #1E1A15;
+      --text-warm:    #6B5540;
+      --text-light:   #EDE3C8;
+      --font-script:  'Great Vibes', cursive;
+      --font-serif:   'Playfair Display', Georgia, serif;
+      --font-body:    'Cormorant Garamond', Georgia, serif;
+      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* Status palette */
+      --c-accepted: #2A5C3F;
+      --c-accepted-bg: #E7F4EC;
+      --c-declined: #7A2D2D;
+      --c-declined-bg: #FCF0F0;
+      --c-pending:  #7A5C00;
+      --c-pending-bg: #FDF8E8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); background: var(--cream-warm); color: var(--text-dark); }
+
+    /* ============================================================
+       SHARED COMPONENTS
+    ============================================================ */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      border: 1px solid currentColor;
+      cursor: pointer;
+      transition: background 0.22s var(--ease), border-color 0.22s var(--ease), color 0.22s var(--ease);
+      background: transparent;
+      text-align: center;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .btn-solid  { background: var(--green); color: var(--cream-light); border-color: var(--green); }
+    .btn-solid:hover { background: var(--green-mid); border-color: var(--green-mid); }
+
+    .btn-outline { color: var(--green); border-color: var(--green); }
+    .btn-outline:hover { background: var(--green); color: var(--cream-light); }
+
+    .btn-danger { color: #c53030; border-color: #c53030; }
+    .btn-danger:hover { background: #c53030; color: #fff; }
+
+    .btn-sm { padding: 0.42rem 0.85rem; font-size: 0.58rem; }
+    .btn-w100 { width: 100%; }
+
+    .form-lbl {
+      display: block;
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      margin-bottom: 0.45rem;
+      text-align: left;
+    }
+
+    .form-field {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text-dark);
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      border-bottom: 2px solid var(--parchment);
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-field:focus { border-bottom-color: var(--green); background: #fff; }
+
+    /* ============================================================
+       LOGIN SCREEN
+    ============================================================ */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background:
+        radial-gradient(ellipse at 28% 65%, rgba(139, 94, 60, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse at 78% 20%, rgba(201, 168, 76, 0.12) 0%, transparent 50%),
+        linear-gradient(168deg, #1C2E21 0%, #1D2316 44%, #2C1E10 100%);
+    }
+
+    .login-card {
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      padding: 3rem 2rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-title { font-family: var(--font-script); font-size: 2.6rem; color: var(--green); margin-bottom: 0.2rem; }
+
+    .login-sub {
+      font-size: 0.64rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      opacity: 0.7;
+      margin-bottom: 2rem;
+    }
+
+    .security-note {
+      background: rgba(139, 94, 60, 0.07);
+      border: 1px solid rgba(139, 94, 60, 0.3);
+      padding: 1rem 1.1rem;
+      margin-bottom: 2rem;
+      font-size: 0.78rem;
+      color: var(--amber);
+      text-align: left;
+      line-height: 1.65;
+    }
+
+    .security-note strong { display: block; margin-bottom: 0.2rem; font-family: var(--font-serif); font-size: 0.85rem; }
+
+    .login-error { color: var(--amber); font-size: 0.8rem; margin-top: 0.9rem; display: none; }
+
+    /* ============================================================
+       ADMIN DASHBOARD
+    ============================================================ */
+    #adminDashboard { display: none; min-height: 100vh; }
+
+    /* Header */
+    .admin-header {
+      background: var(--green-deep);
+      color: var(--text-light);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 1rem;
+    }
+
+    .admin-logo { font-family: var(--font-script); font-size: 1.75rem; color: var(--gold-pale); flex-shrink: 0; }
+
+    .admin-logo small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      opacity: 0.45;
+      line-height: 0.6;
+    }
+
+    .header-btns { display: flex; gap: 0.6rem; }
+
+    /* Body */
+    .admin-body { padding: 1.5rem; max-width: 880px; margin: 0 auto; }
+
+    /* Warning banner */
+    .warn-banner {
+      background: rgba(139, 94, 60, 0.09);
+      border: 1px solid rgba(139, 94, 60, 0.32);
+      padding: 0.85rem 1.1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.76rem;
+      color: var(--amber);
+      line-height: 1.65;
+    }
+
+    .warn-banner strong { font-family: var(--font-serif); }
+
+    /* Metrics grid */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 580px) { .metrics { grid-template-columns: repeat(4, 1fr); } }
+
+    .metric-card {
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      border-top: 3px solid var(--gold);
+      padding: 1.2rem 1rem;
+      text-align: center;
+    }
+
+    .metric-n {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 2.1rem;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .metric-l {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      margin-top: 0.3rem;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 480px) { .controls { flex-direction: row; align-items: center; } }
+
+    .search-box {
+      flex: 1;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      border-bottom: 2px solid var(--parchment);
+      padding: 0.65rem 1rem;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus { border-bottom-color: var(--green); background: #fff; }
+
+    .filter-sel {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--text-dark);
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      border-bottom: 2px solid var(--parchment);
+      padding: 0.65rem 1rem;
+      outline: none;
+      cursor: pointer;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .filter-sel:focus { border-bottom-color: var(--green); }
+
+    .export-bar { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+    /* RSVP count label */
+    .list-count {
+      font-size: 0.64rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      margin-bottom: 1rem;
+    }
+
+    /* RSVP cards */
+    .rsvp-card {
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      border-left: 4px solid var(--gold);
+      margin-bottom: 0.9rem;
+      transition: opacity 0.3s;
+    }
+
+    .rsvp-card.reviewed { border-left-color: var(--green-mid); opacity: 0.7; }
+
+    .rsvp-card-header {
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .rsvp-card-header:hover { background: rgba(42,61,46,0.03); }
+
+    .rsvp-name {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+
+    .rsvp-meta {
+      font-size: 0.72rem;
+      color: var(--text-warm);
+      margin-top: 0.2rem;
+      line-height: 1.6;
+    }
+
+    .badges { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.4rem; }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.56rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.5rem;
+    }
+
+    .b-accepted { background: var(--c-accepted-bg); color: var(--c-accepted); }
+    .b-declined { background: var(--c-declined-bg); color: var(--c-declined); }
+    .b-pending  { background: var(--c-pending-bg);  color: var(--c-pending);  }
+    .b-reviewed { background: rgba(42,61,46,0.1);   color: var(--green); }
+
+    .card-toggle { color: var(--gold); font-size: 0.82rem; flex-shrink: 0; transition: transform 0.2s; }
+    .card-toggle.open { transform: rotate(180deg); }
+
+    .rsvp-card-body {
+      display: none;
+      padding: 0 1.2rem 1.2rem;
+      border-top: 1px solid var(--parchment);
+    }
+
+    .rsvp-card-body.open { display: block; }
+
+    /* Guests table */
+    .guests-tbl { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+
+    .guests-tbl th {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      padding: 0.45rem 0.75rem;
+      border-bottom: 1px solid var(--parchment);
+      text-align: left;
+      font-weight: normal;
+    }
+
+    .guests-tbl td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid rgba(224, 207, 168, 0.5);
+      vertical-align: middle;
+    }
+
+    .guests-tbl tr:last-child td { border-bottom: none; }
+
+    .status-sel {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      background: var(--cream-warm);
+      border: 1px solid var(--parchment);
+      padding: 0.25rem 0.55rem;
+      cursor: pointer;
+      outline: none;
+      border-radius: 0;
+    }
+
+    /* RSVP detail notes */
+    .rsvp-notes {
+      font-size: 0.82rem;
+      color: var(--text-warm);
+      margin-top: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--cream-warm);
+      line-height: 1.8;
+    }
+
+    .rsvp-notes .note-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      display: inline;
+      font-family: var(--font-body);
+    }
+
+    .rsvp-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--parchment);
+    }
+
+    /* Empty / loading states */
+    .state-box { text-align: center; padding: 3rem 1.5rem; color: var(--text-warm); }
+    .state-icon { font-size: 2.5rem; opacity: 0.35; margin-bottom: 0.75rem; }
+
+    .loading-ring {
+      width: 32px; height: 32px;
+      border: 3px solid var(--parchment);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: rot 0.75s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes rot { to { transform: rotate(360deg); } }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--green);
+      color: var(--cream-light);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      transition: transform 0.3s var(--ease);
+      z-index: 9999;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .toast.visible  { transform: translateX(-50%) translateY(0); }
+    .toast.is-error { background: #7a2d2d; }
+
+    /* Divider */
+    .divider { width: 44px; height: 1px; background: var(--gold); margin: 1.25rem auto; opacity: 0.65; }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================
+       LOGIN SCREEN
+  ========================================================== -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <h1 class="login-title">Panel Admin</h1>
+      <p class="login-sub">Valentina &amp; Rodrigo · 2026</p>
+
+      <div class="security-note">
+        <strong>⚠️ Aviso de seguridad — Modo Demo</strong>
+        Esta pantalla es solo una barrera visual, no autenticación real.
+        Cualquier persona que acceda al código fuente puede saltarla.
+        Para producción, activa Supabase Auth.
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <label class="form-lbl" for="passInput">Contraseña</label>
+        <input type="password" id="passInput" class="form-field"
+               placeholder="Escribe la contraseña"
+               autocomplete="current-password" />
+      </div>
+
+      <button class="btn btn-solid btn-w100" id="btnLogin">Entrar al panel</button>
+
+      <p class="login-error" id="loginError">Contraseña incorrecta.</p>
+
+      <p style="margin-top: 1.5rem; font-size: 0.72rem; color: var(--text-warm); text-align: center;">
+        <a href="index.html" style="color: var(--green); text-underline-offset: 3px; text-decoration: underline;">
+          ← Ver la invitación
+        </a>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================
+       ADMIN DASHBOARD
+  ========================================================== -->
+  <div id="adminDashboard">
+
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="admin-logo">
+        Admin
+        <small>Valentina &amp; Rodrigo · 14 Jun 2026</small>
+      </div>
+      <div class="header-btns">
+        <button class="btn btn-sm" id="btnRefresh"
+                style="border-color: rgba(237,227,200,0.35); color: rgba(237,227,200,0.8);">
+          ↺ Actualizar
+        </button>
+        <button class="btn btn-sm" id="btnLogout"
+                style="border-color: rgba(237,227,200,0.2); color: rgba(237,227,200,0.5);">
+          Salir
+        </button>
+      </div>
+    </header>
+
+    <div class="admin-body">
+
+      <!-- Security warning -->
+      <div class="warn-banner">
+        <strong>⚠️ Demo — Sin autenticación real.</strong>
+        Este panel usa la anon key de Supabase con RLS permisivo.
+        Solo comparte el link con la novia. Para producción, migra a Supabase Auth
+        y reemplaza las políticas RLS (ver schema.sql).
+      </div>
+
+      <!-- Metrics -->
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-n" id="mRSVPs">—</div>
+          <div class="metric-l">RSVPs</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-n" id="mAccepted" style="color: var(--c-accepted);">—</div>
+          <div class="metric-l">Asistirán</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-n" id="mDeclined" style="color: var(--c-declined);">—</div>
+          <div class="metric-l">No asistirán</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-n" id="mPending" style="color: var(--c-pending);">—</div>
+          <div class="metric-l">Pendientes</div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <input type="search" class="search-box" id="searchBox" placeholder="Buscar por nombre..." />
+        <select class="filter-sel" id="filterSel">
+          <option value="all">Todos</option>
+          <option value="accepted">Con confirmados</option>
+          <option value="declined">Con rechazados</option>
+          <option value="pending">Con pendientes</option>
+          <option value="reviewed">Revisados</option>
+          <option value="unreviewed">Sin revisar</option>
+        </select>
+      </div>
+
+      <!-- Export buttons -->
+      <div class="export-bar">
+        <button class="btn btn-sm btn-outline" id="btnCSV">↓ Exportar CSV</button>
+        <button class="btn btn-sm btn-outline" id="btnJSON">↓ Exportar JSON</button>
+      </div>
+
+      <!-- RSVP list -->
+      <p class="list-count" id="listCount"></p>
+      <div id="rsvpsList">
+        <div class="state-box">
+          <div class="loading-ring"></div>
+          <p>Cargando confirmaciones...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+
+  <!-- ==========================================================
+       SCRIPTS
+  ========================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    "use strict";
+
+    /* ==========================================================
+       ⚙️  CONFIGURATION
+       Use THE SAME values as in index.html.
+       ========================================================== */
+    const CONFIG = {
+      SUPABASE_URL:      'YOUR_SUPABASE_URL',
+      SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY',
+
+      // ⚠️ DEMO PASSWORD — This is NOT real security.
+      // Anyone who views the page source can bypass this check.
+      // Change this value, but understand it provides no real protection.
+      // For production: replace with Supabase Auth.
+      ADMIN_PASSWORD: 'boda2026',
+    };
+
+    /* ==========================================================
+       SUPABASE SERVICE
+       ========================================================== */
+    const SupabaseService = (() => {
+      let _db = null;
+
+      function db() {
+        if (!_db) {
+          if (CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_URL') return null;
+          _db = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+        }
+        return _db;
+      }
+
+      async function getRSVPs() {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado. Edita CONFIG en admin.html.');
+        const { data, error } = await client
+          .from('rsvps').select('*, guests(*)')
+          .order('created_at', { ascending: false });
+        if (error) throw error;
+        return data || [];
+      }
+
+      async function updateRSVP(id, fields) {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado.');
+        const { data, error } = await client
+          .from('rsvps').update(fields).eq('id', id).select().single();
+        if (error) throw error;
+        return data;
+      }
+
+      async function deleteRSVP(id) {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado.');
+        const { error } = await client.from('rsvps').delete().eq('id', id);
+        if (error) throw error;
+        return true;
+      }
+
+      async function markAsReviewed(id, reviewed) {
+        return updateRSVP(id, { reviewed });
+      }
+
+      async function updateGuestStatus(guestId, status) {
+        const client = db();
+        if (!client) throw new Error('Supabase no configurado.');
+        const { data, error } = await client
+          .from('guests').update({ status }).eq('id', guestId).select().single();
+        if (error) throw error;
+        return data;
+      }
+
+      function _dl(content, filename, type) {
+        const blob = new Blob([content], { type });
+        const url  = URL.createObjectURL(blob);
+        const a    = Object.assign(document.createElement('a'), { href: url, download: filename });
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      function exportJSON(data) {
+        _dl(JSON.stringify(data, null, 2), 'rsvps.json', 'application/json');
+      }
+
+      function exportCSV(data) {
+        const hdr  = ['ID','Fecha','Confirmó','Total','Teléfono','Email','Restricciones','Comentarios','Revisado','Invitado','Estado'];
+        const rows = [hdr];
+        data.forEach(r => {
+          const gs = r.guests || [];
+          if (gs.length) {
+            gs.forEach(g => rows.push([r.id, fmt(r.created_at), r.confirmed_by,
+              r.total_guests, r.phone||'', r.email||'', r.food_restrictions||'', r.comments||'',
+              r.reviewed?'Sí':'No', g.name,
+              g.status==='accepted'?'Asistirá':g.status==='declined'?'No asistirá':'Pendiente']));
+          } else {
+            rows.push([r.id, fmt(r.created_at), r.confirmed_by, r.total_guests,
+              r.phone||'', r.email||'', r.food_restrictions||'', r.comments||'',
+              r.reviewed?'Sí':'No', '', '']);
+          }
+        });
+        const csv = '\uFEFF' + rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+        _dl(csv, 'rsvps.csv', 'text/csv;charset=utf-8');
+      }
+
+      function fmt(ts) { return new Date(ts).toLocaleString('es-MX', { dateStyle:'medium', timeStyle:'short' }); }
+
+      return { db, getRSVPs, updateRSVP, deleteRSVP, markAsReviewed, updateGuestStatus, exportJSON, exportCSV };
+    })();
+
+    /* ==========================================================
+       ADMIN STATE
+       ========================================================== */
+    let allRSVPs = [];
+
+    /* ==========================================================
+       TOAST
+       ========================================================== */
+    let _toastTimer;
+    function toast(msg, isErr = false) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.className = 'toast' + (isErr ? ' is-error' : '');
+      // Force reflow then show
+      el.offsetHeight;
+      el.classList.add('visible');
+      clearTimeout(_toastTimer);
+      _toastTimer = setTimeout(() => el.classList.remove('visible'), 3200);
+    }
+
+    /* ==========================================================
+       HTML ESCAPE
+       ========================================================== */
+    function esc(s) {
+      return String(s || '')
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function fmtDate(ts) {
+      return new Date(ts).toLocaleString('es-MX', { dateStyle:'medium', timeStyle:'short' });
+    }
+
+    /* ==========================================================
+       METRICS
+       ========================================================== */
+    function updateMetrics(rsvps) {
+      let acc = 0, dec = 0, pnd = 0;
+      rsvps.forEach(r => (r.guests || []).forEach(g => {
+        if (g.status === 'accepted') acc++;
+        else if (g.status === 'declined') dec++;
+        else pnd++;
+      }));
+      document.getElementById('mRSVPs').textContent    = rsvps.length;
+      document.getElementById('mAccepted').textContent = acc;
+      document.getElementById('mDeclined').textContent = dec;
+      document.getElementById('mPending').textContent  = pnd;
+    }
+
+    /* ==========================================================
+       RENDER CARD HTML
+       ========================================================== */
+    function renderCard(r) {
+      const acc = (r.guests||[]).filter(g=>g.status==='accepted').length;
+      const dec = (r.guests||[]).filter(g=>g.status==='declined').length;
+      const pnd = (r.guests||[]).filter(g=>g.status==='pending').length;
+
+      const guestRows = (r.guests||[]).map(g => `
+        <tr>
+          <td>${esc(g.name)}</td>
+          <td>
+            <select class="status-sel"
+                    data-guest-id="${g.id}"
+                    data-rsvp-id="${r.id}"
+                    data-orig="${g.status}">
+              <option value="accepted" ${g.status==='accepted'?'selected':''}>✓ Asistirá</option>
+              <option value="declined" ${g.status==='declined'?'selected':''}>✗ No asistirá</option>
+              <option value="pending"  ${g.status==='pending' ?'selected':''}>? Pendiente</option>
+            </select>
+          </td>
+        </tr>`).join('');
+
+      const noteLines = [
+        r.phone            && `<span class="note-label">Teléfono</span> ${esc(r.phone)}`,
+        r.email            && `<span class="note-label">Email</span> ${esc(r.email)}`,
+        r.food_restrictions && `<span class="note-label">Restricciones</span> ${esc(r.food_restrictions)}`,
+        r.comments         && `<span class="note-label">Comentarios</span> ${esc(r.comments)}`,
+      ].filter(Boolean);
+
+      return `
+        <div class="rsvp-card ${r.reviewed ? 'reviewed' : ''}" id="card-${r.id}">
+
+          <div class="rsvp-card-header" onclick="toggleCard('${r.id}')">
+            <div>
+              <div class="rsvp-name">${esc(r.confirmed_by)}</div>
+              <div class="rsvp-meta">
+                ${fmtDate(r.created_at)} &nbsp;·&nbsp;
+                ${r.total_guests} persona${r.total_guests!==1?'s':''}
+              </div>
+              <div class="badges">
+                ${acc ? `<span class="badge b-accepted">${acc} asistirán</span>` : ''}
+                ${dec ? `<span class="badge b-declined">${dec} no asistirán</span>` : ''}
+                ${pnd ? `<span class="badge b-pending">${pnd} pendientes</span>` : ''}
+                ${r.reviewed ? '<span class="badge b-reviewed">✓ Revisado</span>' : ''}
+              </div>
+            </div>
+            <span class="card-toggle" id="tog-${r.id}">▾</span>
+          </div>
+
+          <div class="rsvp-card-body" id="body-${r.id}">
+            ${guestRows ? `
+            <table class="guests-tbl">
+              <thead><tr><th>Invitado</th><th>Estado</th></tr></thead>
+              <tbody>${guestRows}</tbody>
+            </table>` : ''}
+
+            ${noteLines.length ? `
+            <div class="rsvp-notes">
+              ${noteLines.map(n => `<div>${n}</div>`).join('')}
+            </div>` : ''}
+
+            <div class="rsvp-actions">
+              <button class="btn btn-sm btn-outline btn-review"
+                      data-id="${r.id}" data-reviewed="${r.reviewed}">
+                ${r.reviewed ? '↺ Sin revisar' : '✓ Marcar revisado'}
+              </button>
+              <button class="btn btn-sm btn-danger btn-delete"
+                      data-id="${r.id}" data-name="${esc(r.confirmed_by)}">
+                ✗ Eliminar
+              </button>
+            </div>
+          </div>
+
+        </div>`;
+    }
+
+    /* ==========================================================
+       TOGGLE CARD EXPAND
+       ========================================================== */
+    function toggleCard(id) {
+      const body = document.getElementById('body-' + id);
+      const tog  = document.getElementById('tog-'  + id);
+      if (!body) return;
+      const isOpen = body.classList.toggle('open');
+      tog.classList.toggle('open', isOpen);
+    }
+
+    /* ==========================================================
+       FILTER & SEARCH
+       ========================================================== */
+    function getFiltered() {
+      const q   = document.getElementById('searchBox').value.toLowerCase().trim();
+      const flt = document.getElementById('filterSel').value;
+
+      return allRSVPs.filter(r => {
+        if (q) {
+          const inName   = r.confirmed_by.toLowerCase().includes(q);
+          const inGuests = (r.guests||[]).some(g => g.name.toLowerCase().includes(q));
+          if (!inName && !inGuests) return false;
+        }
+        switch (flt) {
+          case 'reviewed':   return r.reviewed;
+          case 'unreviewed': return !r.reviewed;
+          case 'accepted':   return (r.guests||[]).some(g=>g.status==='accepted');
+          case 'declined':   return (r.guests||[]).some(g=>g.status==='declined');
+          case 'pending':    return (r.guests||[]).some(g=>g.status==='pending');
+          default:           return true;
+        }
+      });
+    }
+
+    /* ==========================================================
+       RENDER LIST
+       ========================================================== */
+    function renderList() {
+      const filtered = getFiltered();
+      const listEl   = document.getElementById('rsvpsList');
+      const countEl  = document.getElementById('listCount');
+
+      countEl.textContent = `${filtered.length} confirmación${filtered.length !== 1 ? 'es' : ''}`;
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="state-box">
+            <div class="state-icon">✉️</div>
+            <p>${allRSVPs.length === 0 ? 'Aún no hay confirmaciones.' : 'Ninguna confirmación coincide con los filtros.'}</p>
+          </div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(r => renderCard(r)).join('');
+
+      // Bind events on freshly rendered cards
+      listEl.querySelectorAll('.btn-review').forEach(btn => {
+        btn.addEventListener('click', async e => {
+          e.stopPropagation();
+          const id       = btn.dataset.id;
+          const reviewed = btn.dataset.reviewed === 'true';
+          try {
+            await SupabaseService.markAsReviewed(id, !reviewed);
+            await loadData();
+            toast(reviewed ? 'Marcado como sin revisar' : 'Marcado como revisado');
+          } catch (err) { toast('Error: ' + err.message, true); }
+        });
+      });
+
+      listEl.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', async e => {
+          e.stopPropagation();
+          const name = btn.dataset.name;
+          if (!confirm(`¿Eliminar la confirmación de "${name}"?\nEsta acción eliminará también todos sus invitados y no se puede deshacer.`)) return;
+          try {
+            await SupabaseService.deleteRSVP(btn.dataset.id);
+            await loadData();
+            toast('Confirmación eliminada');
+          } catch (err) { toast('Error al eliminar: ' + err.message, true); }
+        });
+      });
+
+      listEl.querySelectorAll('.status-sel').forEach(sel => {
+        sel.addEventListener('change', async e => {
+          e.stopPropagation();
+          const orig = sel.dataset.orig;
+          try {
+            await SupabaseService.updateGuestStatus(sel.dataset.guestId, sel.value);
+            // Update local data to avoid full reload for this small change
+            const rsvp = allRSVPs.find(r => r.id === sel.dataset.rsvpId);
+            if (rsvp) {
+              const guest = (rsvp.guests||[]).find(g => g.id === sel.dataset.guestId);
+              if (guest) { guest.status = sel.value; sel.dataset.orig = sel.value; }
+            }
+            updateMetrics(allRSVPs);
+            toast('Estado actualizado');
+          } catch (err) {
+            toast('Error al actualizar: ' + err.message, true);
+            sel.value = orig;
+          }
+        });
+      });
+    }
+
+    /* ==========================================================
+       LOAD DATA FROM SUPABASE
+       ========================================================== */
+    async function loadData() {
+      document.getElementById('rsvpsList').innerHTML = `
+        <div class="state-box">
+          <div class="loading-ring"></div>
+          <p>Cargando confirmaciones...</p>
+        </div>`;
+      try {
+        allRSVPs = await SupabaseService.getRSVPs();
+        updateMetrics(allRSVPs);
+        renderList();
+      } catch (err) {
+        const isUncfg = CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_URL';
+        document.getElementById('rsvpsList').innerHTML = `
+          <div class="state-box">
+            <div class="state-icon">⚠️</div>
+            <p>${isUncfg
+              ? 'Supabase no está configurado.<br>Edita CONFIG.SUPABASE_URL y CONFIG.SUPABASE_ANON_KEY en admin.html.'
+              : 'Error al cargar datos: ' + esc(err.message)
+            }</p>
+          </div>`;
+      }
+    }
+
+    /* ==========================================================
+       LOGIN
+       ========================================================== */
+    function initLogin() {
+      const btnLogin = document.getElementById('btnLogin');
+      const passEl   = document.getElementById('passInput');
+      const errEl    = document.getElementById('loginError');
+
+      function tryLogin() {
+        errEl.style.display = 'none';
+        if (passEl.value === CONFIG.ADMIN_PASSWORD) {
+          document.getElementById('loginScreen').style.display    = 'none';
+          document.getElementById('adminDashboard').style.display = 'block';
+          loadData();
+        } else {
+          errEl.style.display = 'block';
+          passEl.value = '';
+          passEl.focus();
+        }
+      }
+
+      btnLogin.addEventListener('click', tryLogin);
+      passEl.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+    }
+
+    /* ==========================================================
+       DASHBOARD CONTROLS
+       ========================================================== */
+    function initDashboard() {
+      document.getElementById('btnRefresh').addEventListener('click', loadData);
+
+      document.getElementById('btnLogout').addEventListener('click', () => {
+        document.getElementById('adminDashboard').style.display  = 'none';
+        document.getElementById('loginScreen').style.display     = 'flex';
+        document.getElementById('passInput').value = '';
+        allRSVPs = [];
+      });
+
+      document.getElementById('searchBox').addEventListener('input', renderList);
+      document.getElementById('filterSel').addEventListener('change', renderList);
+
+      document.getElementById('btnCSV').addEventListener('click', async () => {
+        if (!allRSVPs.length) { toast('No hay datos para exportar', true); return; }
+        try {
+          SupabaseService.exportCSV(allRSVPs);
+          toast('CSV descargado');
+        } catch (err) { toast('Error al exportar: ' + err.message, true); }
+      });
+
+      document.getElementById('btnJSON').addEventListener('click', async () => {
+        if (!allRSVPs.length) { toast('No hay datos para exportar', true); return; }
+        try {
+          SupabaseService.exportJSON(allRSVPs);
+          toast('JSON descargado');
+        } catch (err) { toast('Error al exportar: ' + err.message, true); }
+      });
+    }
+
+    /* ==========================================================
+       INIT
+       ========================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      initLogin();
+      initDashboard();
+    });
+  </script>
+</body>
+</html>
