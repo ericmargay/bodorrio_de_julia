@@ -1,4 +1,4 @@
-# Valentina & Rodrigo — Invitación Digital de Boda
+# Julia & Benito — Invitación Digital de Boda
 ## Guía de Configuración y Despliegue
 
 ---
@@ -21,7 +21,7 @@ wedding-invitation/
 
 1. Ve a https://supabase.com y crea una cuenta gratuita.
 2. Haz clic en **New Project**.
-3. Elige un nombre (ej: `boda-valentina-rodrigo`), una contraseña fuerte, y la región más cercana (us-east-1 para México).
+3. Elige un nombre (ej: `boda-Julia-Benito`), una contraseña fuerte, y la región más cercana (us-east-1 para México).
 4. Espera ~2 minutos mientras se aprovisiona el proyecto.
 
 ### 1.2 Crear las tablas con el SQL
@@ -71,8 +71,8 @@ const CONFIG = {
   SUPABASE_URL:      'https://abcdefghij.supabase.co',
   SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
   WEDDING_DATE:      '2026-06-14T18:00:00',
-  BRIDE_NAME:        'Valentina',
-  GROOM_NAME:        'Rodrigo',
+  BRIDE_NAME:        'Julia',
+  GROOM_NAME:        'Benito',
 };
 ```
 
@@ -90,8 +90,8 @@ En `index.html`, busca y reemplaza los placeholders de contenido:
 
 | Placeholder | Dónde está | Qué poner |
 |---|---|---|
-| `Valentina` | Hero, footer | Nombre de la novia |
-| `Rodrigo`   | Hero, footer | Nombre del novio |
+| `Julia` | Hero, footer | Nombre de la novia |
+| `Benito`   | Hero, footer | Nombre del novio |
 | `14 · Junio · 2026` | Hero, countdown, footer | Fecha real |
 | `Parroquia del Sagrado Corazón` | Timeline, locations | Nombre de la iglesia |
 | `Av. Hidalgo 450...` | Locations | Dirección real de la iglesia |
@@ -133,7 +133,7 @@ En `index.html`, busca y reemplaza los placeholders de contenido:
 ### 4.1 Crear repositorio en GitHub
 
 1. Ve a https://github.com y crea un nuevo repositorio.
-2. Nómbralo algo como `boda-valeri-rodrigo` o `wedding-2026`.
+2. Nómbralo algo como `bodorrio_de_julia` o `wedding-2026`.
 3. Déjalo **público** (GitHub Pages gratuito requiere repositorio público).
 
 ### 4.2 Subir los archivos
@@ -159,13 +159,13 @@ git push -u origin main
 3. Branch: `main`, folder: `/ (root)`.
 4. Haz clic en **Save**.
 5. Espera 1–2 minutos. GitHub te mostrará la URL pública, algo como:
-   `https://tu-usuario.github.io/boda-valeri-rodrigo/`
+   `https://ericmargay.github.io/bodorrio_de_julia/`
 
 ### 4.4 Configurar CORS en Supabase (si hay errores)
 
 Si ves errores de CORS en la consola del navegador:
 1. Ve a **Supabase Dashboard** → **Project Settings** → **API** → **CORS**.
-2. Agrega tu URL de GitHub Pages: `https://tu-usuario.github.io`
+2. Agrega tu URL de GitHub Pages: `https://ericmargay.github.io`
 3. Guarda.
 
 ---
@@ -174,8 +174,8 @@ Si ves errores de CORS en la consola del navegador:
 
 | Link | Para quién | Cómo compartir |
 |---|---|---|
-| `https://tu-usuario.github.io/boda-valeri-rodrigo/` | Todos los invitados | WhatsApp, email, Instagram |
-| `https://tu-usuario.github.io/boda-valeri-rodrigo/admin.html` | Solo la novia | WhatsApp privado, guardarlo en notas |
+| `https://ericmargay.github.io/bodorrio_de_julia/` | Todos los invitados | WhatsApp, email, Instagram |
+| `https://ericmargay.github.io/bodorrio_de_julia/admin.html` | Solo la novia | WhatsApp privado, guardarlo en notas |
 
 **Tip de seguridad:** Cambia el nombre `admin.html` a algo más difícil de adivinar, como `panel-6k9x.html`. No es seguridad real, pero reduce la probabilidad de que alguien lo encuentre por accidente.
 
@@ -194,7 +194,7 @@ Si ves errores de CORS en la consola del navegador:
 
 ## Migración a dominio propio (opcional, futuro)
 
-Cuando tengan un dominio personalizado (ej: `valentina-y-rodrigo.com`):
+Cuando tengan un dominio personalizado (ej: `Julia-y-Benito.com`):
 
 1. **Frontend:** Sube los mismos archivos a tu hosting (Netlify, Vercel, cPanel, etc.).
 2. **Supabase:** No cambia nada — la base de datos sigue siendo la misma.
