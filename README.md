@@ -92,12 +92,12 @@ En `index.html`, busca y reemplaza los placeholders de contenido:
 |---|---|---|
 | `Julia` | Hero, footer | Nombre de la novia |
 | `Benito`   | Hero, footer | Nombre del novio |
-| `14 · Junio · 2026` | Hero, countdown, footer | Fecha real |
+| `14 · Diciembre · 2026` | Hero, countdown, footer | Fecha real |
 | `Parroquia del Sagrado Corazón` | Timeline, locations | Nombre de la iglesia |
 | `Av. Hidalgo 450...` | Locations | Dirección real de la iglesia |
 | `Rancho Los Nogales` | Timeline, locations | Nombre del salón |
 | `Carretera Nacional Km. 25...` | Locations | Dirección real del salón |
-| `1 de Junio de 2026` | RSVP section | Fecha límite de confirmación |
+| `1 de Diciembre de 2026` | RSVP section | Fecha límite de confirmación |
 | `Liverpool — Núm. 000000` | Gifts | Número de mesa de regalos |
 | `María Isabel Reyes` | Intro | Nombres de padres/padrinos |
 | URL de Google Maps | Botones "Ver Ubicación" | Links reales de Google Maps |

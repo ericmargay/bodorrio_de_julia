@@ -1,6 +1,6 @@
 -- ================================================================
 -- WEDDING INVITATION — DATABASE SCHEMA
--- Julia & Benito · 14 de Junio de 2026
+-- Julia & Benito · 14 de Diciembre de 2026
 -- ================================================================
 -- USAGE: Paste this entire script in:
 --   Supabase Dashboard → SQL Editor → New Query → Run (F5)
