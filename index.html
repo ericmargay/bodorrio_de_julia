@@ -101,7 +101,7 @@
     /* The SVG horse icon — right-facing silhouette */
     .ico-horse {
       display: inline-block;
-      width: 26px;
+      width: 34px;    /* larger for better visibility */
       height: auto;
       fill: currentColor;
       flex-shrink: 0;
@@ -223,13 +223,12 @@
       background: var(--bg-deep);
     }
 
-    /* Wrap clips the iframe; iframe extends beyond to hide YT controls */
+    /* Wrap clips the iframe */
     .vbg-wrap {
       position: absolute;
-      /* Inset slightly so extended iframe hides controls at edges */
       top: 0; left: 0; right: 0; bottom: 0;
       overflow: hidden;
-      pointer-events: none; /* block all clicks on the video */
+      /* NO pointer-events override — children need to capture events */
     }
 
     .yt-bg {
@@ -237,21 +236,47 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      /* For 9:16 Shorts: fill height, let width scale */
-      height: 130%;          /* extend 15% top+bottom to clip YT UI */
+      height: 140%;          /* extend top+bottom to clip YouTube UI chrome */
       width: auto;
       aspect-ratio: 9/16;
-      min-width: 120%;       /* ensure it fills on wide screens */
+      min-width: 140%;       /* cover wide screens */
       border: 0;
+      pointer-events: none;  /* iframe itself cannot receive hover/click */
     }
 
-    /* Dark gradient at bottom (extra insurance against control bar visibility) */
+    /*
+      THE KEY FIX: a transparent div sits ON TOP of the iframe (z-index 5)
+      and absorbs all pointer events, so YouTube never detects hover
+      and therefore never renders its control overlay.
+      This div also serves as the "first user gesture" target for audio.
+    */
+    .video-blocker {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      cursor: default;
+      background: transparent;
+      /* pointer-events: auto is the default — captures everything */
+    }
+
+    /* Bottom gradient hides any remaining YouTube watermark / credit bar */
     .vbg-wrap::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 80px;
-      background: linear-gradient(to top, var(--bg-deep), transparent);
+      height: 100px;
+      background: linear-gradient(to top, var(--bg-deep) 0%, transparent 100%);
+      z-index: 6;   /* above blocker */
+      pointer-events: none;
+    }
+    /* Top-right gradient hides YouTube logo watermark */
+    .vbg-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 180px; height: 80px;
+      background: radial-gradient(ellipse at top right, var(--bg-deep) 0%, transparent 70%);
+      z-index: 6;
       pointer-events: none;
     }
 
@@ -583,7 +608,10 @@
         frameborder="0"
         title="Save The Date Video">
       </iframe>
-      <!-- Bottom gradient hides the YouTube watermark/control bar -->
+      <!-- Transparent blocker: z-index 5, above iframe.
+           Captures ALL pointer events → YouTube never detects hover → controls stay hidden.
+           First click/tap here also triggers audio start. -->
+      <div class="video-blocker" id="videoBlocker"></div>
     </div>
     <div class="v-scroll">Desliza</div>
   </section>
@@ -604,17 +632,49 @@
       <!-- Horse ornament row -->
       <div class="horse-row hero-horses anim d1">
         <!-- Horse SVG: right-facing running silhouette, 48×28 viewBox -->
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
 
@@ -861,14 +921,38 @@
       <h2 class="t-script anim" style="color:var(--cream-light);">Código de Vestir</h2>
 
       <div class="horse-row anim" style="color:var(--orange-mid);">
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
 
@@ -1012,14 +1096,38 @@
       <h2 class="t-script anim" style="color:var(--cream-light);">Opciones de Hospedaje</h2>
 
       <div class="horse-row anim" style="color:var(--orange-mid);">
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
 
@@ -1060,17 +1168,49 @@
   <footer class="footer">
     <div style="max-width:480px;margin:0 auto;">
       <div class="horse-row" style="color:var(--orange);margin:0 0 1.25rem;">
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
-        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        <svg class="ico-horse" viewBox="0 0 44 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="19" cy="18" rx="13" ry="7" transform="rotate(-8 19 18)" fill="currentColor"/>
+          <path d="M27 14 L31 7 L37 9 L34 16 Z" fill="currentColor"/>
+          <ellipse cx="37" cy="8" rx="5" ry="4" transform="rotate(-22 37 8)" fill="currentColor"/>
+          <polygon points="34,5 36,1 39,4" fill="currentColor"/>
+          <rect x="7"  y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(6 9 21)"/>
+          <rect x="13" y="21" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-5 15 21)"/>
+          <rect x="26" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(-8 28 20)"/>
+          <rect x="31" y="20" width="4" height="9" rx="2" fill="currentColor" transform="rotate(4 33 20)"/>
+          <path d="M7 17 C3 15 1 19 3 24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
       <p class="footer-names">Julia &amp; Erick</p>
@@ -1128,60 +1268,78 @@
     }
 
     /* ==========================================================
-       MUSIC PLAYER
-       Strategy:
-       - Button shows ⏸ (paused icon meaning "is playing") by default
-       - On first user interaction (scroll / tap), audio starts automatically
-       - Button click toggles pause ↔ play
-       - This satisfies browser autoplay policy (requires gesture)
+       MUSIC PLAYER — Come Rain or Come Shine
+       
+       How browsers work:
+       • Unmuted audio CANNOT autoplay without a prior user gesture.
+       • The gesture must happen inside the page (click, tap, keydown).
+       • Scroll counts as a gesture on Chrome/Android but NOT on Safari/iOS.
+
+       Our strategy:
+       1. Button shows ⏸ by default (music "should" be playing).
+       2. The video-blocker div covers the first full-screen section.
+          Any tap/click on that section (natural behaviour on mobile) fires
+          the gesture → audio starts. This is the most seamless UX possible.
+       3. Scroll on Chrome/desktop also triggers start.
+       4. Button click always toggles, regardless of how audio started.
        ========================================================== */
     function initMusic() {
-      const btn   = document.getElementById('musicBtn');
-      const frame = document.getElementById('ytAudio');
-      const SRC   = 'https://www.youtube.com/embed/VcaWuY4YcH8?autoplay=1&controls=0&rel=0&loop=1&playlist=VcaWuY4YcH8&mute=0';
+      const btn     = document.getElementById('musicBtn');
+      const frame   = document.getElementById('ytAudio');
+      const blocker = document.getElementById('videoBlocker');
 
-      let playing = true;  // intended state
-      let loaded  = false; // has the iframe src been set?
+      // Audio embed URL — no mute param (must play with sound after gesture)
+      const SRC = 'https://www.youtube.com/embed/VcaWuY4YcH8?autoplay=1&controls=0&rel=0&loop=1&playlist=VcaWuY4YcH8&enablejsapi=0';
 
-      // Load audio src on first user interaction (satisfies browser autoplay policy)
-      function tryLoad(e) {
-        // Don't trigger if user clicked the music button itself
-        if (e && e.target && e.target.id === 'musicBtn') return;
-        if (!loaded && playing) {
+      let isPlaying = true;   // desired state (⏸ by default = intending to play)
+      let isLoaded  = false;  // has iframe src been set?
+
+      // Core function: load audio into iframe (must be called inside a user gesture)
+      function startAudio() {
+        if (!isLoaded && isPlaying) {
           frame.src = SRC;
-          loaded = true;
+          isLoaded = true;
         }
       }
 
-      // Listen for any interaction to auto-start
-      document.addEventListener('scroll',     tryLoad, { once: true, passive: true });
-      document.addEventListener('click',      tryLoad, { once: true });
-      document.addEventListener('touchstart', tryLoad, { once: true, passive: true });
+      // TRIGGER 1: First click/tap anywhere on the video blocker overlay
+      // (the transparent div covering the full-screen opening video)
+      if (blocker) {
+        blocker.addEventListener('click',      startAudio, { once: true });
+        blocker.addEventListener('touchstart', startAudio, { once: true, passive: true });
+      }
 
-      // Button: toggle play / pause
-      btn.addEventListener('click', () => {
-        playing = !playing;
-        if (playing) {
+      // TRIGGER 2: First scroll (works on Chrome desktop/Android)
+      document.addEventListener('scroll', function onFirstScroll() {
+        startAudio();
+        document.removeEventListener('scroll', onFirstScroll);
+      }, { passive: true });
+
+      // TRIGGER 3: Any click anywhere on the page (broad catch)
+      document.addEventListener('click', function onFirstClick(e) {
+        if (e.target && e.target.id === 'musicBtn') return; // button has its own handler
+        startAudio();
+        document.removeEventListener('click', onFirstClick);
+      }, { once: false });
+
+      // BUTTON: toggle play ↔ pause
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation(); // don't trigger the document click handler above
+        isPlaying = !isPlaying;
+
+        if (isPlaying) {
           frame.src = SRC;
-          loaded    = true;
+          isLoaded  = true;
           btn.textContent = '⏸';
           btn.classList.add('playing');
         } else {
+          // Pause: reset src (stops playback immediately)
           frame.src = 'about:blank';
-          loaded    = false;
+          isLoaded  = false;
           btn.textContent = '♪';
           btn.classList.remove('playing');
         }
       });
-    }
-
-    /* ==========================================================
-       HERO ANIMATIONS (video section has no .anim elements,
-       hero section below picks up via IntersectionObserver)
-       ========================================================== */
-    function initHeroAnimations() {
-      // Trigger hero section content when it enters viewport
-      // IntersectionObserver in initAnimations() handles this automatically
     }
 
     /* ==========================================================
