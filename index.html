@@ -7,47 +7,32 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Julia &amp; Erick | 31 · Octubre · 2026</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
-       DESIGN SYSTEM — Elegant Cowboy · Tierra · Cempasúchil
-       Paleta: café oscuro cálido · crema · naranja #EB8F0A · #F6B968
+       DESIGN SYSTEM
     ============================================================ */
     :root {
-      /* Dark warm backgrounds (café oscuro, replaces forest green) */
-      --bg-deep:      #14100A;
-      --bg-dark:      #1E1A0A;
-      --bg-mid:       #2E2512;
-
-      /* Cream sections (unchanged) */
-      --cream-warm:   #F5EDD8;
-      --cream-light:  #FAF7F0;
-      --parchment:    #E0CFA8;
-
-      /* PRIMARY ACCENTS — orange palette */
-      --orange:       #EB8F0A;   /* primary accent, buttons */
-      --orange-mid:   #F6B968;   /* secondary, ornaments on dark */
-      --orange-pale:  #F9D7A0;   /* pale, text on dark */
-
-      /* Supporting warm tones */
-      --amber:        #8B5E3C;
-      --amber-dark:   #5C3B22;
-
-      /* Text */
-      --text-dark:    #1E1A15;
-      --text-mid:     #3D3228;
-      --text-warm:    #6B5540;
-      --text-light:   #EDE3C8;
-
-      /* Typography */
-      --font-script:  'Great Vibes', cursive;
-      --font-serif:   'Playfair Display', Georgia, serif;
-      --font-body:    'Cormorant Garamond', Georgia, serif;
-      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+      --bg-deep:     #14100A;
+      --bg-dark:     #1E1A0A;
+      --bg-mid:      #2E2512;
+      --cream-warm:  #F5EDD8;
+      --cream-light: #FAF7F0;
+      --parchment:   #E0CFA8;
+      --orange:      #EB8F0A;
+      --orange-mid:  #F6B968;
+      --orange-pale: #F9D7A0;
+      --amber:       #8B5E3C;
+      --text-dark:   #1E1A15;
+      --text-warm:   #6B5540;
+      --text-light:  #EDE3C8;
+      --font-script: 'Great Vibes', cursive;
+      --font-serif:  'Playfair Display', Georgia, serif;
+      --font-body:   'Cormorant Garamond', Georgia, serif;
+      --ease:        cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -59,11 +44,6 @@
       overflow-x: hidden;
       line-height: 1.7;
     }
-
-    /* ============================================================
-       HIDDEN SVG HORSE SYMBOL (reusable ornament)
-    ============================================================ */
-    .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 
     /* ============================================================
        SECTION SYSTEM
@@ -95,45 +75,44 @@
     }
 
     /* ============================================================
-       HORSE ORNAMENTS (replaces ✦)
+       HORSE ORNAMENTS — Clean inline SVG silhouette
     ============================================================ */
+
+    /* Horse row: horses flanked by thin lines */
     .horse-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
+      gap: 5px;
       margin: 1.25rem 0;
+      color: var(--orange-mid);
     }
 
     .horse-row::before,
     .horse-row::after {
       content: '';
       flex: 1;
-      max-width: 44px;
+      max-width: 46px;
       height: 1px;
-      background: var(--orange-mid);
-      opacity: 0.55;
+      background: currentColor;
+      opacity: 0.5;
     }
 
-    .horse-svg {
-      width: 22px;
+    /* The SVG horse icon — right-facing silhouette */
+    .ico-horse {
+      display: inline-block;
+      width: 26px;
       height: auto;
-      color: var(--orange-mid);
       fill: currentColor;
       flex-shrink: 0;
     }
-
-    .horse-svg + .horse-svg { margin-left: 2px; }
-
-    /* Smaller variant for within-text use */
-    .horse-svg--sm { width: 16px; }
 
     .divider {
       width: 44px;
       height: 1px;
       background: var(--orange);
       margin: 1.5rem auto;
-      opacity: 0.65;
+      opacity: 0.6;
     }
 
     /* ============================================================
@@ -156,28 +135,17 @@
       border-radius: 0;
     }
 
-    .btn-solid {
-      background: var(--orange);
-      color: #fff;
-      border-color: var(--orange);
-    }
-    .btn-solid:hover  { background: var(--orange-mid); border-color: var(--orange-mid); color: var(--text-dark); }
-    .btn-solid:active { filter: brightness(0.9); }
+    .btn-solid  { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .btn-solid:hover { background: var(--orange-mid); border-color: var(--orange-mid); color: var(--text-dark); }
 
-    .btn-ghost-light {
-      color: var(--cream-light);
-      border-color: rgba(249, 215, 160, 0.45);
-    }
-    .btn-ghost-light:hover { background: rgba(246,185,104,0.15); border-color: var(--orange-mid); }
+    .btn-ghost  { color: var(--cream-light); border-color: rgba(249,215,160,0.4); }
+    .btn-ghost:hover { background: rgba(246,185,104,0.15); border-color: var(--orange-mid); }
 
-    .btn-whatsapp {
-      background: #25D366;
-      color: #fff;
-      border-color: #25D366;
-      font-size: 0.7rem;
-      padding: 1rem 2rem;
+    .btn-wapp {
+      background: #25D366; color: #fff; border-color: #25D366;
+      font-size: 0.72rem; padding: 1rem 2rem;
     }
-    .btn-whatsapp:hover { background: #1ebe5d; border-color: #1ebe5d; }
+    .btn-wapp:hover { background: #1ebe5d; border-color: #1ebe5d; }
 
     .btn-w100 { width: 100%; display: block; }
 
@@ -186,7 +154,7 @@
     ============================================================ */
     .anim {
       opacity: 0;
-      transform: translateY(26px);
+      transform: translateY(24px);
       transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
     }
     .anim.in { opacity: 1; transform: none; }
@@ -202,8 +170,8 @@
       position: fixed;
       bottom: 1.5rem;
       right: 1.5rem;
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--orange);
       color: #fff;
@@ -211,95 +179,129 @@
       cursor: pointer;
       font-size: 1.15rem;
       z-index: 900;
-      box-shadow: 0 3px 18px rgba(0,0,0,0.35);
+      box-shadow: 0 3px 18px rgba(0,0,0,0.4);
       transition: transform 0.2s var(--ease), background 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
       -webkit-appearance: none;
     }
-    .music-btn:hover { transform: scale(1.1); background: var(--orange-mid); }
+    .music-btn:hover { transform: scale(1.1); }
     .music-btn.playing { animation: pulse-ring 2.5s ease-in-out infinite; }
 
     @keyframes pulse-ring {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(235,143,10,0.5); }
-      50%       { box-shadow: 0 0 0 10px rgba(235,143,10,0); }
+      0%,100% { box-shadow: 0 0 0 0 rgba(235,143,10,0.5); }
+      50%      { box-shadow: 0 0 0 10px rgba(235,143,10,0); }
     }
 
-    .music-tooltip {
+    .music-label {
       position: fixed;
-      bottom: 4.5rem;
+      bottom: 5.2rem;
       right: 1.5rem;
       background: var(--bg-deep);
       color: var(--orange-pale);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding: 0.35rem 0.75rem;
+      padding: 0.3rem 0.65rem;
       white-space: nowrap;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s;
       pointer-events: none;
       z-index: 900;
     }
 
-    .music-btn:hover + .music-tooltip,
-    .music-tooltip.show { opacity: 1; }
+    .music-btn:hover ~ .music-label { opacity: 1; }
 
     /* ============================================================
-       VIDEO OPENING SECTION
+       SECTION 1 — VIDEO ONLY (full screen, no text)
     ============================================================ */
     .video-section {
-      min-height: 100svh;
+      height: 100svh;
       position: relative;
       overflow: hidden;
       background: var(--bg-deep);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding-bottom: 4.5rem;
     }
 
-    .video-bg-wrap {
+    /* Wrap clips the iframe; iframe extends beyond to hide YT controls */
+    .vbg-wrap {
       position: absolute;
-      inset: 0;
+      /* Inset slightly so extended iframe hides controls at edges */
+      top: 0; left: 0; right: 0; bottom: 0;
       overflow: hidden;
+      pointer-events: none; /* block all clicks on the video */
     }
 
-    /* YouTube iframe fills the section like a background video */
     .yt-bg {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      /* Vertical video (9:16 Shorts) fill logic */
-      width: 100%;
-      height: 177.78%; /* makes a 9:16 video fill a 16:9 viewport */
-      min-height: 100%;
-      min-width: 56.25vh;
+      /* For 9:16 Shorts: fill height, let width scale */
+      height: 130%;          /* extend 15% top+bottom to clip YT UI */
+      width: auto;
+      aspect-ratio: 9/16;
+      min-width: 120%;       /* ensure it fills on wide screens */
       border: 0;
+    }
+
+    /* Dark gradient at bottom (extra insurance against control bar visibility) */
+    .vbg-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--bg-deep), transparent);
       pointer-events: none;
     }
 
-    .video-overlay {
+    /* Scroll hint at bottom of video section */
+    .v-scroll {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom,
-        rgba(20,16,10,0.25) 0%,
-        rgba(20,16,10,0.05) 35%,
-        rgba(20,16,10,0.65) 70%,
-        rgba(20,16,10,0.95) 100%);
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-align: center;
+      animation: bob 2.5s ease-in-out infinite;
+      pointer-events: none;
     }
 
-    .video-content {
-      position: relative;
-      z-index: 2;
+    .v-scroll::after {
+      content: '↓';
+      display: block;
+      font-size: 1rem;
+      letter-spacing: 0;
+      margin-top: 0.15rem;
+    }
+
+    @keyframes bob {
+      0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.65; }
+      50%      { transform: translateX(-50%) translateY(7px); opacity: 1; }
+    }
+
+    /* ============================================================
+       SECTION 2 — HERO (names, date, tagline)
+    ============================================================ */
+    .hero-section {
+      background:
+        radial-gradient(ellipse at 28% 60%, rgba(139,94,60,0.35) 0%, transparent 52%),
+        radial-gradient(ellipse at 80% 20%, rgba(235,143,10,0.1) 0%, transparent 48%),
+        linear-gradient(165deg, var(--bg-deep) 0%, var(--bg-dark) 50%, #3D2510 100%);
+      min-height: 85svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       color: var(--cream-light);
-      width: 100%;
-      max-width: 480px;
-      padding: 0 1.5rem;
+      padding: 5rem 1.5rem;
     }
+
+    .hero-content { width: 100%; max-width: 480px; }
 
     .hero-names {
       font-family: var(--font-script);
@@ -313,7 +315,12 @@
       color: var(--orange-mid);
       font-size: 0.65em;
       display: block;
-      margin: 0.15em 0;
+      margin: 0.12em 0;
+    }
+
+    .hero-horses {
+      color: var(--orange-mid);
+      margin: 1.1rem 0;
     }
 
     .hero-date {
@@ -322,7 +329,7 @@
       letter-spacing: 0.52em;
       text-transform: uppercase;
       color: var(--cream-warm);
-      margin: 1.6rem 0 0.85rem;
+      margin: 1.5rem 0 0.85rem;
       opacity: 0.88;
     }
 
@@ -331,38 +338,12 @@
       font-style: italic;
       font-size: 1rem;
       color: var(--cream-light);
-      opacity: 0.78;
-      line-height: 1.8;
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 1.8rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      color: var(--orange);
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      text-align: center;
-      animation: bob 2.5s ease-in-out infinite;
-    }
-    .hero-scroll::after {
-      content: '↓';
-      display: block;
-      font-size: 1rem;
-      letter-spacing: 0;
-      margin-top: 0.2rem;
-    }
-
-    @keyframes bob {
-      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
-      50%       { transform: translateX(-50%) translateY(7px); opacity: 1; }
+      opacity: 0.75;
+      line-height: 1.85;
     }
 
     /* ============================================================
-       SECTION: INTRO / QUOTE
+       INTRO / QUOTE
     ============================================================ */
     .quote-big {
       font-family: var(--font-script);
@@ -387,7 +368,6 @@
       margin: 1.2rem 0;
     }
 
-    /* SVG Rings */
     .rings-svg { width: 90px; height: auto; margin: 0.5rem auto; }
 
     .parent-label {
@@ -410,16 +390,16 @@
       font-style: italic;
       font-size: 0.9rem;
       color: var(--text-light);
-      opacity: 0.65;
+      opacity: 0.62;
       line-height: 1.8;
       margin-top: 2rem;
-      padding: 1.25rem 1rem;
-      border: 1px solid rgba(246,185,104,0.18);
+      padding: 1.2rem 1rem;
+      border: 1px solid rgba(246,185,104,0.16);
       border-left: 3px solid var(--orange-mid);
     }
 
     /* ============================================================
-       SECTION: COUNTDOWN
+       COUNTDOWN
     ============================================================ */
     .countdown-wrap {
       position: relative;
@@ -439,18 +419,17 @@
       padding: 3.5rem 2rem; width: 100%; max-width: 480px;
     }
 
-    .cd-headline { font-family: var(--font-script); font-size: clamp(2rem, 8vw, 2.6rem); color: var(--orange-pale); margin-bottom: 0.4rem; }
+    .cd-headline { font-family: var(--font-script); font-size: clamp(2rem,8vw,2.6rem); color: var(--orange-pale); margin-bottom: 0.4rem; }
     .cd-date-line { font-family: var(--font-serif); font-size: 0.88rem; letter-spacing: 0.22em; color: var(--cream-warm); margin-bottom: 0.4rem; }
     .cd-heart { color: var(--orange-mid); margin: 0 0.4rem; }
     .cd-sub { font-family: var(--font-script); font-size: 1.7rem; color: rgba(237,227,200,0.75); margin-bottom: 1.5rem; }
-
-    .cd-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; max-width: 300px; margin: 0 auto; }
+    .cd-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.5rem; max-width: 300px; margin: 0 auto; }
     .cd-unit { display: flex; flex-direction: column; align-items: center; }
-    .cd-num { font-family: var(--font-serif); font-weight: 600; font-size: clamp(2rem, 8vw, 2.8rem); color: #fff; line-height: 1; min-width: 2ch; }
+    .cd-num { font-family: var(--font-serif); font-weight: 600; font-size: clamp(2rem,8vw,2.8rem); color: #fff; line-height: 1; min-width: 2ch; }
     .cd-lbl { font-size: 0.5rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange-pale); margin-top: 0.3rem; opacity: 0.85; }
 
     /* ============================================================
-       SECTION: TIMELINE
+       TIMELINE
     ============================================================ */
     .timeline { display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem; }
     .tl-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -461,7 +440,7 @@
     .tl-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--orange) 0%, transparent 100%); margin: 0.85rem 0; opacity: 0.4; }
 
     /* ============================================================
-       SECTION: LOCATIONS
+       LOCATIONS
     ============================================================ */
     .loc-card {
       background: var(--cream-light);
@@ -484,8 +463,8 @@
     .loc-time { font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; color: var(--orange); letter-spacing: 0.05em; margin-bottom: 1.4rem; }
 
     .ceremony-note {
-      background: rgba(235,143,10,0.06);
-      border: 1px solid rgba(235,143,10,0.25);
+      background: rgba(235,143,10,0.05);
+      border: 1px solid rgba(235,143,10,0.22);
       padding: 1.1rem 1.25rem;
       margin-top: 1.5rem;
       font-size: 0.82rem;
@@ -493,92 +472,62 @@
       line-height: 1.75;
       text-align: left;
     }
-
-    .ceremony-note strong { font-family: var(--font-serif); display: block; margin-bottom: 0.25rem; color: var(--text-dark); }
-
-    /* ============================================================
-       SECTION: ACCOMMODATIONS
-    ============================================================ */
-    .hotel-card {
-      background: rgba(245,237,216,0.06);
-      border: 1px solid rgba(246,185,104,0.22);
-      padding: 1.5rem 1.25rem;
-      margin-top: 1.25rem;
-      text-align: left;
-    }
-
-    .hotel-name { font-family: var(--font-serif); font-weight: 600; font-size: 1rem; color: var(--cream-light); margin-bottom: 0.35rem; }
-
-    .hotel-detail { font-size: 0.82rem; color: var(--text-light); opacity: 0.7; line-height: 1.7; margin-bottom: 0.75rem; }
+    .ceremony-note strong { font-family: var(--font-serif); display: block; margin-bottom: 0.25rem; color: var(--text-dark); font-style: normal; }
 
     /* ============================================================
-       SECTION: DRESS CODE
+       DRESS CODE
     ============================================================ */
     .dc-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(246,185,104,0.1); text-align: left; }
     .dc-item:last-child { border-bottom: none; }
     .dc-star { color: var(--orange-mid); font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
     .dc-text { font-size: 0.92rem; color: var(--text-light); opacity: 0.85; line-height: 1.7; }
     .dc-text strong { font-family: var(--font-serif); font-style: italic; color: var(--cream-light); opacity: 1; }
-    .dc-note { font-style: italic; font-size: 0.92rem; color: var(--text-light); opacity: 0.55; margin-top: 2rem; }
+    .dc-note { font-style: italic; font-size: 0.92rem; color: var(--text-light); opacity: 0.5; margin-top: 2rem; }
 
     /* ============================================================
-       SECTION: GIFTS
+       GIFTS
     ============================================================ */
-    .gift-card { background: rgba(245,237,216,0.055); border: 1px solid rgba(235,143,10,0.22); padding: 1.75rem 1.5rem; margin-top: 1.5rem; }
+    .gift-card { background: rgba(245,237,216,0.055); border: 1px solid rgba(235,143,10,0.2); padding: 1.75rem 1.5rem; margin-top: 1.5rem; }
     .gift-emoji { font-size: 2.2rem; margin-bottom: 0.75rem; }
     .gift-title { font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--orange-pale); margin-bottom: 0.4rem; }
-    .gift-detail { font-family: var(--font-serif); font-size: 0.92rem; color: var(--cream-light); margin-bottom: 1rem; line-height: 1.7; }
-    .gift-note { font-size: 0.75rem; color: var(--text-light); opacity: 0.55; font-style: italic; margin-top: 0.5rem; }
+    .gift-detail { font-family: var(--font-serif); font-size: 0.92rem; color: var(--cream-light); margin-bottom: 0.75rem; line-height: 1.75; }
+    .gift-note { font-size: 0.72rem; color: var(--text-light); opacity: 0.5; font-style: italic; }
 
     /* ============================================================
-       SECTION: RSVP (WhatsApp)
+       RSVP
     ============================================================ */
     .rsvp-intro { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-warm); line-height: 2.2; margin-bottom: 2rem; }
-
-    .whatsapp-section { margin-top: 1.5rem; }
-
-    .whatsapp-msg {
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--text-warm);
-      line-height: 1.75;
-      margin-bottom: 1.75rem;
-    }
+    .wapp-msg { font-style: italic; font-size: 1rem; color: var(--text-warm); line-height: 1.75; margin-bottom: 1.75rem; }
 
     /* ============================================================
-       SECTION: EASTER EGG
+       EASTER EGG
     ============================================================ */
-    .easter-egg-wrap {
-      text-align: center;
-    }
-
-    .easter-film { font-size: 2rem; margin-bottom: 1rem; }
-
-    .easter-text {
-      font-size: 0.85rem;
-      color: var(--text-warm);
-      line-height: 1.9;
-      margin-bottom: 1.5rem;
-    }
-
+    .easter-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .easter-text { font-size: 0.85rem; color: var(--text-warm); line-height: 1.9; margin-bottom: 1rem; }
     .easter-text em { font-style: italic; color: var(--orange); }
+    .easter-cta { font-family: var(--font-script); font-size: 2rem; color: var(--orange); margin-bottom: 1.25rem; display: block; }
 
-    .easter-cta {
-      font-family: var(--font-script);
-      font-size: 2rem;
-      color: var(--orange);
-      margin-bottom: 1.25rem;
-      display: block;
+    /* ============================================================
+       ACCOMMODATIONS
+    ============================================================ */
+    .hotel-card {
+      background: rgba(245,237,216,0.055);
+      border: 1px solid rgba(246,185,104,0.2);
+      padding: 1.5rem 1.25rem;
+      margin-top: 1.25rem;
+      text-align: left;
     }
+    .hotel-name { font-family: var(--font-serif); font-weight: 600; font-size: 1rem; color: var(--cream-light); margin-bottom: 0.35rem; }
+    .hotel-detail { font-size: 0.82rem; color: var(--text-light); opacity: 0.68; line-height: 1.7; margin-bottom: 0.75rem; }
 
     /* ============================================================
        FOOTER
     ============================================================ */
     .footer { background: var(--bg-deep); color: var(--text-light); padding: 3.5rem 2rem; text-align: center; }
     .footer-names { font-family: var(--font-script); font-size: 2.4rem; color: var(--orange-pale); margin-bottom: 0.4rem; }
-    .footer-date { font-size: 0.58rem; letter-spacing: 0.48em; text-transform: uppercase; opacity: 0.45; margin-bottom: 2rem; }
-    .footer-quote { font-style: italic; font-size: 0.88rem; opacity: 0.5; max-width: 280px; margin: 0 auto 1.5rem; line-height: 1.9; }
-    .footer-copy { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.22; }
+    .footer-date { font-size: 0.58rem; letter-spacing: 0.48em; text-transform: uppercase; opacity: 0.42; margin-bottom: 2rem; }
+    .footer-quote { font-style: italic; font-size: 0.88rem; opacity: 0.48; max-width: 280px; margin: 0 auto 1.5rem; line-height: 1.9; }
+    .footer-copy { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.2; }
 
     /* ============================================================
        RESPONSIVE
@@ -586,6 +535,11 @@
     @media (min-width: 640px) {
       .section { padding: 6rem 2rem; }
       .inner   { max-width: 560px; }
+      .yt-bg {
+        height: 140%;
+        width: auto;
+        min-width: 100%;
+      }
     }
 
     @media (min-width: 1024px) {
@@ -597,66 +551,71 @@
 <body>
 
   <!-- ====================================================
-       HIDDEN SVG DEFS — Horse silhouette reusable symbol
+       HIDDEN AUDIO PLAYER (YouTube iframe, 0×0)
   ==================================================== -->
-  <svg class="svg-defs" aria-hidden="true" focusable="false">
-    <defs>
-      <symbol id="horse-icon" viewBox="0 0 56 38">
-        <!-- Running horse silhouette -->
-        <path d="M46,7 C44,4 40,3 36,5 C34,2 29,1 25,4
-                 C21,3 16,5 13,9 C10,10 8,14 10,18
-                 L9,27 L15,27 L16,20 L20,27 L26,27
-                 L26,21 C30,21 36,19 40,17
-                 C44,14 47,10 46,7 Z
-                 M11,18 C8,20 6,18 7,15 C8,13 10,14 11,17 Z
-                 M36,5 L35,1 L39,3 Z"/>
-      </symbol>
-    </defs>
-  </svg>
-
-  <!-- ====================================================
-       FLOATING MUSIC BUTTON + HIDDEN AUDIO PLAYER
-  ==================================================== -->
-  <button class="music-btn" id="musicBtn" aria-label="Reproducir música de la boda">♪</button>
-  <div class="music-tooltip" id="musicTooltip">Come Rain or Come Shine</div>
-
-  <div id="audioWrap" style="position:fixed;width:0;height:0;overflow:hidden;pointer-events:none;">
+  <div style="position:fixed;width:0;height:0;overflow:hidden;pointer-events:none;z-index:-1;">
     <iframe
       id="ytAudio"
-      src="https://www.youtube.com/embed/VcaWuY4YcH8?enablejsapi=1&autoplay=0&controls=0&rel=0"
+      src="about:blank"
       allow="autoplay"
       width="1" height="1"
       frameborder="0"
-      title="Wedding Music"></iframe>
+      title="Música de Boda"></iframe>
   </div>
 
   <!-- ====================================================
-       1. VIDEO OPENING — Save The Date
+       FLOATING MUSIC BUTTON — default ⏸ (playing)
   ==================================================== -->
-  <section class="video-section" id="top">
-    <div class="video-bg-wrap">
+  <button class="music-btn playing" id="musicBtn" aria-label="Música">⏸</button>
+  <div class="music-label">Come Rain or Come Shine</div>
+
+
+  <!-- ====================================================
+       SECTION 1 — VIDEO (full screen, standalone, no text)
+       YouTube Shorts embed, muted, looping, controls hidden
+  ==================================================== -->
+  <section class="video-section">
+    <div class="vbg-wrap">
       <iframe
         class="yt-bg"
-        src="https://www.youtube.com/embed/n4ut7cNH4AM?autoplay=1&mute=1&loop=1&playlist=n4ut7cNH4AM&controls=0&rel=0&playsinline=1&modestbranding=1&disablekb=1"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen
+        src="https://www.youtube.com/embed/n4ut7cNH4AM?autoplay=1&mute=1&loop=1&playlist=n4ut7cNH4AM&controls=0&rel=0&playsinline=1&modestbranding=1&disablekb=1&iv_load_policy=3&fs=0&showinfo=0&color=white"
+        allow="autoplay; encrypted-media"
+        frameborder="0"
         title="Save The Date Video">
       </iframe>
+      <!-- Bottom gradient hides the YouTube watermark/control bar -->
     </div>
-    <div class="video-overlay"></div>
+    <div class="v-scroll">Desliza</div>
+  </section>
 
-    <div class="video-content">
+
+  <!-- ====================================================
+       SECTION 2 — HERO (names, date, tagline)
+  ==================================================== -->
+  <section class="hero-section">
+    <div class="hero-content">
+
       <h1 class="hero-names anim">
         Julia Eréndira
         <span class="hero-amp">&amp;</span>
         Erick Daniel
       </h1>
 
-      <div class="horse-row anim d1">
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
+      <!-- Horse ornament row -->
+      <div class="horse-row hero-horses anim d1">
+        <!-- Horse SVG: right-facing running silhouette, 48×28 viewBox -->
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
       </div>
 
       <p class="hero-date anim d2">31 · Octubre · 2026</p>
@@ -666,14 +625,13 @@
         Llueva o truene,<br>
         Estoy contigo, en la lluvia o en el brillo...
       </p>
-    </div>
 
-    <div class="hero-scroll anim d4">Desliza</div>
+    </div>
   </section>
 
 
   <!-- ====================================================
-       2. QUOTE / INTRO
+       SECTION 3 — QUOTE / INTRO / PARENTS / PADRINOS
   ==================================================== -->
   <section class="section s-dark">
     <div class="inner">
@@ -696,15 +654,15 @@
       <svg class="rings-svg anim" viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="48"  cy="45" r="27" stroke="#EB8F0A" stroke-width="2.5"/>
         <circle cx="92"  cy="45" r="27" stroke="#EB8F0A" stroke-width="2.5"/>
-        <circle cx="48"  cy="45" r="21" stroke="#EB8F0A" stroke-width="1" stroke-dasharray="3 3" opacity="0.32"/>
-        <circle cx="92"  cy="45" r="21" stroke="#EB8F0A" stroke-width="1" stroke-dasharray="3 3" opacity="0.32"/>
+        <circle cx="48"  cy="45" r="21" stroke="#EB8F0A" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
+        <circle cx="92"  cy="45" r="21" stroke="#EB8F0A" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
         <text x="12"  y="20" font-size="10" fill="#F6B968" opacity="0.7">✦</text>
         <text x="115" y="20" font-size="10" fill="#F6B968" opacity="0.7">✦</text>
         <text x="64"  y="10" font-size="7"  fill="#F6B968" opacity="0.5">✦</text>
       </svg>
 
       <!-- Parents -->
-      <div style="margin-top: 3rem;" class="anim">
+      <div style="margin-top:3rem;" class="anim">
         <p class="parent-label">Padres de la Novia</p>
         <p class="parent-names">Angelica Torres<br>Roberto Rodríguez</p>
       </div>
@@ -718,7 +676,6 @@
 
       <div class="divider anim"></div>
 
-      <!-- Padrinos -->
       <div class="anim">
         <p class="parent-label">Padrinos de Velación y Arras</p>
         <p class="parent-names">Jimena Hernández<br>Julio Jaramillo</p>
@@ -738,12 +695,10 @@
         <p class="parent-names">Silvia Arvizu<br>Hugo Torres</p>
       </div>
 
-      <!-- Padrinos thank you -->
       <blockquote class="padrinos-msg anim">
-        "Gracias a todos los padrinos. Su cariño, apoyo y generosidad
-        hicieron aún más especial este día, y nos llena el corazón saber
-        que caminamos hacia esta nueva etapa rodeados de personas
-        tan valiosas para nosotros."
+        "Gracias a todos los padrinos. Su cariño, apoyo y generosidad hicieron aún más
+        especial este día, y nos llena el corazón saber que caminamos hacia esta nueva
+        etapa rodeados de personas tan valiosas para nosotros."
       </blockquote>
 
     </div>
@@ -751,7 +706,7 @@
 
 
   <!-- ====================================================
-       3. COUNTDOWN
+       SECTION 4 — COUNTDOWN
   ==================================================== -->
   <div class="countdown-wrap">
     <div class="cd-inner">
@@ -771,17 +726,16 @@
 
 
   <!-- ====================================================
-       4. TIMELINE / ITINERARY
+       SECTION 5 — TIMELINE
   ==================================================== -->
   <section class="section s-light">
     <div class="inner">
-      <p class="t-label anim" style="color: var(--text-warm);">El gran día</p>
-      <h2 class="t-script anim" style="color: var(--orange);">Aprovechemos el tiempo</h2>
-      <div class="divider anim" style="background: var(--orange);"></div>
+      <p class="t-label anim" style="color:var(--text-warm);">El gran día</p>
+      <h2 class="t-script anim" style="color:var(--orange);">Aprovechemos el tiempo</h2>
+      <div class="divider anim" style="background:var(--orange);"></div>
 
       <div class="timeline">
 
-        <!-- Ceremony -->
         <div class="tl-item anim">
           <svg class="tl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="28" y="44" width="44" height="46" stroke="#2A1D0A" stroke-width="2"/>
@@ -791,8 +745,8 @@
             <rect x="42" y="66" width="16" height="24" stroke="#2A1D0A" stroke-width="1.5" fill="none"/>
             <rect x="32" y="52" width="12" height="12" stroke="#2A1D0A" stroke-width="1.5" fill="none"/>
             <rect x="56" y="52" width="12" height="12" stroke="#2A1D0A" stroke-width="1.5" fill="none"/>
-            <text x="8"  y="30" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
-            <text x="80" y="30" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
+            <text x="8"  y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+            <text x="80" y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
           </svg>
           <p class="tl-event">Ceremonia Religiosa</p>
           <p class="tl-time">11:30 HRS</p>
@@ -801,7 +755,6 @@
 
         <div class="tl-line"></div>
 
-        <!-- Reception -->
         <div class="tl-item anim">
           <svg class="tl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M34 18 L23 56 L45 56 Z" stroke="#2A1D0A" stroke-width="2" fill="none"/>
@@ -815,8 +768,8 @@
             <circle cx="64" cy="37" r="2"   fill="#2A1D0A" opacity="0.4"/>
             <path d="M45 84 Q50 72 55 84" stroke="#2A1D0A" stroke-width="1.5" fill="none"/>
             <circle cx="50" cy="66" r="5"   stroke="#2A1D0A" stroke-width="1.5" fill="none"/>
-            <text x="10" y="32" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
-            <text x="80" y="32" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
+            <text x="10" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+            <text x="80" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
           </svg>
           <p class="tl-event">Recepción &amp; Celebración</p>
           <p class="tl-time">14:00 HRS</p>
@@ -829,12 +782,12 @@
 
 
   <!-- ====================================================
-       5. LOCATIONS
+       SECTION 6 — LOCATIONS
   ==================================================== -->
   <section class="section s-cream">
     <div class="inner">
-      <p class="t-label anim" style="color: var(--text-warm);">¿Dónde nos vemos?</p>
-      <h2 class="t-script anim" style="color: var(--orange);">Los lugares</h2>
+      <p class="t-label anim" style="color:var(--text-warm);">¿Dónde nos vemos?</p>
+      <h2 class="t-script anim" style="color:var(--orange);">Los lugares</h2>
       <div class="divider anim"></div>
 
       <!-- Ceremony -->
@@ -847,33 +800,29 @@
           <rect x="42" y="66" width="16" height="24" stroke="#1E1A0A" stroke-width="1.5" fill="none"/>
           <rect x="32" y="52" width="12" height="12" stroke="#1E1A0A" stroke-width="1.5" fill="none"/>
           <rect x="56" y="52" width="12" height="12" stroke="#1E1A0A" stroke-width="1.5" fill="none"/>
-          <text x="8"  y="30" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
-          <text x="80" y="30" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
+          <text x="8"  y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+          <text x="80" y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
         </svg>
         <p class="loc-type">La Misa</p>
         <h3 class="loc-name">Convento de Agua Viva</h3>
-        <p class="loc-address">
-          Mex 3521, Amecameca-Cuauhtenco<br>
-          Santa Isabel Chalma, Amecameca de Juárez
-        </p>
+        <p class="loc-address">Mex 3521, Amecameca-Cuauhtenco<br>Santa Isabel Chalma, Amecameca de Juárez</p>
         <p class="loc-time">— 11:30 HRS —</p>
         <a href="https://www.waze.com/es-419/live-map/directions/convento-dominico-agua-viva-mex-3521-amecamecacuauhtenco-santa-isabel-chalma-12-amecameca-de-juarez?to=place.w.171180224.1712129915.16926738"
-           target="_blank" rel="noopener"
-           class="btn btn-solid btn-w100">
+           target="_blank" rel="noopener" class="btn btn-solid btn-w100">
           Cómo llegar (Waze)
         </a>
       </div>
 
-      <!-- Ceremony phone-free note -->
+      <!-- Ceremony note -->
       <div class="ceremony-note anim">
         <strong>📵 Ceremonia sin celulares</strong>
-        Les pedimos de la manera más atenta guardar sus celulares durante la ceremonia
-        para que podamos compartir este momento de una forma más presente y especial.
-        Disfruten la misa con nosotros; nosotros nos encargaremos de capturar los recuerdos.
+        Les pedimos de la manera más atenta guardar sus celulares durante la ceremonia para
+        que podamos compartir este momento de una forma más presente y especial. Disfruten
+        la misa con nosotros; nosotros nos encargaremos de capturar los recuerdos.
       </div>
 
       <!-- Reception -->
-      <div class="loc-card anim" style="margin-top: 2.5rem;">
+      <div class="loc-card anim" style="margin-top:2.5rem;">
         <svg class="loc-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M34 18 L23 56 L45 56 Z" stroke="#1E1A0A" stroke-width="2" fill="none"/>
           <line x1="34" y1="56" x2="34" y2="80" stroke="#1E1A0A" stroke-width="2"/>
@@ -886,19 +835,15 @@
           <circle cx="64" cy="37" r="2"   fill="#1E1A0A" opacity="0.4"/>
           <path d="M45 84 Q50 72 55 84" stroke="#1E1A0A" stroke-width="1.5" fill="none"/>
           <circle cx="50" cy="66" r="5"   stroke="#1E1A0A" stroke-width="1.5" fill="none"/>
-          <text x="10" y="32" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
-          <text x="80" y="32" font-size="9" fill="#EB8F0A" opacity="0.65">✦</text>
+          <text x="10" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+          <text x="80" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
         </svg>
         <p class="loc-type">La Recepción</p>
         <h3 class="loc-name">El Grande Vivero Café</h3>
-        <p class="loc-address">
-          56900 Atlancatzi<br>
-          Amecameca de Juárez, Méx.
-        </p>
+        <p class="loc-address">56900 Atlancatzi<br>Amecameca de Juárez, Méx.</p>
         <p class="loc-time">— 14:00 HRS —</p>
         <a href="https://maps.google.com/?q=El+Grande+Vivero+Cafe+Amecameca"
-           target="_blank" rel="noopener"
-           class="btn btn-solid btn-w100">
+           target="_blank" rel="noopener" class="btn btn-solid btn-w100">
           Ver Ubicación
         </a>
       </div>
@@ -908,69 +853,26 @@
 
 
   <!-- ====================================================
-       6. ACCOMMODATIONS
-  ==================================================== -->
-  <section class="section s-dark">
-    <div class="inner">
-      <p class="t-label anim" style="color: var(--orange-pale);">Para que descanses</p>
-      <h2 class="t-script anim" style="color: var(--cream-light);">Opciones de Hospedaje</h2>
-
-      <div class="horse-row anim" style="color: var(--orange-mid);">
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-      </div>
-
-      <div class="hotel-card anim">
-        <p class="hotel-name">Hacienda Panoaya — Hotel &amp; Spa</p>
-        <p class="hotel-detail">Una opción encantadora rodeada de naturaleza a pocos minutos del evento.</p>
-        <a href="https://haciendapanoaya.com/hotel-spa/" target="_blank" rel="noopener"
-           class="btn btn-ghost-light">Ver opciones</a>
-      </div>
-
-      <div class="hotel-card anim">
-        <p class="hotel-name">Glamping — Fuerza Ancestral</p>
-        <p class="hotel-detail">Una experiencia única bajo las estrellas, perfecta para la noche de Halloween.</p>
-        <a href="https://fuerza-ancestral.mx/" target="_blank" rel="noopener"
-           class="btn btn-ghost-light">Ver opciones</a>
-      </div>
-
-      <div class="hotel-card anim">
-        <p class="hotel-name">Hotel El Marques</p>
-        <p class="hotel-detail">
-          Sacromonte, C. 20 de Noviembre SN, 56900 Amecameca de Juárez, Méx.<br>
-          <span style="color: var(--orange-mid);">Tel: 597 978 1192</span>
-        </p>
-        <a href="https://maps.google.com/?q=Hotel+El+Marques+Sacromonte+Amecameca" target="_blank" rel="noopener"
-           class="btn btn-ghost-light">Ver en Maps</a>
-      </div>
-
-      <div class="hotel-card anim">
-        <p class="hotel-name">Quito Cielo — Airbnb</p>
-        <p class="hotel-detail">Un espacio íntimo y acogedor para quienes buscan algo más personal.</p>
-        <a href="https://www.airbnb.mx/rooms/27521002" target="_blank" rel="noopener"
-           class="btn btn-ghost-light">Ver en Airbnb</a>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ====================================================
-       7. DRESS CODE
+       SECTION 7 — DRESS CODE
   ==================================================== -->
   <section class="section s-deep">
     <div class="inner">
-      <p class="t-label anim" style="color: var(--orange-pale);">Vestimenta</p>
-      <h2 class="t-script anim" style="color: var(--cream-light);">Código de Vestir</h2>
+      <p class="t-label anim" style="color:var(--orange-pale);">Vestimenta</p>
+      <h2 class="t-script anim" style="color:var(--cream-light);">Código de Vestir</h2>
 
-      <div class="horse-row anim" style="color: var(--orange-mid);">
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
+      <div class="horse-row anim" style="color:var(--orange-mid);">
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
       </div>
 
-      <p style="font-family: var(--font-script); font-size: 1.5rem; color: var(--orange-mid); margin-bottom: 0.25rem;" class="anim">
+      <p style="font-family:var(--font-script);font-size:1.5rem;color:var(--orange-mid);margin-bottom:0.25rem;" class="anim">
         Country Elegante · Formal Campestre
       </p>
 
@@ -981,17 +883,17 @@
           <span class="dc-star">✦</span>
           <p class="dc-text">
             <strong>Ellas —</strong>
-            Vestidos largos o midi. Sugerimos tonos tierra, negros, vino, verdes profundos.
-            Botas son más que bienvenidas. Un acento en color
-            <span style="color: var(--orange-mid);">cempasúchil</span> sería muy especial.
+            Vestidos largos o midi en tonos tierra, negros, vino o verdes profundos.
+            Botas son más que bienvenidas. Un acento en <span style="color:var(--orange-mid);">cempasúchil</span>
+            sería muy especial.
           </p>
         </div>
         <div class="dc-item">
           <span class="dc-star">✦</span>
           <p class="dc-text">
             <strong>Ellos —</strong>
-            Trajes, chamarras vaqueras o corbatines western.
-            Botas son perfectas para la ocasión. Sombrero siempre bienvenido.
+            Trajes, chamarras vaqueras o corbatines western. Botas son perfectas.
+            Sombrero siempre bienvenido.
           </p>
         </div>
         <div class="dc-item">
@@ -999,14 +901,14 @@
           <p class="dc-text">
             <strong>Evitar —</strong>
             Ropa demasiado casual, tenis o playeras.
-            Queremos hacer esta noche aún más especial juntos.
+            Queremos hacer esta celebración aún más especial juntos.
           </p>
         </div>
         <div class="dc-item">
           <span class="dc-star">🌡</span>
           <p class="dc-text">
-            <strong>Nota importante —</strong>
-            Hará frío en la sierra. Ven preparado con una capa o chamarra elegante.
+            <strong>Nota —</strong>
+            Hará frío en la sierra. Ven preparado con una chamarra o capa elegante.
           </p>
         </div>
       </div>
@@ -1019,92 +921,81 @@
 
 
   <!-- ====================================================
-       8. GIFTS
+       SECTION 8 — GIFTS
   ==================================================== -->
   <section class="section s-dark">
     <div class="inner">
-      <p class="t-label anim" style="color: var(--orange-pale);">Si deseas tener un detalle</p>
-      <h2 class="t-script anim" style="color: var(--cream-light);">Mesa de Regalos</h2>
+      <p class="t-label anim" style="color:var(--orange-pale);">Si deseas tener un detalle</p>
+      <h2 class="t-script anim" style="color:var(--cream-light);">Mesa de Regalos</h2>
       <div class="divider anim"></div>
 
       <div class="gift-card anim">
         <div class="gift-emoji">🏠</div>
         <p class="gift-title">Tarjeta de Regalo</p>
         <p class="gift-detail">
-          El mejor regalo será compartir este día con ustedes.
-          Estamos construyendo nuestro hogar poco a poco, por lo que,
-          si desean tener un detalle con nosotros, agradeceremos mucho
+          El mejor regalo será compartir este día con ustedes. Estamos construyendo nuestro hogar
+          poco a poco, por lo que, si desean tener un detalle con nosotros, agradeceremos mucho
           una contribución o una tarjeta de regalo de
-          <strong style="color: var(--orange-mid);">Home Depot</strong>
+          <strong style="color:var(--orange-mid);">Home Depot</strong>
           para ayudarnos a hacerlo realidad.
         </p>
-        <p class="gift-note">
-          *Las tarjetas de regalo se compran directamente<br>
-          en tu tienda Home Depot más cercana.*
-        </p>
+        <p class="gift-note">*Las tarjetas de regalo se compran directamente en tu tienda Home Depot más cercana.*</p>
       </div>
-
     </div>
   </section>
 
 
   <!-- ====================================================
-       9. RSVP — WhatsApp
+       SECTION 9 — RSVP (WhatsApp)
   ==================================================== -->
   <section class="section s-cream" id="rsvp">
     <div class="inner">
-      <p class="t-label anim" style="color: var(--text-warm);">¿Contamos contigo?</p>
-      <h2 class="t-script anim" style="color: var(--orange);">Queremos verte</h2>
+      <p class="t-label anim" style="color:var(--text-warm);">¿Contamos contigo?</p>
+      <h2 class="t-script anim" style="color:var(--orange);">Queremos verte</h2>
       <div class="divider anim"></div>
 
-      <div class="whatsapp-section anim">
-        <p class="whatsapp-msg">
+      <div class="anim">
+        <p class="wapp-msg">
           Nos hará muy felices compartir este día contigo.<br>
           Confírmanos si podrás acompañarnos. 🌼
         </p>
-
         <a href="https://wa.me/525591896988?text=Hola%20Julia%20y%20Erick%2C%20quiero%20confirmar%20mi%20asistencia%20a%20su%20boda%20el%2031%20de%20octubre.%20%F0%9F%8C%B9"
            target="_blank" rel="noopener"
-           class="btn btn-whatsapp btn-w100">
+           class="btn btn-wapp btn-w100">
           💬 Confirmar por WhatsApp
         </a>
-
-        <p style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-warm); text-align: center; font-style: italic;">
-          También puedes escribirnos directo al<br>
-          <strong style="font-family: var(--font-serif); font-style: normal; color: var(--orange);">55 9189 6988</strong>
+        <p style="margin-top:1rem;font-size:0.72rem;color:var(--text-warm);text-align:center;font-style:italic;">
+          También puedes escribirnos al<br>
+          <strong style="font-family:var(--font-serif);font-style:normal;color:var(--orange);">55 9189 6988</strong>
         </p>
       </div>
-
     </div>
   </section>
 
 
   <!-- ====================================================
-       10. EASTER EGG — Post-créditos
+       SECTION 10 — EASTER EGG (post-créditos)
   ==================================================== -->
   <section class="section s-light">
-    <div class="inner easter-egg-wrap">
-      <div class="anim">
-        <div class="easter-film">🎬</div>
-        <h2 class="t-script" style="color: var(--orange); margin-bottom: 1rem;">
-          Escena post-créditos
-        </h2>
+    <div class="inner">
+      <div class="anim" style="text-align:center;">
+        <div class="easter-icon">🎬</div>
+        <h2 class="t-script" style="color:var(--orange);margin-bottom:1rem;">Escena post-créditos</h2>
         <p class="easter-text">
           Si llegaste hasta acá, significa que eres<br>
           de los que <em>terminan todo</em>...<br>
           y esperas una escena post créditos.
         </p>
-        <p class="easter-text" style="margin-top: -0.5rem;">
+        <p class="easter-text" style="margin-top:-0.5rem;">
           Por ello, tenemos algo especial para ti. 🤫
         </p>
         <span class="easter-cta">Al día siguiente te esperamos en:</span>
         <a href="https://maps.google.com/?q=19.153703689575195,-98.85884094238281"
            target="_blank" rel="noopener"
-           class="btn btn-solid"
-           style="margin-bottom: 1.25rem;">
+           class="btn btn-solid" style="margin-bottom:1.25rem;">
           📍 Ver ubicación secreta
         </a>
-        <p class="easter-text" style="margin-top: 1rem; font-size: 0.9rem;">
+        <p class="easter-text" style="margin-top:1rem;font-size:0.9rem;">
           Para un rico desayuno y aligerar la cruda. 🍳☕
         </p>
       </div>
@@ -1113,15 +1004,74 @@
 
 
   <!-- ====================================================
+       SECTION 11 — ACCOMMODATIONS (after easter egg)
+  ==================================================== -->
+  <section class="section s-dark">
+    <div class="inner">
+      <p class="t-label anim" style="color:var(--orange-pale);">Para que descanses bien</p>
+      <h2 class="t-script anim" style="color:var(--cream-light);">Opciones de Hospedaje</h2>
+
+      <div class="horse-row anim" style="color:var(--orange-mid);">
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Hacienda Panoaya — Hotel &amp; Spa</p>
+        <p class="hotel-detail">Una opción encantadora rodeada de naturaleza a minutos del evento.</p>
+        <a href="https://haciendapanoaya.com/hotel-spa/" target="_blank" rel="noopener" class="btn btn-ghost">Ver opciones</a>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Glamping — Fuerza Ancestral</p>
+        <p class="hotel-detail">Una experiencia única bajo las estrellas, perfecta para la noche de Halloween.</p>
+        <a href="https://fuerza-ancestral.mx/" target="_blank" rel="noopener" class="btn btn-ghost">Ver opciones</a>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Hotel El Marques</p>
+        <p class="hotel-detail">
+          Sacromonte, C. 20 de Noviembre SN, 56900 Amecameca de Juárez, Méx.<br>
+          <span style="color:var(--orange-mid);">Tel: 597 978 1192</span>
+        </p>
+        <a href="https://maps.google.com/?q=Hotel+El+Marques+Sacromonte+Amecameca" target="_blank" rel="noopener" class="btn btn-ghost">Ver en Maps</a>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Quito Cielo — Airbnb</p>
+        <p class="hotel-detail">Un espacio íntimo y acogedor para quienes buscan algo más personal.</p>
+        <a href="https://www.airbnb.mx/rooms/27521002" target="_blank" rel="noopener" class="btn btn-ghost">Ver en Airbnb</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================
        FOOTER
   ==================================================== -->
   <footer class="footer">
-    <div style="max-width: 480px; margin: 0 auto;">
-      <div class="horse-row" style="color: var(--orange); margin: 0 0 1.25rem;">
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
-        <svg class="horse-svg" aria-hidden="true"><use href="#horse-icon"/></svg>
+    <div style="max-width:480px;margin:0 auto;">
+      <div class="horse-row" style="color:var(--orange);margin:0 0 1.25rem;">
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
+        <svg class="ico-horse" viewBox="0 0 48 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M43,7 C41,4 37,3 33,5 C31,2 27,1 23,3 C19,2 14,4 11,7 C8,8 6,11 8,14 L7,22 H12 L13,16 L16,22 H21 V16 C24,16 28,14 32,12 V17 H37 V12 C40,10 44,9 43,7 Z M8,13 C6,15 4,13 5,11 C6,10 8,11 8,12 Z M33,5 L32,2 L36,3 Z"/>
+        </svg>
       </div>
       <p class="footer-names">Julia &amp; Erick</p>
       <p class="footer-date">31 · Octubre · 2026</p>
@@ -1130,7 +1080,6 @@
         Llueva o truene,<br>
         Estoy contigo..."
       </p>
-      <div class="horse-row" style="color: var(--orange); opacity: 0.3; margin: 0 0 1.5rem;"></div>
       <p class="footer-copy">Come Rain or Come Shine · 2026</p>
     </div>
   </footer>
@@ -1144,74 +1093,25 @@
   <script>
     "use strict";
 
-    /* ==========================================================
-       ⚙️  CONFIGURATION
-       (Supabase fields kept for future RSVP integration)
-       ========================================================== */
     const CONFIG = {
       SUPABASE_URL:      'YOUR_SUPABASE_URL',
       SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY',
       WEDDING_DATE:      '2026-10-31T11:30:00',
-      BRIDE_NAME:        'Julia Eréndira',
-      GROOM_NAME:        'Erick Daniel',
     };
 
     /* ==========================================================
-       SUPABASE SERVICE (ready for next phase)
-       ========================================================== */
-    const SupabaseService = (() => {
-      let _db = null;
-      function db() {
-        if (!_db) {
-          if (CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_URL') return null;
-          _db = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
-        }
-        return _db;
-      }
-      async function createRSVP({ confirmedBy, totalGuests, guests, phone, email, foodRestrictions, comments }) {
-        const client = db();
-        if (!client) throw new Error('Supabase no configurado.');
-        const { data: rsvp, error: rsvpErr } = await client
-          .from('rsvps').insert({
-            confirmed_by: confirmedBy, total_guests: totalGuests,
-            phone: phone||null, email: email||null,
-            food_restrictions: foodRestrictions||null, comments: comments||null,
-            reviewed: false, general_status: 'pending',
-          }).select().single();
-        if (rsvpErr) throw rsvpErr;
-        const { data: guestRows, error: guestErr } = await client
-          .from('guests').insert(guests.map(g => ({ rsvp_id: rsvp.id, name: g.name, status: g.status }))).select();
-        if (guestErr) throw guestErr;
-        return { rsvp, guests: guestRows };
-      }
-      async function getRSVPs() {
-        const client = db();
-        if (!client) throw new Error('Supabase no configurado.');
-        const { data, error } = await client.from('rsvps').select('*, guests(*)').order('created_at', { ascending: false });
-        if (error) throw error;
-        return data || [];
-      }
-      return { db, createRSVP, getRSVPs };
-    })();
-
-    /* ==========================================================
-       COUNTDOWN TIMER
+       COUNTDOWN
        ========================================================== */
     function initCountdown() {
       const target = new Date(CONFIG.WEDDING_DATE).getTime();
-      const els = {
-        d: document.getElementById('cd-d'),
-        h: document.getElementById('cd-h'),
-        m: document.getElementById('cd-m'),
-        s: document.getElementById('cd-s'),
-      };
+      const $ = id => document.getElementById(id);
       function tick() {
         const diff = target - Date.now();
-        if (diff <= 0) { Object.values(els).forEach(el => el.textContent = '0'); return; }
-        els.d.textContent = Math.floor(diff / 86400000);
-        els.h.textContent = Math.floor((diff % 86400000) / 3600000);
-        els.m.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-        els.s.textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        if (diff <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id => $(id).textContent = '0'); return; }
+        $('cd-d').textContent = Math.floor(diff / 86400000);
+        $('cd-h').textContent = Math.floor((diff % 86400000) / 3600000);
+        $('cd-m').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+        $('cd-s').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
       }
       tick();
       setInterval(tick, 1000);
@@ -1229,41 +1129,59 @@
 
     /* ==========================================================
        MUSIC PLAYER
-       Controls a hidden YouTube iframe.
-       Requires user interaction to start (browser autoplay policy).
-       Song: Come Rain or Come Shine — youtu.be/VcaWuY4YcH8
+       Strategy:
+       - Button shows ⏸ (paused icon meaning "is playing") by default
+       - On first user interaction (scroll / tap), audio starts automatically
+       - Button click toggles pause ↔ play
+       - This satisfies browser autoplay policy (requires gesture)
        ========================================================== */
     function initMusic() {
-      const btn     = document.getElementById('musicBtn');
-      const tooltip = document.getElementById('musicTooltip');
-      const frame   = document.getElementById('ytAudio');
-      let playing   = false;
-      let loaded    = false;
+      const btn   = document.getElementById('musicBtn');
+      const frame = document.getElementById('ytAudio');
+      const SRC   = 'https://www.youtube.com/embed/VcaWuY4YcH8?autoplay=1&controls=0&rel=0&loop=1&playlist=VcaWuY4YcH8&mute=0';
 
-      btn.addEventListener('click', () => {
-        if (!loaded) {
-          // First click: set src with autoplay=1 (satisfies browser interaction requirement)
-          frame.src = 'https://www.youtube.com/embed/VcaWuY4YcH8?autoplay=1&controls=0&rel=0&loop=1&playlist=VcaWuY4YcH8&enablejsapi=1';
-          loaded    = true;
-          playing   = true;
-        } else if (playing) {
-          // Pause: reset src
-          frame.src = 'about:blank';
-          playing = false;
-          loaded  = false;
-        } else {
-          // Resume
-          frame.src = 'https://www.youtube.com/embed/VcaWuY4YcH8?autoplay=1&controls=0&rel=0&loop=1&playlist=VcaWuY4YcH8&enablejsapi=1';
-          loaded  = true;
-          playing = true;
+      let playing = true;  // intended state
+      let loaded  = false; // has the iframe src been set?
+
+      // Load audio src on first user interaction (satisfies browser autoplay policy)
+      function tryLoad(e) {
+        // Don't trigger if user clicked the music button itself
+        if (e && e.target && e.target.id === 'musicBtn') return;
+        if (!loaded && playing) {
+          frame.src = SRC;
+          loaded = true;
         }
-        btn.textContent = playing ? '⏸' : '♪';
-        btn.classList.toggle('playing', playing);
-      });
+      }
 
-      // Show tooltip on hover
-      btn.addEventListener('mouseenter', () => tooltip.classList.add('show'));
-      btn.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+      // Listen for any interaction to auto-start
+      document.addEventListener('scroll',     tryLoad, { once: true, passive: true });
+      document.addEventListener('click',      tryLoad, { once: true });
+      document.addEventListener('touchstart', tryLoad, { once: true, passive: true });
+
+      // Button: toggle play / pause
+      btn.addEventListener('click', () => {
+        playing = !playing;
+        if (playing) {
+          frame.src = SRC;
+          loaded    = true;
+          btn.textContent = '⏸';
+          btn.classList.add('playing');
+        } else {
+          frame.src = 'about:blank';
+          loaded    = false;
+          btn.textContent = '♪';
+          btn.classList.remove('playing');
+        }
+      });
+    }
+
+    /* ==========================================================
+       HERO ANIMATIONS (video section has no .anim elements,
+       hero section below picks up via IntersectionObserver)
+       ========================================================== */
+    function initHeroAnimations() {
+      // Trigger hero section content when it enters viewport
+      // IntersectionObserver in initAnimations() handles this automatically
     }
 
     /* ==========================================================
@@ -1273,13 +1191,6 @@
       initCountdown();
       initAnimations();
       initMusic();
-
-      // Trigger video section hero animations immediately
-      requestAnimationFrame(() => {
-        document.querySelectorAll('.video-section .anim').forEach((el, i) => {
-          setTimeout(() => el.classList.add('in'), 300 + i * 180);
-        });
-      });
     });
   </script>
 </body>
