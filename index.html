@@ -152,6 +152,7 @@
       background: transparent;
       text-align: center;
       text-decoration: none;
+      appearance: none;
       -webkit-appearance: none;
       border-radius: 0;
     }
@@ -216,6 +217,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      appearance: none;
+
       -webkit-appearance: none;
     }
     .music-btn:hover { transform: scale(1.1); background: var(--orange-mid); }
@@ -274,9 +277,8 @@
       transform: translate(-50%, -50%);
       /* Vertical video (9:16 Shorts) fill logic */
       width: 100%;
-      height: 177.78%; /* makes a 9:16 video fill a 16:9 viewport */
-      min-height: 100%;
-      min-width: 56.25vh;
+      height: 100%;
+      object-fit: contain;
       border: 0;
       pointer-events: none;
     }
@@ -633,15 +635,18 @@
   <!-- ====================================================
        1. VIDEO OPENING — Save The Date
   ==================================================== -->
-  <section class="video-section" id="top">
+<section class="video-section" id="top">
     <div class="video-bg-wrap">
-      <iframe
-        class="yt-bg"
-        src="https://www.youtube.com/embed/n4ut7cNH4AM?autoplay=1&mute=1&loop=1&playlist=n4ut7cNH4AM&controls=0&rel=0&playsinline=1&modestbranding=1&disablekb=1"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen
-        title="Save The Date Video">
-      </iframe>
+<video
+  class="yt-bg"
+  autoplay
+  muted
+  loop
+  playsinline>
+
+  <source src="savethedate.mp4" type="video/mp4">
+
+</video>
     </div>
     <div class="video-overlay"></div>
 
