@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Julia Eréndira &amp; Erick Daniel — Invitación de Boda · 31 de Octubre de 2026" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Julia &amp; Erick | 31 · Octubre · 2026 — Video de fondo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM
+    ============================================================ */
+    :root {
+      --bg-deep: #14100A;
+      --bg-dark: #1E1A0A;
+      --bg-mid: #2E2512;
+      --cream-warm: #F5EDD8;
+      --cream-light: #FAF7F0;
+      --parchment: #E0CFA8;
+      --orange: #EB8F0A;
+      --orange-mid: #F6B968;
+      --orange-pale: #F9D7A0;
+      --amber: #8B5E3C;
+      --text-dark: #1E1A15;
+      --text-warm: #6B5540;
+      --text-light: #EDE3C8;
+      --font-script: 'Great Vibes', cursive;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-body: 'Cormorant Garamond', Georgia, serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream-warm);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       SECTION SYSTEM
+    ============================================================ */
+    .section {
+      padding: 5rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .s-dark {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    .s-deep {
+      background: var(--bg-deep);
+      color: var(--text-light);
+    }
+
+    .s-cream {
+      background: var(--cream-warm);
+    }
+
+    .s-light {
+      background: var(--cream-light);
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+    ============================================================ */
+    .t-label {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .t-script {
+      font-family: var(--font-script);
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    /* ============================================================
+       HORSE ORNAMENTS — Clean inline SVG silhouette
+    ============================================================ */
+
+    /* Horse row: horses flanked by thin lines */
+    .horse-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin: 1.25rem 0;
+      color: var(--orange-mid);
+    }
+
+    .horse-row::before,
+    .horse-row::after {
+      content: '';
+      flex: 1;
+      max-width: 46px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    /* The SVG horse icon — right-facing silhouette */
+    /* ── Horse mask icons ─────────────────────────────────────────
+       Uses the SVG files from /assets/ as CSS masks so they
+       inherit the parent's `color` (orange) automatically.
+    ──────────────────────────────────────────────────────────── */
+    .horse-mask {
+      display: block;
+      width: 38px;
+      height: 30px;
+      background-color: currentColor;
+      /* inherits orange from parent */
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: contain;
+      -webkit-mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: contain;
+      mask-position: center;
+      flex-shrink: 0;
+    }
+
+    /* Each class points to its SVG file */
+    .h1 {
+      -webkit-mask-image: url('../assets/caballo1.svg');
+      mask-image: url('../assets/caballo1.svg');
+    }
+
+    .h2 {
+      -webkit-mask-image: url('../assets/caballo2.svg');
+      mask-image: url('../assets/caballo2.svg');
+    }
+
+    .h3 {
+      -webkit-mask-image: url('../assets/caballo3.svg');
+      mask-image: url('../assets/caballo3.svg');
+    }
+
+    .divider {
+      width: 44px;
+      height: 1px;
+      background: var(--orange);
+      margin: 1.5rem auto;
+      opacity: 0.6;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border: 1px solid currentColor;
+      cursor: pointer;
+      transition: background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+      background: transparent;
+      text-align: center;
+      text-decoration: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .btn-solid {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+    }
+
+    .btn-solid:hover {
+      background: var(--orange-mid);
+      border-color: var(--orange-mid);
+      color: var(--text-dark);
+    }
+
+    .btn-ghost {
+      color: var(--cream-light);
+      border-color: rgba(249, 215, 160, 0.4);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(246, 185, 104, 0.15);
+      border-color: var(--orange-mid);
+    }
+
+    .btn-wapp {
+      background: #25D366;
+      color: #fff;
+      border-color: #25D366;
+      font-size: 0.72rem;
+      padding: 1rem 2rem;
+    }
+
+    .btn-wapp:hover {
+      background: #1ebe5d;
+      border-color: #1ebe5d;
+    }
+
+    .btn-w100 {
+      width: 100%;
+      display: block;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+    ============================================================ */
+    .anim {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+
+    .anim.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .d1 {
+      transition-delay: 0.1s;
+    }
+
+    .d2 {
+      transition-delay: 0.22s;
+    }
+
+    .d3 {
+      transition-delay: 0.36s;
+    }
+
+    .d4 {
+      transition-delay: 0.5s;
+    }
+
+    /* ============================================================
+       FLOATING MUSIC BUTTON
+    ============================================================ */
+    .music-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1.15rem;
+      z-index: 900;
+      box-shadow: 0 3px 18px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s var(--ease), background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-appearance: none;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .music-btn.playing {
+      animation: pulse-ring 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-ring {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(235, 143, 10, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 10px rgba(235, 143, 10, 0);
+      }
+    }
+
+    .music-label {
+      position: fixed;
+      bottom: 5.2rem;
+      right: 1.5rem;
+      background: var(--bg-deep);
+      color: var(--orange-pale);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.65rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+      z-index: 900;
+    }
+
+    .music-btn:hover~.music-label {
+      opacity: 1;
+    }
+
+    /* ============================================================
+       SECTION 1 — VIDEO ONLY (full screen, no text)
+    ============================================================ */
+    .video-section {
+      height: 100svh;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-deep);
+    }
+
+    /* ── Local video — vertical, contained ─────────────────────
+       object-fit: contain → full video visible, no cropping.
+       The dark section background fills the letterbox areas.
+       Always muted; audio comes from YouTube (Come Rain or Come Shine).
+    ──────────────────────────────────────────────────────────── */
+    .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* full video, no cropping   */
+      object-position: center;
+      /* centered in the section   */
+      pointer-events: none;
+      /* decorative, not clickable */
+    }
+
+    /* Subtle dark overlay at the bottom so scroll hint is readable */
+    .video-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to top, rgba(20, 16, 10, 0.75) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Scroll hint at bottom of video section */
+    .v-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-align: center;
+      animation: bob 2.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .v-scroll::after {
+      content: '↓';
+      display: block;
+      font-size: 1rem;
+      letter-spacing: 0;
+      margin-top: 0.15rem;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.65;
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(7px);
+        opacity: 1;
+      }
+    }
+
+    /* ============================================================
+       SECTION 2 — HERO (names, date, tagline)
+    ============================================================ */
+    /* ── Hero con fondo: video o imagen detrás del texto ───── */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, var(--bg-deep) 0%, var(--bg-dark) 100%);
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--cream-light);
+      padding: 5rem 1.5rem;
+    }
+
+    /* Elemento de fondo (video o imagen) */
+    .hero-media-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Capa oscura para que el texto sea legible */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          rgba(20, 16, 10, 0.28) 0%,
+          rgba(20, 16, 10, 0.48) 55%,
+          rgba(20, 16, 10, 0.88) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* El contenido y el scroll-hint flotan encima */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .v-scroll {
+      z-index: 3;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .hero-names {
+      font-family: var(--font-script);
+      font-size: clamp(2.8rem, 12vw, 4.4rem);
+      color: #fff;
+      line-height: 1.05;
+      text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-amp {
+      color: var(--orange-mid);
+      font-size: 0.65em;
+      display: block;
+      margin: 0.12em 0;
+    }
+
+    .hero-horses {
+      color: var(--orange-mid);
+      margin: 1.1rem 0;
+    }
+
+    .hero-date {
+      font-family: var(--font-serif);
+      font-size: 0.66rem;
+      letter-spacing: 0.52em;
+      text-transform: uppercase;
+      color: var(--cream-warm);
+      margin: 1.5rem 0 0.85rem;
+      opacity: 0.88;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--cream-light);
+      opacity: 0.75;
+      line-height: 1.85;
+    }
+
+    /* ============================================================
+       INTRO / QUOTE
+    ============================================================ */
+    .quote-big {
+      font-family: var(--font-script);
+      font-size: clamp(1.85rem, 7vw, 2.65rem);
+      color: var(--orange-pale);
+      line-height: 1.35;
+    }
+
+    .intro-caps {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      opacity: 0.82;
+      line-height: 2.2;
+    }
+
+    .title-boda {
+      font-family: var(--font-script);
+      font-size: clamp(2.5rem, 9vw, 3.5rem);
+      color: var(--cream-light);
+      margin: 1.2rem 0;
+    }
+
+    .rings-svg {
+      width: 90px;
+      height: auto;
+      margin: 0.5rem auto;
+    }
+
+    .parent-label {
+      font-family: var(--font-script);
+      font-size: 1.55rem;
+      color: var(--orange-mid);
+    }
+
+    .parent-names {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      opacity: 0.78;
+      line-height: 2.2;
+      margin-top: 0.2rem;
+    }
+
+    .padrinos-msg {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      opacity: 0.62;
+      line-height: 1.8;
+      margin-top: 2rem;
+      padding: 1.2rem 1rem;
+      border: 1px solid rgba(246, 185, 104, 0.16);
+      border-left: 3px solid var(--orange-mid);
+    }
+
+    /* ============================================================
+       COUNTDOWN
+    ============================================================ */
+    .countdown-wrap {
+      position: relative;
+      min-height: 310px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(20, 16, 10, 0.72), rgba(44, 37, 18, 0.88)),
+        linear-gradient(138deg, #1E1A0A 0%, #3D2510 100%);
+    }
+
+    .cd-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--cream-light);
+      padding: 3.5rem 2rem;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .cd-headline {
+      font-family: var(--font-script);
+      font-size: clamp(2rem, 8vw, 2.6rem);
+      color: var(--orange-pale);
+      margin-bottom: 0.4rem;
+    }
+
+    .cd-date-line {
+      font-family: var(--font-serif);
+      font-size: 0.88rem;
+      letter-spacing: 0.22em;
+      color: var(--cream-warm);
+      margin-bottom: 0.4rem;
+    }
+
+    .cd-heart {
+      color: var(--orange-mid);
+      margin: 0 0.4rem;
+    }
+
+    .cd-sub {
+      font-family: var(--font-script);
+      font-size: 1.7rem;
+      color: rgba(237, 227, 200, 0.75);
+      margin-bottom: 1.5rem;
+    }
+
+    .cd-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cd-num {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      color: #fff;
+      line-height: 1;
+      min-width: 2ch;
+    }
+
+    .cd-lbl {
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange-pale);
+      margin-top: 0.3rem;
+      opacity: 0.85;
+    }
+
+    /* ============================================================
+       TIMELINE
+    ============================================================ */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+
+    .tl-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .tl-icon {
+      width: 78px;
+      height: 78px;
+      margin-bottom: 0.75rem;
+    }
+
+    .tl-event {
+      font-size: 0.64rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+    }
+
+    .tl-time {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--orange);
+      margin-top: 0.15rem;
+    }
+
+    .tl-desc {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-warm);
+      margin-top: 0.12rem;
+    }
+
+    .tl-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--orange) 0%, transparent 100%);
+      margin: 0.85rem 0;
+      opacity: 0.4;
+    }
+
+    /* ============================================================
+       LOCATIONS
+    ============================================================ */
+    .loc-card {
+      background: var(--cream-light);
+      border: 1px solid var(--parchment);
+      padding: 2.5rem 1.5rem 2rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .loc-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    }
+
+    .loc-icon {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 1rem;
+    }
+
+    .loc-type {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      margin-bottom: 0.5rem;
+    }
+
+    .loc-name {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .loc-address {
+      font-size: 0.85rem;
+      color: var(--text-warm);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .loc-time {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--orange);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.4rem;
+    }
+
+    .ceremony-note {
+      background: rgba(235, 143, 10, 0.05);
+      border: 1px solid rgba(235, 143, 10, 0.22);
+      padding: 1.1rem 1.25rem;
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: var(--text-warm);
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    .ceremony-note strong {
+      font-family: var(--font-serif);
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--text-dark);
+      font-style: normal;
+    }
+
+    /* ============================================================
+       DRESS CODE
+    ============================================================ */
+    .dc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(246, 185, 104, 0.1);
+      text-align: left;
+    }
+
+    .dc-item:last-child {
+      border-bottom: none;
+    }
+
+    .dc-star {
+      color: var(--orange-mid);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .dc-text {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      opacity: 0.85;
+      line-height: 1.7;
+    }
+
+    .dc-text strong {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--cream-light);
+      opacity: 1;
+    }
+
+    .dc-note {
+      font-style: italic;
+      font-size: 0.92rem;
+      color: var(--text-light);
+      opacity: 0.5;
+      margin-top: 2rem;
+    }
+
+    /* ============================================================
+       GIFTS
+    ============================================================ */
+    .gift-card {
+      background: rgba(245, 237, 216, 0.055);
+      border: 1px solid rgba(235, 143, 10, 0.2);
+      padding: 1.75rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .gift-emoji {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .gift-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--orange-pale);
+      margin-bottom: 0.4rem;
+    }
+
+    .gift-detail {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      color: var(--cream-light);
+      margin-bottom: 0.75rem;
+      line-height: 1.75;
+    }
+
+    .gift-note {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    /* ============================================================
+       RSVP
+    ============================================================ */
+    .rsvp-intro {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      line-height: 2.2;
+      margin-bottom: 2rem;
+    }
+
+    .wapp-msg {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-warm);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ============================================================
+       EASTER EGG
+    ============================================================ */
+    .easter-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .easter-text {
+      font-size: 0.85rem;
+      color: var(--text-warm);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .easter-text em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .easter-cta {
+      font-family: var(--font-script);
+      font-size: 2rem;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    /* ============================================================
+       ACCOMMODATIONS
+    ============================================================ */
+    .hotel-card {
+      background: rgba(245, 237, 216, 0.055);
+      border: 1px solid rgba(246, 185, 104, 0.2);
+      padding: 1.5rem 1.25rem;
+      margin-top: 1.25rem;
+      text-align: left;
+    }
+
+    .hotel-name {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--cream-light);
+      margin-bottom: 0.35rem;
+    }
+
+    .hotel-detail {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      opacity: 0.68;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--bg-deep);
+      color: var(--text-light);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-names {
+      font-family: var(--font-script);
+      font-size: 2.4rem;
+      color: var(--orange-pale);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-date {
+      font-size: 0.58rem;
+      letter-spacing: 0.48em;
+      text-transform: uppercase;
+      opacity: 0.42;
+      margin-bottom: 2rem;
+    }
+
+    .footer-quote {
+      font-style: italic;
+      font-size: 0.88rem;
+      opacity: 0.48;
+      max-width: 280px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.9;
+    }
+
+    .footer-copy {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.2;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (min-width: 640px) {
+      .section {
+        padding: 6rem 2rem;
+      }
+
+      .inner {
+        max-width: 560px;
+      }
+
+      /* bg-video uses object-fit: contain — no extra rules needed */
+    }
+
+    @media (min-width: 1024px) {
+      .inner {
+        max-width: 640px;
+      }
+    }
+
+    /* ============================================================
+       INTRO OVERLAY
+       - Covers entire page on first load
+       - Solves the YouTube startup flash completely
+       - Provides the browser gesture needed for unmuted audio
+       - One elegant tap → music starts + overlay fades out
+    ============================================================ */
+    .intro-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(139, 94, 60, 0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 25%, rgba(235, 143, 10, 0.08) 0%, transparent 50%),
+        var(--bg-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    .intro-overlay.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-inner {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .intro-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--orange-pale);
+      opacity: 0.78;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-couple-names {
+      font-family: var(--font-script);
+      font-size: clamp(3rem, 12vw, 4.5rem);
+      color: #fff;
+      line-height: 1.05;
+      text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .intro-amp {
+      color: var(--orange-mid);
+      font-size: 0.65em;
+      display: block;
+      margin: 0.12em 0;
+    }
+
+    .intro-date {
+      font-family: var(--font-serif);
+      font-size: 0.63rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--cream-warm);
+      opacity: 0.65;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .intro-horse-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      color: var(--orange-mid);
+      margin-bottom: 2.5rem;
+    }
+
+    .intro-horse-row::before,
+    .intro-horse-row::after {
+      content: '';
+      flex: 1;
+      max-width: 44px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.45;
+    }
+
+    .intro-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-light);
+      background: transparent;
+      border: 1px solid rgba(249, 215, 160, 0.38);
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .intro-btn:hover,
+    .intro-btn:focus {
+      background: rgba(246, 185, 104, 0.1);
+      border-color: var(--orange-mid);
+      color: var(--orange-pale);
+      outline: none;
+    }
+
+    .intro-btn:active {
+      transform: scale(0.97);
+    }
+
+    .intro-note {
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      color: var(--cream-light);
+      opacity: 0.3;
+      margin-top: 1.25rem;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ====================================================
+       INTRO OVERLAY
+       Purpose: (1) Hides the 2-sec YouTube startup flash
+                (2) Provides mandatory browser gesture for audio
+       User taps once → music starts + overlay fades → invitation revealed
+  ==================================================== -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-inner">
+      <p class="intro-eyebrow">Con todo nuestro amor</p>
+
+      <h1 class="intro-couple-names">
+        Julia Eréndira
+        <span class="intro-amp">&amp;</span>
+        Erick Daniel
+      </h1>
+
+      <p class="intro-date">31 · Octubre · 2026</p>
+
+      <div class="intro-horse-row">
+        <span class="horse-mask h1" aria-hidden="true"></span>
+        <span class="horse-mask h2" aria-hidden="true"></span>
+        <span class="horse-mask h3" aria-hidden="true"></span>
+        <span class="horse-mask h1" aria-hidden="true"></span>
+      </div>
+
+      <button class="intro-btn" id="introBtn">
+        <!-- Play / video icon -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;" aria-hidden="true">
+          <path
+            d="M4 6.75C4 5.23 5.65 4.3 6.92 5.1l11.5 7.25a1.75 1.75 0 0 1 0 3l-11.5 7.25C5.65 23.4 4 22.47 4 20.95V6.75Z" />
+        </svg>
+        Comenzar
+      </button>
+
+      <p class="intro-note">Toca para despertar la experiencia</p>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       BACKGROUND AUDIO — local MP3, 40% volume
+       HTML5 <audio> is 100% reliable: no YouTube API,
+       no autoplay policies from third parties.
+       .play() called inside the "Comenzar" click handler
+       → guaranteed to work on all browsers and devices.
+  ==================================================== -->
+  <audio id="bgAudio" loop preload="auto" aria-hidden="true">
+    <source src="../assets/cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ====================================================
+       FLOATING MUSIC BUTTON — default ⏸ (playing)
+  ==================================================== -->
+  <button class="music-btn playing" id="musicBtn" aria-label="Música">⏸</button>
+  <div class="music-label">Come Rain or Come Shine</div>
+
+
+  <!-- ====================================================
+       SECTION 1 — VIDEO (full screen, standalone)
+       Local MP4 via HTML5 <video>:
+       - autoplay + muted → guaranteed on all browsers/devices
+       - no YouTube controls, no iframe, no CORS
+       - intro-tap unmutes the video so its audio plays
+  ==================================================== -->
+
+
+
+  <!-- ====================================================
+       SECTION 1 — HERO (nombres, fecha, tagline)
+  ==================================================== -->
+  <section class="hero-section">
+    <video class="hero-media-bg" id="bgVideo" autoplay muted loop playsinline preload="auto">
+      <source src="../assets/savethedate.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+
+      <h1 class="hero-names anim">
+        Julia Eréndira
+        <span class="hero-amp">&amp;</span>
+        Erick Daniel
+      </h1>
+
+      <!-- Horse ornament row -->
+      <div class="horse-row hero-horses anim d1">
+        <!-- Horse SVG: right-facing running silhouette, 48×28 viewBox -->
+        <span class="horse-mask h1" aria-hidden="true"></span>
+        <span class="horse-mask h2" aria-hidden="true"></span>
+        <span class="horse-mask h3" aria-hidden="true"></span>
+        <span class="horse-mask h1" aria-hidden="true"></span>
+      </div>
+
+      <p class="hero-date anim d2">31 · Octubre · 2026</p>
+
+      <p class="hero-tagline anim d3">
+        Te amaré como nadie te ha amado,<br>
+        Llueva o truene,<br>
+        Estoy contigo, en la lluvia o en el brillo...
+      </p>
+
+    </div>
+    <div class="v-scroll">Desliza</div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 3 — QUOTE / INTRO / PARENTS / PADRINOS
+  ==================================================== -->
+  <section class="section s-dark">
+    <div class="inner">
+
+      <p class="quote-big anim">
+        Tantos caminos,<br>tanto tiempo...<br>y encontrarte a ti.
+      </p>
+
+      <div class="divider anim"></div>
+
+      <p class="intro-caps anim">
+        Es así como comenzó nuestra historia.<br>
+        Hoy, acompañados con amor por nuestras familias,<br>
+        queremos compartir contigo la alegría de
+      </p>
+
+      <h2 class="title-boda anim">Nuestra Boda</h2>
+
+      <!-- Rings SVG -->
+      <svg class="rings-svg anim" viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48" cy="45" r="27" stroke="#EB8F0A" stroke-width="2.5" />
+        <circle cx="92" cy="45" r="27" stroke="#EB8F0A" stroke-width="2.5" />
+        <circle cx="48" cy="45" r="21" stroke="#EB8F0A" stroke-width="1" stroke-dasharray="3 3" opacity="0.3" />
+        <circle cx="92" cy="45" r="21" stroke="#EB8F0A" stroke-width="1" stroke-dasharray="3 3" opacity="0.3" />
+        <text x="12" y="20" font-size="10" fill="#F6B968" opacity="0.7">✦</text>
+        <text x="115" y="20" font-size="10" fill="#F6B968" opacity="0.7">✦</text>
+        <text x="64" y="10" font-size="7" fill="#F6B968" opacity="0.5">✦</text>
+      </svg>
+
+      <!-- Parents -->
+      <div style="margin-top:3rem;" class="anim">
+        <p class="parent-label">Padres de la Novia</p>
+        <p class="parent-names">Angelica Torres<br>Roberto Rodríguez</p>
+      </div>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <p class="parent-label">Padres del Novio</p>
+        <p class="parent-names">Graciela Navarrete<br>Arturo Muciño</p>
+      </div>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <p class="parent-label">Padrinos de Velación y Arras</p>
+        <p class="parent-names">Jimena Hernández<br>Julio Jaramillo</p>
+      </div>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <p class="parent-label">Madrina de Anillos</p>
+        <p class="parent-names">Sara Bautista</p>
+      </div>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <p class="parent-label">Padrinos de Lazo</p>
+        <p class="parent-names">Silvia Arvizu<br>Hugo Torres</p>
+      </div>
+
+      <blockquote class="padrinos-msg anim">
+        "Gracias a todos los padrinos. Su cariño, apoyo y generosidad hicieron aún más
+        especial este día, y nos llena el corazón saber que caminamos hacia esta nueva
+        etapa rodeados de personas tan valiosas para nosotros."
+      </blockquote>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 4 — COUNTDOWN
+  ==================================================== -->
+  <div class="countdown-wrap">
+    <div class="cd-inner">
+      <p class="cd-headline anim">¡Aparta la fecha!</p>
+      <p class="cd-date-line anim">
+        31 <span class="cd-heart">♥</span> Octubre <span class="cd-heart">♥</span> 2026
+      </p>
+      <p class="cd-sub anim">Solo faltan:</p>
+      <div class="cd-grid anim">
+        <div class="cd-unit"><span class="cd-num" id="cd-d">—</span><span class="cd-lbl">Días</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-h">—</span><span class="cd-lbl">Horas</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-m">—</span><span class="cd-lbl">Minutos</span></div>
+        <div class="cd-unit"><span class="cd-num" id="cd-s">—</span><span class="cd-lbl">Segundos</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================
+       SECTION 5 — TIMELINE
+  ==================================================== -->
+  <section class="section s-light">
+    <div class="inner">
+      <p class="t-label anim" style="color:var(--text-warm);">El gran día</p>
+      <h2 class="t-script anim" style="color:var(--orange);">Aprovechemos el tiempo</h2>
+      <div class="divider anim" style="background:var(--orange);"></div>
+
+      <div class="timeline">
+
+        <div class="tl-item anim">
+          <svg class="tl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="28" y="44" width="44" height="46" stroke="#2A1D0A" stroke-width="2" />
+            <polygon points="50,12 22,44 78,44" stroke="#2A1D0A" stroke-width="2" fill="none" />
+            <line x1="50" y1="2" x2="50" y2="15" stroke="#2A1D0A" stroke-width="2.5" />
+            <line x1="43" y1="8" x2="57" y2="8" stroke="#2A1D0A" stroke-width="2.5" />
+            <rect x="42" y="66" width="16" height="24" stroke="#2A1D0A" stroke-width="1.5" fill="none" />
+            <rect x="32" y="52" width="12" height="12" stroke="#2A1D0A" stroke-width="1.5" fill="none" />
+            <rect x="56" y="52" width="12" height="12" stroke="#2A1D0A" stroke-width="1.5" fill="none" />
+            <text x="8" y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+            <text x="80" y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+          </svg>
+          <p class="tl-event">Ceremonia Religiosa</p>
+          <p class="tl-time">11:30 HRS</p>
+          <p class="tl-desc">Convento de Agua Viva</p>
+        </div>
+
+        <div class="tl-line"></div>
+
+        <div class="tl-item anim">
+          <svg class="tl-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34 18 L23 56 L45 56 Z" stroke="#2A1D0A" stroke-width="2" fill="none" />
+            <line x1="34" y1="56" x2="34" y2="80" stroke="#2A1D0A" stroke-width="2" />
+            <line x1="23" y1="80" x2="45" y2="80" stroke="#2A1D0A" stroke-width="2" />
+            <path d="M66 18 L55 56 L77 56 Z" stroke="#2A1D0A" stroke-width="2" fill="none" />
+            <line x1="66" y1="56" x2="66" y2="80" stroke="#2A1D0A" stroke-width="2" />
+            <line x1="55" y1="80" x2="77" y2="80" stroke="#2A1D0A" stroke-width="2" />
+            <circle cx="32" cy="40" r="2" fill="#2A1D0A" opacity="0.4" />
+            <circle cx="36" cy="31" r="1.5" fill="#2A1D0A" opacity="0.3" />
+            <circle cx="64" cy="37" r="2" fill="#2A1D0A" opacity="0.4" />
+            <path d="M45 84 Q50 72 55 84" stroke="#2A1D0A" stroke-width="1.5" fill="none" />
+            <circle cx="50" cy="66" r="5" stroke="#2A1D0A" stroke-width="1.5" fill="none" />
+            <text x="10" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+            <text x="80" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+          </svg>
+          <p class="tl-event">Recepción &amp; Celebración</p>
+          <p class="tl-time">14:00 HRS</p>
+          <p class="tl-desc">El Grande Vivero Café</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 6 — LOCATIONS
+  ==================================================== -->
+  <section class="section s-cream">
+    <div class="inner">
+      <p class="t-label anim" style="color:var(--text-warm);">¿Dónde nos vemos?</p>
+      <h2 class="t-script anim" style="color:var(--orange);">Los lugares</h2>
+      <div class="divider anim"></div>
+
+      <!-- Ceremony -->
+      <div class="loc-card anim">
+        <svg class="loc-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="28" y="44" width="44" height="46" stroke="#1E1A0A" stroke-width="2" />
+          <polygon points="50,12 22,44 78,44" stroke="#1E1A0A" stroke-width="2" fill="none" />
+          <line x1="50" y1="2" x2="50" y2="15" stroke="#1E1A0A" stroke-width="2.5" />
+          <line x1="43" y1="8" x2="57" y2="8" stroke="#1E1A0A" stroke-width="2.5" />
+          <rect x="42" y="66" width="16" height="24" stroke="#1E1A0A" stroke-width="1.5" fill="none" />
+          <rect x="32" y="52" width="12" height="12" stroke="#1E1A0A" stroke-width="1.5" fill="none" />
+          <rect x="56" y="52" width="12" height="12" stroke="#1E1A0A" stroke-width="1.5" fill="none" />
+          <text x="8" y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+          <text x="80" y="30" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+        </svg>
+        <p class="loc-type">La Misa</p>
+        <h3 class="loc-name">Convento de Agua Viva</h3>
+        <p class="loc-address">Mex 3521, Amecameca-Cuauhtenco<br>Santa Isabel Chalma, Amecameca de Juárez</p>
+        <p class="loc-time">— 11:30 HRS —</p>
+        <a href="https://www.waze.com/es-419/live-map/directions/convento-dominico-agua-viva-mex-3521-amecamecacuauhtenco-santa-isabel-chalma-12-amecameca-de-juarez?to=place.w.171180224.1712129915.16926738"
+          target="_blank" rel="noopener" class="btn btn-solid btn-w100">
+          Cómo llegar (Waze)
+        </a>
+      </div>
+
+      <!-- Ceremony note -->
+      <div class="ceremony-note anim">
+        <strong>📵 Ceremonia sin celulares</strong>
+        Les pedimos de la manera más atenta guardar sus celulares durante la ceremonia para
+        que podamos compartir este momento de una forma más presente y especial. Disfruten
+        la misa con nosotros; nosotros nos encargaremos de capturar los recuerdos.
+      </div>
+
+      <!-- Reception -->
+      <div class="loc-card anim" style="margin-top:2.5rem;">
+        <svg class="loc-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M34 18 L23 56 L45 56 Z" stroke="#1E1A0A" stroke-width="2" fill="none" />
+          <line x1="34" y1="56" x2="34" y2="80" stroke="#1E1A0A" stroke-width="2" />
+          <line x1="23" y1="80" x2="45" y2="80" stroke="#1E1A0A" stroke-width="2" />
+          <path d="M66 18 L55 56 L77 56 Z" stroke="#1E1A0A" stroke-width="2" fill="none" />
+          <line x1="66" y1="56" x2="66" y2="80" stroke="#1E1A0A" stroke-width="2" />
+          <line x1="55" y1="80" x2="77" y2="80" stroke="#1E1A0A" stroke-width="2" />
+          <circle cx="32" cy="40" r="2" fill="#1E1A0A" opacity="0.4" />
+          <circle cx="36" cy="31" r="1.5" fill="#1E1A0A" opacity="0.3" />
+          <circle cx="64" cy="37" r="2" fill="#1E1A0A" opacity="0.4" />
+          <path d="M45 84 Q50 72 55 84" stroke="#1E1A0A" stroke-width="1.5" fill="none" />
+          <circle cx="50" cy="66" r="5" stroke="#1E1A0A" stroke-width="1.5" fill="none" />
+          <text x="10" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+          <text x="80" y="32" font-size="9" fill="#EB8F0A" opacity="0.7">✦</text>
+        </svg>
+        <p class="loc-type">La Recepción</p>
+        <h3 class="loc-name">El Grande Vivero Café</h3>
+        <p class="loc-address">56900 Atlancatzi<br>Amecameca de Juárez, Méx.</p>
+        <p class="loc-time">— 14:00 HRS —</p>
+        <a href="https://maps.google.com/?q=El+Grande+Vivero+Cafe+Amecameca" target="_blank" rel="noopener"
+          class="btn btn-solid btn-w100">
+          Ver Ubicación
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 7 — DRESS CODE
+  ==================================================== -->
+  <section class="section s-deep">
+    <div class="inner">
+      <p class="t-label anim" style="color:var(--orange-pale);">Vestimenta</p>
+      <h2 class="t-script anim" style="color:var(--cream-light);">Código de Vestir</h2>
+
+      <div class="horse-row anim" style="color:var(--orange-mid);">
+        <span class="horse-mask h1" aria-hidden="true"></span>
+        <span class="horse-mask h2" aria-hidden="true"></span>
+        <span class="horse-mask h3" aria-hidden="true"></span>
+      </div>
+
+      <p style="font-family:var(--font-script);font-size:1.5rem;color:var(--orange-mid);margin-bottom:0.25rem;"
+        class="anim">
+        Country Elegante · Formal Campestre
+      </p>
+
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <div class="dc-item">
+          <span class="dc-star">✦</span>
+          <p class="dc-text">
+            <strong>Ellas —</strong>
+            Vestidos largos o midi en tonos tierra, negros, vino o verdes profundos.
+            Botas son más que bienvenidas. Un acento en <span style="color:var(--orange-mid);">cempasúchil</span>
+            sería muy especial.
+          </p>
+        </div>
+        <div class="dc-item">
+          <span class="dc-star">✦</span>
+          <p class="dc-text">
+            <strong>Ellos —</strong>
+            Trajes, chamarras vaqueras o corbatines western. Botas son perfectas.
+            Sombrero siempre bienvenido.
+          </p>
+        </div>
+        <div class="dc-item">
+          <span class="dc-star">✦</span>
+          <p class="dc-text">
+            <strong>Evitar —</strong>
+            Ropa demasiado casual, tenis o playeras.
+            Queremos hacer esta celebración aún más especial juntos.
+          </p>
+        </div>
+        <div class="dc-item">
+          <span class="dc-star">🌡</span>
+          <p class="dc-text">
+            <strong>Nota —</strong>
+            Hará frío en la sierra. Ven preparado con una chamarra o capa elegante.
+          </p>
+        </div>
+      </div>
+
+      <p class="dc-note anim">
+        "Un poco de polvo de camino en las botas<br>solo añade carácter."
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 8 — GIFTS
+  ==================================================== -->
+  <section class="section s-dark">
+    <div class="inner">
+      <p class="t-label anim" style="color:var(--orange-pale);">Si deseas tener un detalle</p>
+      <h2 class="t-script anim" style="color:var(--cream-light);">Mesa de Regalos</h2>
+      <div class="divider anim"></div>
+
+      <div class="gift-card anim">
+        <div class="gift-emoji">🏠</div>
+        <p class="gift-title">Tarjeta de Regalo</p>
+        <p class="gift-detail">
+          El mejor regalo será compartir este día con ustedes. Estamos construyendo nuestro hogar
+          poco a poco, por lo que, si desean tener un detalle con nosotros, agradeceremos mucho
+          una contribución o una tarjeta de regalo de
+          <strong style="color:var(--orange-mid);">Home Depot</strong>
+          para ayudarnos a hacerlo realidad.
+        </p>
+        <p class="gift-note">*Las tarjetas de regalo se compran directamente en tu tienda Home Depot más cercana.*</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 9 — RSVP (WhatsApp)
+  ==================================================== -->
+  <section class="section s-cream" id="rsvp">
+    <div class="inner">
+      <p class="t-label anim" style="color:var(--text-warm);">¿Contamos contigo?</p>
+      <h2 class="t-script anim" style="color:var(--orange);">Queremos verte</h2>
+      <div class="divider anim"></div>
+
+      <div class="anim">
+        <p class="wapp-msg">
+          Nos hará muy felices compartir este día contigo.<br>
+          Confírmanos si podrás acompañarnos. 🌼
+        </p>
+        <a href="https://wa.me/525591896988?text=Hola%20Julia%20y%20Erick%2C%20quiero%20confirmar%20mi%20asistencia%20a%20su%20boda%20el%2031%20de%20octubre.%20%F0%9F%8C%B9"
+          target="_blank" rel="noopener" class="btn btn-wapp btn-w100">
+          💬 Confirmar por WhatsApp
+        </a>
+        <p style="margin-top:1rem;font-size:0.72rem;color:var(--text-warm);text-align:center;font-style:italic;">
+          También puedes escribirnos al<br>
+          <strong style="font-family:var(--font-serif);font-style:normal;color:var(--orange);">55 9189 6988</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 10 — EASTER EGG (post-créditos)
+  ==================================================== -->
+  <section class="section s-light">
+    <div class="inner">
+      <div class="anim" style="text-align:center;">
+        <div class="easter-icon">🎬</div>
+        <h2 class="t-script" style="color:var(--orange);margin-bottom:1rem;">Escena post-créditos</h2>
+        <p class="easter-text">
+          Si llegaste hasta acá, significa que eres<br>
+          de los que <em>terminan todo</em>...<br>
+          y esperas una escena post créditos.
+        </p>
+        <p class="easter-text" style="margin-top:-0.5rem;">
+          Por ello, tenemos algo especial para ti. 🤫
+        </p>
+        <span class="easter-cta">Al día siguiente te esperamos en:</span>
+        <a href="https://maps.google.com/?q=19.153703689575195,-98.85884094238281" target="_blank" rel="noopener"
+          class="btn btn-solid" style="margin-bottom:1.25rem;">
+          📍 Ver ubicación secreta
+        </a>
+        <p class="easter-text" style="margin-top:1rem;font-size:0.9rem;">
+          Para un rico desayuno y aligerar la cruda. 🍳☕
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       SECTION 11 — ACCOMMODATIONS (after easter egg)
+  ==================================================== -->
+  <section class="section s-dark">
+    <div class="inner">
+      <p class="t-label anim" style="color:var(--orange-pale);">Para que descanses bien</p>
+      <h2 class="t-script anim" style="color:var(--cream-light);">Opciones de Hospedaje</h2>
+
+      <div class="horse-row anim" style="color:var(--orange-mid);">
+        <span class="horse-mask h1" aria-hidden="true"></span>
+        <span class="horse-mask h2" aria-hidden="true"></span>
+        <span class="horse-mask h3" aria-hidden="true"></span>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Hacienda Panoaya — Hotel &amp; Spa</p>
+        <p class="hotel-detail">Una opción encantadora rodeada de naturaleza a minutos del evento.</p>
+        <a href="https://haciendapanoaya.com/hotel-spa/" target="_blank" rel="noopener" class="btn btn-ghost">Ver
+          opciones</a>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Glamping — Fuerza Ancestral</p>
+        <p class="hotel-detail">Una experiencia única bajo las estrellas, perfecta para la noche de Halloween.</p>
+        <a href="https://fuerza-ancestral.mx/" target="_blank" rel="noopener" class="btn btn-ghost">Ver opciones</a>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Hotel El Marques</p>
+        <p class="hotel-detail">
+          Sacromonte, C. 20 de Noviembre SN, 56900 Amecameca de Juárez, Méx.<br>
+          <span style="color:var(--orange-mid);">Tel: 597 978 1192</span>
+        </p>
+        <a href="https://maps.google.com/?q=Hotel+El+Marques+Sacromonte+Amecameca" target="_blank" rel="noopener"
+          class="btn btn-ghost">Ver en Maps</a>
+      </div>
+
+      <div class="hotel-card anim">
+        <p class="hotel-name">Quito Cielo — Airbnb</p>
+        <p class="hotel-detail">Un espacio íntimo y acogedor para quienes buscan algo más personal.</p>
+        <a href="https://www.airbnb.mx/rooms/27521002" target="_blank" rel="noopener" class="btn btn-ghost">Ver en
+          Airbnb</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================
+       FOOTER
+  ==================================================== -->
+  <footer class="footer">
+    <div style="max-width:480px;margin:0 auto;">
+      <div class="horse-row" style="color:var(--orange);margin:0 0 1.25rem;">
+        <span class="horse-mask h1" aria-hidden="true"></span>
+        <span class="horse-mask h2" aria-hidden="true"></span>
+        <span class="horse-mask h3" aria-hidden="true"></span>
+        <span class="horse-mask h1" aria-hidden="true"></span>
+      </div>
+      <p class="footer-names">Julia &amp; Erick</p>
+      <p class="footer-date">31 · Octubre · 2026</p>
+      <p class="footer-quote">
+        "Te amaré como nadie te ha amado,<br>
+        Llueva o truene,<br>
+        Estoy contigo..."
+      </p>
+      <p class="footer-copy">Come Rain or Come Shine · 2026</p>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================
+       SCRIPTS
+  ==================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    "use strict";
+
+    const CONFIG = {
+      SUPABASE_URL: 'YOUR_SUPABASE_URL',
+      SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY',
+      WEDDING_DATE: '2026-10-31T11:30:00',
+    };
+
+    /* ==========================================================
+       COUNTDOWN
+       ========================================================== */
+    function initCountdown() {
+      const target = new Date(CONFIG.WEDDING_DATE).getTime();
+      const $ = id => document.getElementById(id);
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) { ['cd-d', 'cd-h', 'cd-m', 'cd-s'].forEach(id => $(id).textContent = '0'); return; }
+        $('cd-d').textContent = Math.floor(diff / 86400000);
+        $('cd-h').textContent = Math.floor((diff % 86400000) / 3600000);
+        $('cd-m').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+        $('cd-s').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    /* ==========================================================
+       SCROLL ANIMATIONS
+       ========================================================== */
+    function initAnimations() {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -25px 0px' });
+      document.querySelectorAll('.anim').forEach(el => io.observe(el));
+    }
+
+    /* ==========================================================
+       AUDIO — Come Rain or Come Shine (local MP3)
+       
+       Uses a standard HTML5 <audio> element pointing to
+       assets/cancion.mp3. No third-party API, no autoplay
+       policy issues from YouTube.
+
+       Flow:
+         Page loads → <audio> preloads silently
+         User taps "Comenzar" → audio.play() at 40% volume
+         .play() inside click handler = allowed on ALL browsers
+         Floating ♪/⏸ button pauses and resumes.
+       ========================================================== */
+    function initIntroAndMusic() {
+      var introOverlay = document.getElementById('introOverlay');
+      var introBtn = document.getElementById('introBtn');
+      var musicBtn = document.getElementById('musicBtn');
+      var audio = document.getElementById('bgAudio');
+
+      // Pre-set volume so it's ready the moment play() is called
+      audio.volume = 0.40;
+      audio.loop = true;
+
+      // ── Intro "Comenzar" button ─────────────────────────────
+      introBtn.addEventListener('click', function onIntroBtnClick() {
+        // Remove listener — runs exactly once
+        introBtn.removeEventListener('click', onIntroBtnClick);
+
+        // Play at 40% volume — inside click handler, always allowed
+        audio.volume = 0.40;
+        audio.play().catch(function (err) {
+          console.warn('Audio could not start:', err);
+        });
+
+        // Update floating button to "playing" state
+        musicBtn.textContent = '⏸';
+        musicBtn.classList.add('playing');
+
+        // Fade out and remove intro overlay
+        introOverlay.classList.add('fade-out');
+        setTimeout(function () {
+          if (introOverlay && introOverlay.parentNode) {
+            introOverlay.parentNode.removeChild(introOverlay);
+          }
+        }, 1000);
+      });
+
+      // ── Floating ♪/⏸ button: toggle pause ↔ play ──────────
+      musicBtn.addEventListener('click', function () {
+        if (audio.paused) {
+          audio.volume = 0.40;
+          audio.play().catch(function (err) {
+            console.warn('Audio resume blocked:', err);
+          });
+          musicBtn.textContent = '⏸';
+          musicBtn.classList.add('playing');
+        } else {
+          audio.pause();
+          musicBtn.textContent = '♪';
+          musicBtn.classList.remove('playing');
+        }
+      });
+    }
+
+    /* ==========================================================
+       INIT
+       ========================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      initCountdown();
+      initAnimations();
+      initIntroAndMusic();
+    });
+  </script>
+</body>
+
+</html>
