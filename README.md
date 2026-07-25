@@ -1,257 +1,192 @@
-# Julia & Benito — Invitación Digital de Boda
-## Guía de Configuración y Despliegue
+# Julia & Erick — Invitación Digital de Boda
+
+## Guía de configuración y despliegue
 
 ---
 
-## Archivos del proyecto
+## Arquitectura
 
 ```
-wedding-invitation/
-├── index.html     ← Invitación pública (comparte este link con los invitados)
-├── admin.html     ← Panel de la novia (mantén este link privado)
-├── schema.sql     ← SQL para crear las tablas en Supabase
+bodorrio_de_julia/
+├── index.html      ← Invitación pública (GitHub Pages)
+├── admin.html       ← Panel de la novia: confirmaciones + mesas (GitHub Pages)
+├── server/          ← API + base de datos (Railway)
+│   ├── src/
+│   │   ├── index.js      Servidor Express
+│   │   ├── db.js         Conexión a Postgres + creación automática del esquema
+│   │   ├── schema.sql     Tablas: rsvps, guests, tables
+│   │   ├── seed.js        Datos de ejemplo: ~100 invitados en 15 mesas
+│   │   ├── routes/
+│   │   │   ├── rsvp.js     POST público para confirmar asistencia
+│   │   │   └── admin.js    Login + CRUD de confirmaciones, invitados y mesas
+│   │   └── middleware/
+│   │       └── auth.js    Verifica el token de sesión del panel admin
+│   └── package.json
 └── README.md
 ```
 
----
-
-## Paso 1 — Configurar Supabase
-
-### 1.1 Crear cuenta y proyecto
-
-1. Ve a https://supabase.com y crea una cuenta gratuita.
-2. Haz clic en **New Project**.
-3. Elige un nombre (ej: `boda-Julia-Benito`), una contraseña fuerte, y la región más cercana (us-east-1 para México).
-4. Espera ~2 minutos mientras se aprovisiona el proyecto.
-
-### 1.2 Crear las tablas con el SQL
-
-1. En el dashboard de tu proyecto, ve a **SQL Editor** en el menú lateral.
-2. Haz clic en **New Query**.
-3. Pega todo el contenido del archivo `schema.sql`.
-4. Haz clic en **Run** (o presiona F5).
-5. Deberías ver: `Success. No rows returned.`
-
-Esto crea:
-- Tabla `rsvps` (confirmaciones de grupos)
-- Tabla `guests` (invitados individuales)
-- Vista `rsvp_summary` (para consultas rápidas)
-- Todos los índices necesarios
-- Las políticas RLS para el modo demo
-
-### 1.3 Obtener tus credenciales
-
-1. Ve a **Project Settings** → **API** (en el menú lateral).
-2. Copia estos dos valores:
-   - **Project URL**: algo como `https://abcdefghij.supabase.co`
-   - **anon / public key**: una cadena larga que empieza con `eyJ...`
-
-⚠️ **NUNCA uses la `service_role` key en el frontend.** Solo usa la `anon public key`.
+**index.html y admin.html siguen viviendo en GitHub Pages** (como ya estaban desplegados).
+**server/ es un servicio Node.js + PostgreSQL nuevo, que se despliega en Railway** y expone
+una API HTTP que ambas páginas consumen por `fetch`.
 
 ---
 
-## Paso 2 — Configurar los archivos HTML
+## Paso 1 — Desplegar el servidor en Railway
 
-Abre `index.html` y `admin.html` con un editor de texto (VS Code, Notepad++, etc.).
+1. Ve a https://railway.app y crea un cuenta / inicia sesión.
+2. **New Project → Deploy from GitHub repo** y elige este repositorio.
+3. En la configuración del servicio, define el **Root Directory** como `server`
+   (Railway solo debe construir/ejecutar lo que está dentro de esa carpeta).
+4. En el mismo proyecto de Railway, haz clic en **+ New → Database → Add PostgreSQL**.
+   Railway conecta automáticamente la variable `DATABASE_URL` al servicio (si no lo hace
+   solo, ve a la pestaña **Variables** del servicio y agrégala referenciando el plugin de Postgres).
+5. En **Variables** del servicio agrega:
 
-En **ambos archivos**, busca el bloque `CONFIG` y reemplaza los valores placeholder:
+   | Variable | Valor |
+   |---|---|
+   | `ADMIN_PASSWORD` | La contraseña del panel de la novia (cámbiala del default) |
+   | `JWT_SECRET` | Una cadena larga y aleatoria (ej. genera una con `openssl rand -hex 32`) |
+   | `ALLOWED_ORIGINS` | `https://ericmargay.github.io` (agrega más orígenes separados por coma si haces pruebas locales) |
+   | `PGSSLMODE` | `require` si Railway te pide SSL para conectarte a Postgres (ver logs si el arranque falla por SSL) |
 
-```javascript
-const CONFIG = {
-  SUPABASE_URL:      'YOUR_SUPABASE_URL',      // ← Reemplaza aquí
-  SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY', // ← Reemplaza aquí
-  // ...
-};
-```
+6. Railway detecta `server/package.json` y corre `npm install` + `npm start` automáticamente
+   (usa Nixpacks). El servidor crea las tablas solo la primera vez que arranca — no necesitas
+   correr ningún script SQL a mano.
+7. Cuando termine el deploy, copia la URL pública del servicio
+   (algo como `https://boda-julia-erick-production.up.railway.app`).
 
-Por ejemplo:
+### Sembrar datos de ejemplo (opcional)
 
-```javascript
-const CONFIG = {
-  SUPABASE_URL:      'https://abcdefghij.supabase.co',
-  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-  WEDDING_DATE:      '2026-06-14T18:00:00',
-  BRIDE_NAME:        'Julia',
-  GROOM_NAME:        'Benito',
-};
-```
+Para probar el panel de mesas con datos realistas (~100 invitados confirmados en grupos
+familiares, repartidos en 15 mesas, dejando algunos sin asignar a propósito):
 
-También en `admin.html`, cambia la contraseña del panel:
-
-```javascript
-ADMIN_PASSWORD: 'boda2026',  // ← Cambia esto por algo más difícil
-```
-
----
-
-## Paso 3 — Actualizar los textos de la invitación
-
-En `index.html`, busca y reemplaza los placeholders de contenido:
-
-| Placeholder | Dónde está | Qué poner |
-|---|---|---|
-| `Julia` | Hero, footer | Nombre de la novia |
-| `Benito`   | Hero, footer | Nombre del novio |
-| `14 · Diciembre · 2026` | Hero, countdown, footer | Fecha real |
-| `Parroquia del Sagrado Corazón` | Timeline, locations | Nombre de la iglesia |
-| `Av. Hidalgo 450...` | Locations | Dirección real de la iglesia |
-| `Rancho Los Nogales` | Timeline, locations | Nombre del salón |
-| `Carretera Nacional Km. 25...` | Locations | Dirección real del salón |
-| `1 de Diciembre de 2026` | RSVP section | Fecha límite de confirmación |
-| `Liverpool — Núm. 000000` | Gifts | Número de mesa de regalos |
-| `María Isabel Reyes` | Intro | Nombres de padres/padrinos |
-| URL de Google Maps | Botones "Ver Ubicación" | Links reales de Google Maps |
-
-### Cómo obtener el link de Google Maps
-
-1. Abre Google Maps en tu navegador.
-2. Busca el lugar (ej: la iglesia).
-3. Haz clic derecho en el pin → **Compartir** → copia el link.
-4. Pégalo en el atributo `href` del botón "Ver Ubicación".
-
-### Agregar foto de los novios al hero
-
-1. Guarda la foto como `assets/couple.jpg` en la misma carpeta que `index.html`.
-2. En `index.html`, busca el comentario `PHOTO OVERLAY` y descoméntalo:
-
-```css
-/* Descomenta esto: */
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url('assets/couple.jpg');
-  background-size: cover;
-  background-position: center 20%;
-  opacity: 0.62;
-}
-```
-
----
-
-## Paso 4 — Desplegar en GitHub Pages
-
-### 4.1 Crear repositorio en GitHub
-
-1. Ve a https://github.com y crea un nuevo repositorio.
-2. Nómbralo algo como `bodorrio_de_julia` o `wedding-2026`.
-3. Déjalo **público** (GitHub Pages gratuito requiere repositorio público).
-
-### 4.2 Subir los archivos
-
-**Opción A — Desde el navegador (más fácil):**
-1. En tu nuevo repositorio, haz clic en **Add file** → **Upload files**.
-2. Arrastra `index.html`, `admin.html`, y la carpeta `assets/` si tienes fotos.
-3. Haz clic en **Commit changes**.
-
-**Opción B — Con Git (recomendado):**
 ```bash
-git init
-git add index.html admin.html assets/
-git commit -m "Initial wedding invitation"
-git remote add origin https://github.com/TU_USUARIO/TU_REPO.git
-git push -u origin main
+# Desde tu máquina, usando el CLI de Railway conectado al proyecto:
+railway run npm run seed --service <nombre-del-servicio>
 ```
 
-### 4.3 Activar GitHub Pages
+O ejecútalo localmente apuntando a la base de datos de Railway (copia el `DATABASE_URL`
+público desde la pestaña Variables):
 
-1. En tu repositorio en GitHub, ve a **Settings** → **Pages** (menú lateral izquierdo).
-2. Bajo **Source**, selecciona `Deploy from a branch`.
-3. Branch: `main`, folder: `/ (root)`.
-4. Haz clic en **Save**.
-5. Espera 1–2 minutos. GitHub te mostrará la URL pública, algo como:
-   `https://ericmargay.github.io/bodorrio_de_julia/`
+```bash
+cd server
+npm install
+DATABASE_URL="postgres://..." npm run seed
+```
 
-### 4.4 Configurar CORS en Supabase (si hay errores)
-
-Si ves errores de CORS en la consola del navegador:
-1. Ve a **Supabase Dashboard** → **Project Settings** → **API** → **CORS**.
-2. Agrega tu URL de GitHub Pages: `https://ericmargay.github.io`
-3. Guarda.
+⚠️ El seed **borra** todas las filas de `rsvps`, `guests` y `tables` antes de insertar los
+datos de ejemplo. No lo corras una vez que tengan confirmaciones reales.
 
 ---
 
-## Paso 5 — Compartir los links
+## Paso 2 — Conectar index.html y admin.html al servidor
 
-| Link | Para quién | Cómo compartir |
-|---|---|---|
-| `https://ericmargay.github.io/bodorrio_de_julia/` | Todos los invitados | WhatsApp, email, Instagram |
-| `https://ericmargay.github.io/bodorrio_de_julia/admin.html` | Solo la novia | WhatsApp privado, guardarlo en notas |
-
-**Tip de seguridad:** Cambia el nombre `admin.html` a algo más difícil de adivinar, como `panel-6k9x.html`. No es seguridad real, pero reduce la probabilidad de que alguien lo encuentre por accidente.
-
----
-
-## Probar el RSVP
-
-1. Abre `index.html` en tu navegador (directamente como archivo o desde GitHub Pages).
-2. Haz clic en "Confirmar Asistencia" y llena el formulario.
-3. Haz clic en "Enviar Confirmación".
-4. Ve al dashboard de Supabase → **Table Editor** → tabla `rsvps`.
-5. Deberías ver tu confirmación de prueba ahí.
-6. Abre `admin.html`, ingresa la contraseña, y verifica que aparece.
-
----
-
-## Migración a dominio propio (opcional, futuro)
-
-Cuando tengan un dominio personalizado (ej: `Julia-y-Benito.com`):
-
-1. **Frontend:** Sube los mismos archivos a tu hosting (Netlify, Vercel, cPanel, etc.).
-2. **Supabase:** No cambia nada — la base de datos sigue siendo la misma.
-3. **CORS:** Agrega el nuevo dominio en Supabase Dashboard → API → CORS.
-4. **CONFIG:** No necesitas cambiar nada en el código si la URL de Supabase no cambió.
-
----
-
-## Migrar a Supabase Auth (seguridad real para el admin)
-
-Cuando quieran proteger el panel admin de verdad:
-
-1. **En Supabase:** Dashboard → Authentication → Users → **Invite a user**.
-   - Usa el email de la novia. Recibirá un link para crear su contraseña.
-
-2. **En admin.html:** Reemplaza el bloque de login con Supabase Auth:
+Abre **ambos archivos** (`index.html` y `admin.html`) y busca el bloque `CONFIG`:
 
 ```javascript
-// Login con Supabase Auth
-const { error } = await supabase.auth.signInWithPassword({
-  email: emailInput.value,
-  password: passwordInput.value,
-});
-if (error) { /* mostrar error */ }
-else        { /* mostrar dashboard */ }
-
-// Logout
-await supabase.auth.signOut();
+const CONFIG = {
+  API_URL: 'https://YOUR-APP.up.railway.app', // ← Reemplaza con tu URL de Railway
+  ...
+};
 ```
 
-3. **En schema.sql:** Elimina las políticas DEMO y activa las PRODUCTION
-   (las instrucciones están comentadas al final de `schema.sql`).
+Reemplaza `API_URL` con la URL real que copiaste en el paso anterior. Debe ser **exactamente
+la misma** en los dos archivos.
+
+En `admin.html`, la contraseña **ya no vive en el HTML** — se valida en el servidor contra
+la variable `ADMIN_PASSWORD` que configuraste en Railway.
+
+---
+
+## Paso 3 — Subir los cambios a GitHub Pages
+
+```bash
+git add index.html admin.html server/ README.md
+git commit -m "Conectar RSVP y panel de mesas al servidor de Railway"
+git push
+```
+
+GitHub Pages se actualiza solo (unos minutos) porque `index.html`/`admin.html` están en la
+raíz del repo, tal como ya estaba configurado.
+
+### CORS
+
+Si ves errores de CORS en la consola del navegador al enviar el formulario o iniciar sesión
+en el panel, revisa que `ALLOWED_ORIGINS` en Railway incluya exactamente el dominio desde el
+que sirves las páginas (por ejemplo `https://ericmargay.github.io`, sin `/` final).
+
+---
+
+## Cómo funciona el RSVP
+
+1. Un invitado llena el formulario en la sección "Queremos verte" de `index.html`.
+2. El formulario hace `POST` a `{API_URL}/api/rsvp` con su nombre, teléfono, acompañantes, etc.
+3. El servidor crea una fila en `rsvps` y una fila por cada invitado en `guests`
+   (estado inicial `accepted`).
+4. La novia entra a `admin.html`, inicia sesión con la contraseña, y ve la confirmación
+   en la pestaña **Confirmaciones**: puede marcarla como revisada, cambiar el estado de
+   cada invitado, o eliminarla.
+5. En la pestaña **Mesas**, todos los invitados con estado `accepted` aparecen en la columna
+   "Sin mesa" hasta que se arrastran (o se seleccionan con un toque) hacia una de las mesas.
+   El tablero muestra cupo ocupado/total por mesa y bloquea asignaciones si la mesa ya está llena.
+
+El botón de WhatsApp se mantiene como alternativa para quien prefiera confirmar por ahí —
+esas confirmaciones no aparecen en el panel automáticamente, hay que agregarlas a mano si
+alguien confirma solo por ese medio.
+
+---
+
+## Panel de mesas — gestión de invitados
+
+- **Renombrar / cambiar capacidad de una mesa:** haz clic en el nombre de la mesa.
+- **Agregar una mesa:** botón "+ Agregar mesa" al final de la cuadrícula.
+- **Eliminar una mesa:** sus invitados regresan automáticamente a "Sin mesa".
+- **Mover invitados:** arrastra la tarjeta de un invitado hacia otra mesa o hacia "Sin mesa"
+  (funciona en escritorio). En celular/tablet, toca al invitado para seleccionarlo (se resalta)
+  y luego toca la mesa destino.
+- Los indicadores circulares de cada mesa muestran cuántos lugares están ocupados de un vistazo.
+
+---
+
+## Desarrollo local
+
+```bash
+cd server
+cp .env.example .env     # edita DATABASE_URL para que apunte a tu Postgres local
+npm install
+npm run seed              # opcional: llena la base con datos de ejemplo
+npm start
+```
+
+El servidor corre en `http://localhost:3000` por defecto. Para probar `index.html`/`admin.html`
+localmente, sirve la raíz del repo con cualquier servidor estático (por ejemplo
+`npx serve .`) y pon `API_URL: 'http://localhost:3000'` temporalmente en el `CONFIG` de ambos
+archivos — recuerda regresarlo a la URL de Railway antes de subir cambios.
 
 ---
 
 ## Preguntas frecuentes
 
-**¿Alguien puede ver los datos de otros invitados desde la invitación pública?**
-No. La invitación solo tiene permiso de INSERT. Para leer los datos se necesita acceso al panel admin o al dashboard de Supabase.
+**¿Necesito correr el `schema.sql` a mano en Railway?**
+No. El servidor lo ejecuta automáticamente (`CREATE TABLE IF NOT EXISTS ...`) cada vez que arranca.
 
-**¿Es seguro tener la anon key visible en el código fuente?**
-Sí. La anon key es pública por diseño — es equivalente a una clave de API de solo lectura. Las políticas RLS en Supabase controlan lo que puede hacer con ella. La única clave que NUNCA debe estar en el frontend es la `service_role key`.
+**¿Es seguro tener `API_URL` visible en el código fuente?**
+Sí, es solo la dirección pública de tu API. Lo que protege los datos es que las rutas de
+`/api/admin/*` requieren el token que se obtiene al iniciar sesión con `ADMIN_PASSWORD`
+(que nunca se expone en el HTML).
 
-**¿Qué pasa si alguien envía muchos RSVP falsos?**
-Para una boda privada donde el link solo se comparte con invitados conocidos, el riesgo es muy bajo. Si quieres más protección, puedes agregar un honeypot field o validación de email al formulario.
-
-**¿Puedo usar esto para más de 500 confirmaciones?**
-Sí. El plan gratuito de Supabase permite hasta 500MB de base de datos y 2GB de transferencia mensual, más que suficiente para cualquier boda.
+**¿Qué pasa si alguien manda RSVPs falsos?**
+El endpoint público solo permite crear confirmaciones, no leer ni modificar datos existentes.
+Para una boda privada donde el link se comparte solo con invitados conocidos, el riesgo es bajo.
 
 ---
 
-## Soporte
+## Soporte técnico
 
 Construido con:
-- **Supabase** — Backend, PostgreSQL, RLS
+- **Node.js + Express + PostgreSQL** — API y base de datos, en Railway
 - **Great Vibes + Playfair Display + Cormorant Garamond** — Google Fonts
-- **HTML/CSS/JS Vanilla** — Sin build step, desplegable directamente en GitHub Pages
+- **HTML/CSS/JS Vanilla** — Sin build step en el frontend, desplegable en GitHub Pages
 
 ---
 

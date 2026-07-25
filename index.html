@@ -890,6 +890,112 @@
       margin-bottom: 1.75rem;
     }
 
+    /* RSVP form */
+    .rsvp-form { text-align: left; margin-bottom: 1.5rem; }
+
+    .rsvp-lbl {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange-pale);
+      opacity: 0.85;
+      margin-bottom: 0.4rem;
+    }
+
+    .rsvp-field {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--text-light);
+      background: rgba(245, 237, 216, 0.06);
+      border: 1px solid rgba(224, 207, 168, 0.35);
+      border-bottom: 2px solid var(--orange-mid);
+      padding: 0.75rem 1rem;
+      outline: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .rsvp-field:focus { border-bottom-color: var(--orange); background: rgba(245, 237, 216, 0.1); }
+    .rsvp-field::placeholder { color: var(--text-warm); opacity: 0.7; }
+
+    textarea.rsvp-field { resize: vertical; min-height: 4.5rem; }
+
+    .rsvp-field-group { margin-bottom: 1.25rem; }
+
+    .rsvp-guest-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+      align-items: center;
+    }
+
+    .rsvp-guest-row .rsvp-field { flex: 1; }
+
+    .rsvp-guest-remove {
+      background: none;
+      border: 1px solid rgba(224, 207, 168, 0.35);
+      color: var(--text-warm);
+      width: 2.6rem;
+      height: 2.6rem;
+      flex-shrink: 0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .rsvp-guest-remove:hover { border-color: #c0392b; color: #c0392b; }
+
+    .rsvp-add-guest {
+      background: none;
+      border: 1px dashed rgba(224, 207, 168, 0.4);
+      color: var(--orange-pale);
+      width: 100%;
+      padding: 0.7rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+    }
+
+    .rsvp-add-guest:hover { border-color: var(--orange); }
+
+    .rsvp-msg-box {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding: 0.9rem 1.1rem;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .rsvp-msg-box.show { display: block; }
+    .rsvp-msg-box.ok    { background: rgba(49, 155, 119, 0.12); border: 1px solid rgba(49, 155, 119, 0.4); color: #7fd8b8; }
+    .rsvp-msg-box.error { background: rgba(192, 57, 43, 0.12); border: 1px solid rgba(192, 57, 43, 0.4); color: #f0a698; }
+
+    .rsvp-divider-or {
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-warm);
+      opacity: 0.6;
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .rsvp-divider-or::before,
+    .rsvp-divider-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(224, 207, 168, 0.25);
+    }
+
     /* ============================================================
        EASTER EGG
     ============================================================ */
@@ -1553,7 +1659,7 @@
 
 
   <!-- ====================================================
-       SECTION 9 — RSVP (WhatsApp)
+       SECTION 9 — RSVP
   ==================================================== -->
   <section class="section s-dark" id="rsvp">
     <div class="inner">
@@ -1562,10 +1668,50 @@
       <div class="divider anim"></div>
 
       <div class="anim">
-        <p class="wapp-msg">
+        <p class="wapp-msg" style="font-size:1.5rem;margin-bottom:1.5rem;">
           Nos hará muy felices compartir este día contigo.<br>
-          Confírmanos si podrás acompañarnos.
+          Confírmanos si podrás acompañarnos antes del 1 de octubre.
         </p>
+
+        <form id="rsvpForm" class="rsvp-form" novalidate>
+          <div class="rsvp-field-group">
+            <label class="rsvp-lbl" for="rsvpName">Tu nombre</label>
+            <input type="text" id="rsvpName" name="confirmed_by" class="rsvp-field" placeholder="¿Quién confirma?" required />
+          </div>
+
+          <div class="rsvp-field-group">
+            <label class="rsvp-lbl">Invitados que asistirán (inclúyete)</label>
+            <div id="rsvpGuestRows"></div>
+            <button type="button" class="rsvp-add-guest" id="rsvpAddGuest">+ Agregar acompañante</button>
+          </div>
+
+          <div class="rsvp-field-group">
+            <label class="rsvp-lbl" for="rsvpPhone">Teléfono</label>
+            <input type="tel" id="rsvpPhone" name="phone" class="rsvp-field" placeholder="55 0000 0000" />
+          </div>
+
+          <div class="rsvp-field-group">
+            <label class="rsvp-lbl" for="rsvpEmail">Email (opcional)</label>
+            <input type="email" id="rsvpEmail" name="email" class="rsvp-field" placeholder="tu@email.com" />
+          </div>
+
+          <div class="rsvp-field-group">
+            <label class="rsvp-lbl" for="rsvpFood">Restricciones alimenticias (opcional)</label>
+            <input type="text" id="rsvpFood" name="food_restrictions" class="rsvp-field" placeholder="Vegetariano, alergias, etc." />
+          </div>
+
+          <div class="rsvp-field-group">
+            <label class="rsvp-lbl" for="rsvpComments">Comentarios (opcional)</label>
+            <textarea id="rsvpComments" name="comments" class="rsvp-field" placeholder="Algo que quieras decirnos..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-solid btn-w100" id="rsvpSubmitBtn">Enviar Confirmación</button>
+
+          <div class="rsvp-msg-box" id="rsvpMsgBox"></div>
+        </form>
+
+        <div class="rsvp-divider-or">o si lo prefieres</div>
+
         <a href="https://wa.me/525591896988?text=Hola%20Julia%20y%20Erick%2C%20quiero%20confirmar%20mi%20asistencia%20a%20su%20boda%20el%2031%20de%20octubre.%20%F0%9F%8C%B9"
           target="_blank" rel="noopener" class="btn btn-wapp btn-w100">
           Confirmar <br> por <br> WhatsApp
@@ -1690,14 +1836,12 @@
   <!-- ====================================================
        SCRIPTS
   ==================================================== -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script>
     "use strict";
 
     const CONFIG = {
-      SUPABASE_URL: 'YOUR_SUPABASE_URL',
-      SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY',
+      // URL pública de tu servicio en Railway (la misma que en admin.html).
+      API_URL: 'https://boda-server-production.up.railway.app',
       WEDDING_DATE: '2026-10-31T11:30:00',
       SHOW_INTRO: true,  // Cambia a false para saltar el intro mientras desarrollas
     };
@@ -1801,12 +1945,106 @@
     }
 
     /* ==========================================================
+       RSVP FORM
+       ========================================================== */
+    function initRSVPForm() {
+      const form      = document.getElementById('rsvpForm');
+      const rowsEl    = document.getElementById('rsvpGuestRows');
+      const addBtn    = document.getElementById('rsvpAddGuest');
+      const nameInput = document.getElementById('rsvpName');
+      const msgBox    = document.getElementById('rsvpMsgBox');
+      const submitBtn = document.getElementById('rsvpSubmitBtn');
+      const MAX_GUESTS = 10;
+
+      function addGuestRow(value = '') {
+        if (rowsEl.children.length >= MAX_GUESTS) return;
+        const row = document.createElement('div');
+        row.className = 'rsvp-guest-row';
+        row.innerHTML = `
+          <input type="text" class="rsvp-field rsvp-guest-name" placeholder="Nombre completo" value="${value}" required />
+          <button type="button" class="rsvp-guest-remove" aria-label="Quitar">✕</button>`;
+        row.querySelector('.rsvp-guest-remove').addEventListener('click', () => {
+          if (rowsEl.children.length > 1) row.remove();
+        });
+        rowsEl.appendChild(row);
+      }
+
+      addGuestRow(); // first row = the person confirming
+      addBtn.addEventListener('click', () => addGuestRow());
+
+      // Keep the first guest row in sync with the "Tu nombre" field.
+      nameInput.addEventListener('input', () => {
+        const firstRow = rowsEl.querySelector('.rsvp-guest-name');
+        if (firstRow && !firstRow.dataset.touched) firstRow.value = nameInput.value;
+      });
+      rowsEl.addEventListener('input', e => {
+        if (e.target.classList.contains('rsvp-guest-name') && e.target === rowsEl.querySelector('.rsvp-guest-name')) {
+          e.target.dataset.touched = 'true';
+        }
+      });
+
+      function showMsg(text, ok) {
+        msgBox.textContent = text;
+        msgBox.className = 'rsvp-msg-box show ' + (ok ? 'ok' : 'error');
+      }
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        msgBox.className = 'rsvp-msg-box';
+
+        const confirmedBy = nameInput.value.trim();
+        const guestNames = [...rowsEl.querySelectorAll('.rsvp-guest-name')]
+          .map(i => i.value.trim())
+          .filter(Boolean);
+
+        if (!confirmedBy) { showMsg('Escribe tu nombre para confirmar.', false); nameInput.focus(); return; }
+        if (!guestNames.length) { showMsg('Agrega al menos un invitado.', false); return; }
+
+        if (CONFIG.API_URL === 'https://YOUR-APP.up.railway.app') {
+          showMsg('El formulario aún no está conectado al servidor. Usa WhatsApp mientras tanto.', false);
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        try {
+          const res = await fetch(CONFIG.API_URL + '/api/rsvp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              confirmed_by: confirmedBy,
+              phone: document.getElementById('rsvpPhone').value.trim() || null,
+              email: document.getElementById('rsvpEmail').value.trim() || null,
+              food_restrictions: document.getElementById('rsvpFood').value.trim() || null,
+              comments: document.getElementById('rsvpComments').value.trim() || null,
+              guests: guestNames.map(name => ({ name, status: 'accepted' })),
+            }),
+          });
+          const body = await res.json().catch(() => ({}));
+          if (!res.ok) throw new Error(body.error || 'No se pudo enviar tu confirmación.');
+
+          showMsg('¡Gracias! Tu confirmación fue recibida. Nos vemos el 31 de octubre 🌙', true);
+          form.reset();
+          rowsEl.innerHTML = '';
+          addGuestRow();
+        } catch (err) {
+          showMsg('Hubo un problema al enviar tu confirmación: ' + err.message + '. Intenta por WhatsApp.', false);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar Confirmación';
+        }
+      });
+    }
+
+    /* ==========================================================
        INIT
        ========================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       initCountdown();
       initAnimations();
       initIntroAndMusic();
+      initRSVPForm();
     });
   </script>
 </body>
